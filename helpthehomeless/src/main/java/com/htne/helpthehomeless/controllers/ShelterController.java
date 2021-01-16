@@ -25,11 +25,11 @@ public class ShelterController {
     }
 
     @GetMapping(path = "/getShelters")
-    public ResponseEntity<String> updateUserLocation
+    public ResponseEntity<String> getShelters
             (@RequestParam final int radius, @RequestParam final double longitude, @RequestParam final double latitude)
              {
         return new ResponseEntity<>
-                (shelterService.getRegisteredShelters(longitude, latitude, radius), HttpStatus.CREATED);
+                (shelterService.getRegisteredShelters(longitude, latitude, radius), HttpStatus.OK);
     }
 
 
