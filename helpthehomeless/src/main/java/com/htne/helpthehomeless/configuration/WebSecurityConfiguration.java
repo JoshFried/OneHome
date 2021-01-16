@@ -1,7 +1,9 @@
 package com.htne.helpthehomeless.configuration;
 
-import com.htne.helpthehomeless.converters.RegistrationDTOToUserConverter;
-import com.htne.helpthehomeless.converters.UserToUserDTOConverter;
+import com.htne.helpthehomeless.converters.dto2entity.RegistrationDTOToUserConverter;
+import com.htne.helpthehomeless.converters.dto2entity.ShelterDTOToShelterConverter;
+import com.htne.helpthehomeless.converters.dto2entity.UserDTOToUserConverter;
+import com.htne.helpthehomeless.converters.entity2dto.UserToUserDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,14 +27,16 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-    private final        SCUserDetailsService userDetailsService;
-    private static final String               FRONTEND_URL = "http://localhost:3000";
+    private final        HTHUserDetailsService userDetailsService;
+    private static final String                FRONTEND_URL = "http://localhost:3000";
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.cors()
             .and()
             .authorizeRequests()
+//            .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+            .antMatchers("/shelter/admin/create").permitAll()
             .antMatchers("/register").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/api").permitAll()
@@ -65,6 +69,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
     public void addFormatters(final FormatterRegistry mvcConversionService) {
         mvcConversionService.addConverter(new RegistrationDTOToUserConverter());
         mvcConversionService.addConverter(new UserToUserDTOConverter());
+        mvcConversionService.addConverter(new ShelterDTOToShelterConverter());
+        mvcConversionService.addConverter(new UserDTOToUserConverter());
     }
 
     @Bean

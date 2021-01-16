@@ -6,10 +6,10 @@ import com.htne.helpthehomeless.dal.model.User;
 import com.htne.helpthehomeless.dal.service.exceptions.ExceptionHelper;
 import com.htne.helpthehomeless.dal.service.exceptions.HTNENotFoundException;
 import com.htne.helpthehomeless.dal.service.exceptions.HTNEUserAlreadyExistsException;
-import com.htne.helpthehomeless.dto.LoginRequestDTO;
-import com.htne.helpthehomeless.dto.LoginResponseDTO;
 import com.htne.helpthehomeless.dto.UserDTO;
-import com.htne.helpthehomeless.dto.registration.RegistrationDTO;
+import com.htne.helpthehomeless.dto.login.LoginRequestDTO;
+import com.htne.helpthehomeless.dto.login.LoginResponseDTO;
+import com.htne.helpthehomeless.dto.registration.UserRegistrationDTO;
 import com.htne.helpthehomeless.dto.registration.validators.RegistrationValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -35,10 +35,9 @@ public class AuthenticationService {
     private final UserService                 userService;
     private final ConfirmationTokenRepository confirmationTokenRepository;
     private final EmailService                emailService;
-
     public static final String USER_ALREADY_EXISTS_ERROR_MESSAGE = "Username/email already exists";
 
-    public UserDTO registerUser(final RegistrationDTO registration) {
+    public UserDTO registerUser(final UserRegistrationDTO registration) {
         if (userService.emailExists(registration.getEmail()) || userService.usernameExists(registration.getUsername())) {
             throw new HTNEUserAlreadyExistsException(USER_ALREADY_EXISTS_ERROR_MESSAGE);
         }
@@ -76,5 +75,4 @@ public class AuthenticationService {
 
         return userService.toggleAccountActivation(confirmationToken.getUser());
     }
-
 }

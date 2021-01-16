@@ -1,4 +1,4 @@
-package com.htne.helpthehomeless.dto;
+package com.htne.helpthehomeless.dto.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
