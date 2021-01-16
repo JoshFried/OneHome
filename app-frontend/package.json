@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/combobox": "^0.12.1",
+    "@react-google-maps/api": "^2.1.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
+    "date-fns": "^2.16.1",
     "google-map-react": "^2.1.9",
     "google-maps-react": "^2.0.6",
+    "reach": "^1.0.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
@@ -20,6 +24,7 @@
     "react-scripts": "4.0.1",
     "reactstrap": "^8.8.1",
     "redux": "^4.0.5",
+    "use-places-autocomplete": "^1.7.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
