@@ -6,6 +6,7 @@ import com.htne.helpthehomeless.dal.model.Location;
 import com.htne.helpthehomeless.dal.model.Role;
 import com.htne.helpthehomeless.dal.model.Shelter;
 import com.htne.helpthehomeless.dal.model.User;
+import com.htne.helpthehomeless.dal.service.exceptions.ExceptionHelper;
 import com.htne.helpthehomeless.dal.service.exceptions.HTNENotFoundException;
 import com.htne.helpthehomeless.dto.ShelterDTO;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,13 @@ public class ShelterService {
         shelterRepository.save(shelter);
 
         return dto;
+    }
+
+    public ShelterDTO getShelter(final long id) {
+        return mvcConversionService.convert(shelterRepository
+                                                    .findById(id)
+                                                    .orElseThrow(() -> new HTNENotFoundException(ExceptionHelper.getNotFoundExceptionMessage("Id: ", String.valueOf(id)))),
+                                            ShelterDTO.class);
     }
 
 }
