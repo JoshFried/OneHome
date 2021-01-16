@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm.js"
 
 function Home() {
   return(
-      <LoginForm/>
+      <div>hey</div>
   )
 }
 export default Home;

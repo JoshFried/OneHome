@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import Navbar from "./components/Navbar"
 import PrivateRoute from "./components/PrivateRoute";
 import {AuthContext} from "./components/Auth.js"
+import { useUser } from "./components/UserContext";
 function App() {
   const [authTokens, setAuthTokens] = useState(
     localStorage.getItem("token") || "");

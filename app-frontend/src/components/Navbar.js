@@ -6,19 +6,13 @@ import "../Utils/config";
 import { useUser } from "./UserContext";
 
 const Navbar = (props) => {
-  const [selectedTab, setSelectedTab] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setSelectedTab(newValue);
-  };
 
-  //const { user, setUser } = useUser();
 
-  /*const [authTokens, setAuthTokens] = useState(
-    localStorage.getItem("token") || ""
-  );*/
+  const { user, setUser } = useUser();
+
   const [authTokens, setAuthTokens] = useState(
-    true
+    localStorage.getItem("token") || ""
   );
 
   const setTokens = (data) => {
@@ -26,15 +20,11 @@ const Navbar = (props) => {
     setAuthTokens(data);
   };
 
-  /*const handleLogout = () => {
+  const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem('summerStart');
-    localStorage.removeItem('summerEnd');
-    localStorage.removeItem('winterStart');
-    localStorage.removeItem('winterEnd');
     setUser(null);
     Axios.get(global.config.BACKEND_URL + `/logout`);
-  }; */
+  }; 
 
   return (
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
