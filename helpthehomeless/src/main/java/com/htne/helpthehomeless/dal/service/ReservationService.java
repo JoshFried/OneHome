@@ -7,7 +7,6 @@ import com.htne.helpthehomeless.dal.model.Shelter;
 import com.htne.helpthehomeless.dal.model.User;
 import com.htne.helpthehomeless.dal.service.exceptions.HTHInvalidStateException;
 import com.htne.helpthehomeless.dto.ReservationDTO;
-import com.htne.helpthehomeless.dto.ReservationRequestDTO;
 import com.htne.helpthehomeless.dto.ShelterDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -26,9 +25,9 @@ public class ReservationService {
     private final ShelterService        shelterService;
     private final ConversionService     mvcConversionService;
 
-    public ReservationDTO createReservation(final ReservationRequestDTO request) {
+    public ReservationDTO createReservation(final long shelterId) {
         final User       user    = userService.getUserFromContext();
-        final ShelterDTO shelter = shelterService.getShelter(request.getShelterId());
+        final ShelterDTO shelter = shelterService.getShelter(shelterId);
 
         if (shelter.getCapacity() <= shelter.getOccupancy()) {
             throw new HTHInvalidStateException("Selected shelter does not have enough capacity at the moment");

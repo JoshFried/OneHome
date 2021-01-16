@@ -1,8 +1,8 @@
 package com.htne.helpthehomeless.dal.service;
 
+import com.htne.helpthehomeless.converters.dto2entity.LocationDTOToLocationConverter;
 import com.htne.helpthehomeless.dal.dao.LocationRepository;
 import com.htne.helpthehomeless.dal.dao.ShelterRepository;
-import com.htne.helpthehomeless.dal.model.Location;
 import com.htne.helpthehomeless.dal.model.Role;
 import com.htne.helpthehomeless.dal.model.Shelter;
 import com.htne.helpthehomeless.dal.model.User;
@@ -28,7 +28,7 @@ public class ShelterService {
             throw new HTNENotFoundException("Invalid Role");
         }
 
-        locationRepository.save(mvcConversionService.convert(dto.getLocation(), Location.class));
+        locationRepository.save(LocationDTOToLocationConverter.convert(dto.getLocation()));
         final Shelter shelter = mvcConversionService.convert(dto, Shelter.class);
         shelter.setUser(user);
         shelterRepository.save(shelter);

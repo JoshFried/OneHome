@@ -18,9 +18,9 @@ public class Reservation {
     @GeneratedValue
     @Column
     private Long    id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Shelter shelter;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User    user;
     private Date    createdAt;
     private Date    expiresAt;
