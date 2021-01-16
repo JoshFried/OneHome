@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import FormInput from "./formcomponents/FormInput.js.js";
+import FormInput from "./formcomponents/FormInput.js";
 import useFormValidation from "./validators/UseFormValidation";
 import ValidateAuthentication from "./validators/ValidateAuthentication";
 import { authenticate } from "../../modules/AuthenticationService.js";
@@ -7,6 +7,9 @@ import { useAuth } from "../../context/Auth";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "../../context/UserContext.js";
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap-grid.min.css'
+import "node_modules/bootstrap/scss/bootstrap";
 
 const INITIAL_STATE = {
   username: "",
@@ -34,6 +37,7 @@ const LoginForm = () => {
   } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
 
   return (
+
     <Fragment>
       <form onSubmit={handleSubmit}>
         {errors.username && (
@@ -65,8 +69,13 @@ const LoginForm = () => {
         <Button type="submit" label="Submit" disabled={isSubmitting}>
           Submit
         </Button>
+
+        <Button type="submit" label="Testing button" disabled={isSubmitting}>
+          NOT THE RIGHT VERSION
+        </Button>
+
         <Button component={Link} to="/register">
-          Register
+          Register test
         </Button>
       </form>
     </Fragment>
