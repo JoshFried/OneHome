@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import FormInput from "./FormInput.js";
-import useFormValidation from "./UseFormValidation";
-import ValidateAuthentication from "./ValidateAuthentication";
+import useFormValidation from "./UseFormValidation.js";
+import ValidateAuthentication from "./ValidateAuthentication.js";
 import { authenticate } from "./AuthenticationService.js";
-import { useAuth } from "./Auth";
+import { useAuth } from "./Auth.js";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "./UserContext.js";

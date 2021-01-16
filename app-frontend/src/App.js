@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,12 +6,19 @@ import {
 import Register from "./components/Register";
 import Home from "./components/Home";
 import PrivateRoute from "./components/PrivateRoute";
+import {AuthContext} from "./components/Auth.js"
 function App() {
+  const [authTokens, setAuthTokens] = useState(
+    localStorage.getItem("token") || "");
+    const setTokens = (data) => {
+    localStorage.setItem("token", JSON.stringify(data));
+    setAuthTokens(data);
+  };
   return (
     <Router>
       <div>
-        <Route/>
-        <PrivateRoute path = '/protected' component = {Protected}/>
+        <Route path = "/" exact component = {Home}/>
+        <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}/>
       </div>
     </Router>
   );
