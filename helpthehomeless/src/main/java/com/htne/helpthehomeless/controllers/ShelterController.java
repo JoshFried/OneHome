@@ -27,7 +27,7 @@ public class ShelterController {
     @GetMapping(path = "/getShelters")
     public ResponseEntity<String> updateUserLocation
             (@RequestParam final int radius, @RequestParam final double longitude, @RequestParam final double latitude)
-            throws InterruptedException, ApiException, IOException {
+             {
         return new ResponseEntity<>
                 (shelterService.getRegisteredShelters(longitude, latitude, radius), HttpStatus.CREATED);
     }

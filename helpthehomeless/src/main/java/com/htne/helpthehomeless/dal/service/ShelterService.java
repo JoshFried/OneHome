@@ -66,26 +66,8 @@ public class ShelterService {
         return dto;
     }
 
-    public String getRegisteredShelters(double longitude, double latitude, int radius) throws InterruptedException, ApiException, IOException {
-        GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("AIzaSyDIpjXbG67pNIXxcrACuw8hmI60qb_CWVs")
-                .build();
-         final String input = "Homeless shelter";
-         final com.google.maps.model.LatLng latLng = new com.google.maps.model.LatLng(latitude, longitude);
-         final TextSearchRequest txtRequest = new TextSearchRequest(context);
-         txtRequest.radius(radius);
-         txtRequest.location(latLng);
-         txtRequest.query(input);
-         PlacesSearchResponse response = txtRequest.await();
-         PlacesSearchResult[] places = response.results;
+    public String getRegisteredShelters(double longitude, double latitude, int radius){
          List<Shelter> registeredShelterList = new ArrayList<>();
-
-         for(PlacesSearchResult place : places){
-             Optional<Shelter> shelter = shelterRepository.findByName(place.name);
-             if(shelter.isPresent()){
-                 registeredShelterList.add(shelter.get());
-             }
-         }
 
          for(Shelter shelter : shelterRepository.findAll()){
              if(distance(shelter.getLocation().getLatitude(), shelter.getLocation().getLongitude(), latitude, longitude,
