@@ -44,11 +44,11 @@ const LoginForm = () => {
                 </Image>
             </Jumbotron>
             <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#223042', height:'60px'   }} variant="dark">
-                <Navbar.Brand href="#home" style={{color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
+                <Navbar.Brand href="#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto py-3 ">
-                        <Nav.Link href="#features">Ressoucres</Nav.Link>
+                        <Nav.Link href="#features">Resources</Nav.Link>
                         <Nav.Link href="#pricing">Shelters near you</Nav.Link>
                         <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
