@@ -42,8 +42,8 @@ const LoginForm = () => {
   return (
 
     <Fragment >
-      <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#5F6871', marginBottom:'0px'}}>
-        <Image src='logo.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
+      <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
+        <Image src='logo-A0A9B2.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
           </Image>
       </Jumbotron>
         <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#223042'}} variant="dark">
