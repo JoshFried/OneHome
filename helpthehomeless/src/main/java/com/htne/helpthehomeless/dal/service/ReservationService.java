@@ -39,15 +39,15 @@ public class ReservationService {
                                             .shelter(mvcConversionService.convert(shelter, Shelter.class))
                                             .user(user)
                                             .build();
-
+        repository.save(rsvp);
         try {
-            qrCodeService.getQRCodeImage(String.valueOf(rsvp.getId()));
+            qrCodeService.generateQRCodeImage(String.valueOf(rsvp.getId()));
         } catch (final WriterException e) {
             e.printStackTrace();
         } catch (final IOException e) {
             e.printStackTrace();
         }
 
-        return mvcConversionService.convert(repository.save(rsvp), ReservationDTO.class);
+        return mvcConversionService.convert(rsvp, ReservationDTO.class);
     }
 }
