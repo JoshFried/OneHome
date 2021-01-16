@@ -7,25 +7,7 @@ const mapStyles = {
  width: '100%',
  height: '70%'
  };
-function MapElement(props)
-{
-    return(
-        <div>
-         <Marker
-          onClick={this.onMarkerClick}
-          name={'You are here!'}
-        />
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}>
-            <div>
-                <h2>ur here!</h2>
-            </div>
-        </InfoWindow>
-        </div>
-    )
-}
+
 export class MapContainer extends Component {
     constructor(props)
     {
