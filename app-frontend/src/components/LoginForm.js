@@ -15,9 +15,6 @@ const INITIAL_STATE = {
   username: "",
   password: "",
 };
-
-
-
 const LoginForm = () => {
   /*const { setAuthTokens } = useAuth();
   const { setUser } = useUser();*/ 
