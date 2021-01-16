@@ -11,6 +11,7 @@ public class ShelterDTOToShelterConverter implements Converter<ShelterDTO, Shelt
     @Override
     public Shelter convert(final ShelterDTO source) {
         return Shelter.builder()
+                      .id(source.getId())
                       .location(LocationDTOToLocationConverter.convert(source.getLocation()))
                       .capacity(source.getCapacity())
                       .name(source.getName())

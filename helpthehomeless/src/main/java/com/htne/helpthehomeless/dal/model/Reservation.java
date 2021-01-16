@@ -18,7 +18,7 @@ public class Reservation {
     @GeneratedValue
     @Column
     private Long    id;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Shelter shelter;
     @OneToOne(cascade = CascadeType.PERSIST)
     private User    user;
