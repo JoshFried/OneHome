@@ -1,5 +1,6 @@
 package com.htne.helpthehomeless.dto;
 
+import com.htne.helpthehomeless.dal.model.Role;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,9 +9,11 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 public class UserDTO {
-    private Long   id;
-    private String username;
-    private String email;
-    private String firstName;
-    private String lastName;
+    private Long    id;
+    private String  username;
+    private String  email;
+    private String  firstName;
+    private String  lastName;
+    private Boolean isEnabled;
+    private Role    role;
 }
