@@ -127,12 +127,11 @@ const RegistrationForm = () => {
       <select
         onChange={handleChange}
         onBlur={handleBlur}
-        defaultValue="GUEST"
+        defaultValue="Needy"
         name="role"
       >
-        <option value="PARENT">Parent</option>
-        <option value="CHILD">Child</option>
-        <option value="GUEST">Guest</option>
+        <option value="Needy">Needy</option>
+        <option value="Shelter">Shelter</option>
       </select>
 
       <Button
