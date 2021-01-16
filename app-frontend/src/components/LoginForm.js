@@ -14,13 +14,14 @@ const INITIAL_STATE = {
 };
 
 const LoginForm = () => {
-  const { setAuthTokens } = useAuth();
-  const { setUser } = useUser();
+  /*const { setAuthTokens } = useAuth();
+  const { setUser } = useUser();*/ 
   const history = useHistory();
   const loginUser = async (fields) => {
     const result = await authenticate(fields);
-    setUser(await result.user);
-    setAuthTokens(await result.token);
+    console.log(result);
+    /*setUser(await result.user);
+    setAuthTokens(await result.token); */
     history.push("/");
   };
 

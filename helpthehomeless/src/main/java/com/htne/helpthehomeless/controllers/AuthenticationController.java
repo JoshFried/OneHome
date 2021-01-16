@@ -27,7 +27,7 @@ public class AuthenticationController {
 
     @PostMapping(path = "/login")
     public ResponseEntity<LoginResponseDTO> loginUser(final HttpServletRequest request, @RequestBody final LoginRequestDTO loginRequest) {
-        return new ResponseEntity<>(authenticationService.login(request, loginRequest), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(authenticationService.login(request, loginRequest), HttpStatus.OK);
     }
 
     @PostMapping(path = "/confirm-account")
