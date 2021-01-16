@@ -43,7 +43,7 @@ const LoginForm = () => {
                 <Image src='logo-A0A9B2.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
                 </Image>
             </Jumbotron>
-            <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#223042', height:'60px'   }} variant="dark">
+            <Navbar collapseOnSelect expand="lg" style={{backgroundImage: 'linear-gradient(15deg, #223042 0%, #5E7898 90%)', height:'60px'   }} variant="dark">
                 <Navbar.Brand href="#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
@@ -58,9 +58,9 @@ const LoginForm = () => {
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
-                    <Nav>
-                        <Nav.Link href="#deets">Who we are</Nav.Link>
-                        <Nav.Link eventKey={2} href="#mem es">
+                    <Nav >
+                        <Nav.Link href="#deets" style={{color:'#26282B'}}>Who we are</Nav.Link>
+                        <Nav.Link eventKey={2} href="#mem es"  style={{color:'#26282B'}}>
                             Contact Us
                         </Nav.Link>
                     </Nav>
