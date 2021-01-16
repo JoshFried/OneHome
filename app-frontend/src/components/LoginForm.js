@@ -7,7 +7,8 @@ import { useAuth } from "./Auth.js";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "./UserContext.js";
-import {Button} from "./Button.js"
+import {StyledButton} from "./StyledButton.js"
+import {Container, Form} from "react-bootstrap"
 const INITIAL_STATE = {
   username: "",
   password: "",
@@ -35,8 +36,8 @@ const LoginForm = () => {
   } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
 
   return (
-    <Fragment>
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <Form onSubmit={handleSubmit}>
         {errors.username && (
           <p className="error-text alert alert-danger">{errors.username}</p>
         )}
@@ -63,14 +64,11 @@ const LoginForm = () => {
           placeholder="Password"
         />
         <br />
-        <Button type="submit" label="Submit" disabled={isSubmitting}>
+        <StyledButton type="submit" label="Submit" disabled={isSubmitting}>
           Submit
-        </Button>
-        <Button component={Link} to="/register">
-          Register
-        </Button>
-      </form>
-    </Fragment>
+        </StyledButton>
+      </Form>
+    </Container>
   );
 };
 export default LoginForm;

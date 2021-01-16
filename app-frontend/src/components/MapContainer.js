@@ -2,7 +2,7 @@ import React, { Component, useState, setState } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import config from'../Utils/config'
 import axios from 'axios';
-
+import UnverifiedMarker from "./UnverifiedMarker"
 const mapStyles = {
  width: '100%',
  height: '70%'
@@ -33,14 +33,27 @@ export class MapContainer extends Component {
             console.log(err)           
         })
     }
-  displayMarkers = () => {
+   displayMarkers = () => {
       return this.state.unverifiedShelters.map((shelter) => {
-          return 
-          <Marker class = "unverified" key = {shelter.place_id} position = {{lat: shelter.geometry.location.lat, lng: shelter.geometry.location.long}} onClick={this.onMarkerClick}
-          name={'Shelter is here!'}/>        
+          console.log(shelter.geometry)
+        return 
+         <div>
+          <Marker class = "unverified" key = {shelter.place_id} position = {{lat: shelter.geometry.location.lat, lng: shelter.geometry.location.long}} onClick={this.onMarkerClick()}
+          name={'Shelter is here!'}/>
+          <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}>
+            <div>
+                <h2>ur here!</h2>
+            </div>
+        </InfoWindow>
+        </div>    
+            
       })
   }
   onMarkerClick = (props, marker, e) => {
+      console.log("1")
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -57,6 +70,7 @@ export class MapContainer extends Component {
     }
   };
   render() {
+    console.log(this.state.unverifiedShelters, "mapcontainer")
     return (
       <Map
         google={this.props.google}
@@ -68,8 +82,8 @@ export class MapContainer extends Component {
             lng: this.props.longitude
           }
         }
-    >
-      {this.displayMarkers()}
+        >
+        <UnverifiedMarker google = {this.props.google} data = {this.state.unverifiedShelters} onClick={this.onMarkerClick} onClose={this.onClose}/>
         <Marker
           onClick={this.onMarkerClick}
           name={'You are here!'}
