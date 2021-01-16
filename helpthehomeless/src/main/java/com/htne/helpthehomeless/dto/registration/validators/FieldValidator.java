@@ -1,4 +1,6 @@
-package com.htne.helpthehomeless.dto.registration.validators.annotations;
+package com.htne.helpthehomeless.dto.registration.validators;
+
+import com.htne.helpthehomeless.dto.registration.validators.exceptions.InvalidFieldException;
 
 public final class FieldValidator {
     private FieldValidator() { }

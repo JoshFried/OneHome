@@ -1,4 +1,4 @@
-package com.htne.helpthehomeless.dal.service.service;
+package com.htne.helpthehomeless.dal.service.exceptions;
 
 public final class ExceptionHelper {
     private ExceptionHelper() {
