@@ -21,6 +21,7 @@ import { formatRelative } from "date-fns";
 import "@reach/combobox/styles.css";
 import axios from 'axios'
 import config from'../Utils/config'
+import RedirectButton from './RedirectButton';
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "70vh",
@@ -40,7 +41,7 @@ function TestMap() {
     const [longitude,setLongitude] = useState(0)
     const [data,setData] = useState([])
     const [infoOpen, setInfoOpen] = useState(false);
-    const [selectedPlace, setSelectedPlace] = useState(null);
+    const [selectedPlace, setSelectedPlace] = useState("ChIJfa5skuXNQIYRqmKStrxzUw0");
     const [markerMap, setMarkerMap] = useState({});
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: config.MAPS_API_KEY,
@@ -48,9 +49,10 @@ function TestMap() {
   });
   useEffect(() => {
       console.log("heysdfsdfs")
-      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,opening_hours,rating&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
+      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
             .then((response) => {
                 setData(response.data.results)
+                console.log(data)
             }).catch((err) => {
                 console.log(err)           
             }) 
@@ -64,28 +66,30 @@ function TestMap() {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
+    console.log(lat,lng,"lattt")
     setLatitude(lat)
     setLongitude(lng)
     console.log(typeof lat,lng,"coords")
     mapRef.current.setZoom(14);
   }, []);
   // We have to create a mapping of our places to actual Marker objects
-  const markerLoadHandler = (marker, shelter) => {
+    const markerLoadHandler = (marker, shelter) => {
     return setMarkerMap(prevState => {
-      return { ...prevState, [shelter.id]: marker };
+      return { ...prevState, [shelter.place_id]: marker };
     });
   };
 
   const markerClickHandler = (event, shelter) => {
     // Remember which place was clicked
     setSelectedPlace(shelter);
+    console.log(selectedPlace, "selectedPlace")
 
     // Required so clicking a 2nd marker works as expected
     if (infoOpen) {
       setInfoOpen(false);
     }
+      setInfoOpen(true);
 
-    setInfoOpen(true);
 
     // If you want to zoom in a little on marker click
 
@@ -113,21 +117,26 @@ function TestMap() {
         onLoad={onMapLoad}  >
          {data.map((shelter) => (
             <Marker
-               key={shelter.id}
+               class = "unverified"
+               key={shelter.place_id}
                position={shelter.geometry.location}
-               onLoad={marker => markerLoadHandler(marker, shelter)}
                onClick={event => markerClickHandler(event, shelter)}
               />
     ))}
     {infoOpen && selectedPlace && 
     (
         <InfoWindow
-            anchor = {markerMap[selectedPlace.id]}
+            position = {selectedPlace.geometry.location}
             onCloseClick={() => setInfoOpen(false)}
         >
         <div>
-            <h3>{selectedPlace.id}</h3>
-            <div>This is your info window content</div>
+            <h1>{selectedPlace.business_status}</h1>
+            <RedirectButton link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
+            <div>{selectedPlace.name}</div>
+            <div>{selectedPlace.vicinity}</div>
+            {selectedPlace.opening_hours && 
+            <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
+            }
           </div>
         </InfoWindow>
     )}
@@ -184,7 +193,7 @@ function Search({ panTo }) {
       const { lat, lng } = await getLatLng(results[0]);
       panTo({ lat, lng });
     } catch (error) {
-      console.log("😱 Error: ", error);
+      console.log(error);
     }
   };
 
