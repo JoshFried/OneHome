@@ -1,6 +1,6 @@
 import React from "react";
 import FormInput from "./FormInput.js";
-import { Button } from "./Button.js";
+import { StyledButton } from "./StyledButton.js";
 import { register } from "./AuthenticationService.js";
 import ValidateRegistration from "./ValidateRegistration.js";
 import useFormValidation from "./UseFormValidation.js";
@@ -134,7 +134,7 @@ const RegistrationForm = () => {
         <option value="Shelter">Shelter</option>
       </select>
 
-      <Button
+      <StyledButton
         type="submit"
         label="Submit"
         className="button"

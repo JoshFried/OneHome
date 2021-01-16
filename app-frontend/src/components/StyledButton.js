@@ -1,6 +1,6 @@
 import React from "react";
-
-export const Button = (props) => {
+import {Button} from "reactstrap"
+export const StyledButton = (props) => {
   return (
     <button
       type={props.type}
