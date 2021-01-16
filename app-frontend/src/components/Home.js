@@ -43,7 +43,7 @@ const LoginForm = () => {
                 <Image src='logo-A0A9B2.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
                 </Image>
             </Jumbotron>
-            <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#223042'}} variant="dark">
+            <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'#223042', height:'60px'   }} variant="dark">
                 <Navbar.Brand href="#home" style={{color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
