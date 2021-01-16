@@ -1,7 +1,9 @@
 package com.htne.helpthehomeless.configuration;
 
-import com.htne.helpthehomeless.converters.RegistrationDTOToUserConverter;
-import com.htne.helpthehomeless.converters.UserToUserDTOConverter;
+import com.htne.helpthehomeless.converters.dto2entity.RegistrationDTOToUserConverter;
+import com.htne.helpthehomeless.converters.dto2entity.ShelterDTOToShelterConverter;
+import com.htne.helpthehomeless.converters.dto2entity.UserDTOToUserConverter;
+import com.htne.helpthehomeless.converters.entity2dto.UserToUserDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,20 +14,29 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-    private final SCUserDetailsService userDetailsService;
+    private final        HTHUserDetailsService userDetailsService;
+    private static final String                FRONTEND_URL = "http://localhost:3000";
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.cors()
             .and()
             .authorizeRequests()
+//            .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+            .antMatchers("/shelter/admin/create").permitAll()
             .antMatchers("/register").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/api").permitAll()
@@ -58,5 +69,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
     public void addFormatters(final FormatterRegistry mvcConversionService) {
         mvcConversionService.addConverter(new RegistrationDTOToUserConverter());
         mvcConversionService.addConverter(new UserToUserDTOConverter());
+        mvcConversionService.addConverter(new ShelterDTOToShelterConverter());
+        mvcConversionService.addConverter(new UserDTOToUserConverter());
+    }
+
+    @Bean
+    static CorsConfigurationSource corsConfigurationSource() {
+        final CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Collections.singletonList(FRONTEND_URL));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
+        configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
+        configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
+        configuration.setAllowCredentials(true);
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

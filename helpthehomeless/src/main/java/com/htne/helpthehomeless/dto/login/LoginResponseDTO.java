@@ -1,5 +1,6 @@
-package com.htne.helpthehomeless.dto;
+package com.htne.helpthehomeless.dto.login;
 
+import com.htne.helpthehomeless.dto.UserDTO;
 import lombok.Builder;
 import lombok.Getter;
 

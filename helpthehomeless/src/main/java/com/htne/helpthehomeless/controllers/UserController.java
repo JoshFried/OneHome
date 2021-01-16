@@ -31,6 +31,7 @@ public class UserController {
         return new ResponseEntity<>("USER SUCCESSFULLY LOGGED OUT AND CLOSED THE SIMULATION", HttpStatus.ACCEPTED);
     }
 
+    @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<UserDTO> getAuthenticatedUser(@AuthenticationPrincipal final Authentication authentication) {
         return new ResponseEntity<>(userService.getUserByUsername(authentication.getName()), HttpStatus.ACCEPTED);

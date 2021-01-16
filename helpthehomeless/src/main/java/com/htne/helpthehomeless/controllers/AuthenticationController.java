@@ -1,10 +1,10 @@
 package com.htne.helpthehomeless.controllers;
 
 import com.htne.helpthehomeless.dal.service.AuthenticationService;
-import com.htne.helpthehomeless.dto.LoginRequestDTO;
-import com.htne.helpthehomeless.dto.LoginResponseDTO;
 import com.htne.helpthehomeless.dto.UserDTO;
-import com.htne.helpthehomeless.dto.registration.RegistrationDTO;
+import com.htne.helpthehomeless.dto.login.LoginRequestDTO;
+import com.htne.helpthehomeless.dto.login.LoginResponseDTO;
+import com.htne.helpthehomeless.dto.registration.UserRegistrationDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +21,13 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping(path = "/register")
-    public ResponseEntity<UserDTO> addNewUser(final HttpServletRequest request, @RequestBody final RegistrationDTO registrationDTO) {
-        return new ResponseEntity<>(authenticationService.registerUser(registrationDTO), HttpStatus.CREATED);
+    public ResponseEntity<UserDTO> addNewUser(final HttpServletRequest request, @RequestBody final UserRegistrationDTO userRegistrationDTO) {
+        return new ResponseEntity<>(authenticationService.registerUser(userRegistrationDTO), HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/login")
     public ResponseEntity<LoginResponseDTO> loginUser(final HttpServletRequest request, @RequestBody final LoginRequestDTO loginRequest) {
-        return new ResponseEntity<>(authenticationService.login(request, loginRequest), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(authenticationService.login(request, loginRequest), HttpStatus.OK);
     }
 
     @PostMapping(path = "/confirm-account")

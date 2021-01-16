@@ -11,22 +11,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-public class User {
+public class Location {
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
-    private Long    id;
-    @Column(unique = true)
-    private String  username;
-    private String  password;
-    @Column(unique = true)
-    private String  email;
-    private String  firstName;
-    private String  lastName;
-    private boolean isEnabled;
-    private Role    role;
+    @Column
+    private Long   id;
+    private String streetLine1;
+    private String streetLine2;
+    private String postalCode;
+    private String province;
+    private String city;
+    private String country;
+    private double longitude;
+    private double latitude;
 }

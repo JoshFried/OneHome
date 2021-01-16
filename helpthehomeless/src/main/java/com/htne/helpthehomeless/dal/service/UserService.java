@@ -1,5 +1,6 @@
 package com.htne.helpthehomeless.dal.service;
 
+import com.htne.helpthehomeless.configuration.HTHUserDetails;
 import com.htne.helpthehomeless.dal.dao.UserRepository;
 import com.htne.helpthehomeless.dal.dao.mapper.UserMapper;
 import com.htne.helpthehomeless.dal.model.User;
@@ -9,7 +10,6 @@ import com.htne.helpthehomeless.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -35,7 +35,7 @@ public class UserService {
     }
 
     public User getUserFromContext() {
-        final UserDetails details = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        final HTHUserDetails details = (HTHUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return fetchByUsername(details.getUsername());
     }
 

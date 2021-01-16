@@ -1,7 +1,7 @@
 package com.htne.helpthehomeless.dto.registration.validators;
 
 
-import com.htne.helpthehomeless.dto.registration.RegistrationDTO;
+import com.htne.helpthehomeless.dto.registration.UserRegistrationDTO;
 import com.htne.helpthehomeless.dto.registration.validators.annotations.PasswordMatches;
 
 import javax.validation.ConstraintValidator;
@@ -11,8 +11,8 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 
     @Override
     public boolean isValid(final Object o, final ConstraintValidatorContext constraintValidatorContext) {
-        final RegistrationDTO registrationDTO = (RegistrationDTO) o;
-        return registrationDTO.getPassword().equals(registrationDTO.getMatchingPassword());
+        final UserRegistrationDTO userRegistrationDTO = (UserRegistrationDTO) o;
+        return userRegistrationDTO.getPassword().equals(userRegistrationDTO.getMatchingPassword());
     }
 
     @Override
