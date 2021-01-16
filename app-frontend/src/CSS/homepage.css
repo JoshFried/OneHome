@@ -16,9 +16,8 @@
 }
 
 .box2{
-    border:solid 1px ;
-    border-radius:10px;
-    margin:10px;
+    margin-left:20px;
+    margin-right:20px;
     box-shadow:10px;
     width:30%;
     height:auto;

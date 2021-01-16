@@ -98,25 +98,26 @@ const LoginForm = () => {
                         <p> Beyond finding four walls for shelter, we facilitate for organization to signal the space and ressources they still have available</p>
                     </Row>
                 </div>
-                <footer className="container py-5" style={{borderTop:"solid", position:'fixed'}}>
-                    <Row>
-                        <Col className=''>
-                            <p>The Problem</p>
-                            <p>Our Solution</p>
-                            <p>Our Impact</p>
-                        </Col>
-                        <Col className=''>
-                            <p>Careers</p>
-                            <p>About Us</p>
-                        </Col>
-                        <Col className=''>
-                            <p>Contact Us</p>
-                            <p>Policy</p>
-                        </Col>
-                    </Row>
-                </footer>
+
 
             </Container>
+            <footer className="container py-5" style={{backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)'}}>
+                <Row >
+                    <Col className='box2'>
+                        <p>The Problem</p>
+                        <p>Our Solution</p>
+                        <p>Our Impact</p>
+                    </Col>
+                    <Col className='box2'>
+                        <p>Careers</p>
+                        <p>About Us</p>
+                    </Col>
+                    <Col className='box2'>
+                        <p>Contact Us</p>
+                        <p>Policy</p>
+                    </Col>
+                </Row>
+            </footer>
         </Fragment>
 
     );
