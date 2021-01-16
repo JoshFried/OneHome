@@ -4,14 +4,14 @@ import com.htne.helpthehomeless.dto.registration.validators.annotations.Password
 import com.htne.helpthehomeless.dto.registration.validators.annotations.ValidEmail;
 import lombok.*;
 
+@PasswordMatches
+@ValidEmail
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-@PasswordMatches
-@ValidEmail
 public class RegistrationDTO {
     private String email;
     private String username;

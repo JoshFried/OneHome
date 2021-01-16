@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -26,14 +25,14 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
-    private final SCUserDetailsService userDetailsService;
+    private final        SCUserDetailsService userDetailsService;
+    private static final String               FRONTEND_URL = "http://localhost:3000";
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.cors()
             .and()
             .authorizeRequests()
-            .antMatchers("/").permitAll()
             .antMatchers("/register").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/api").permitAll()
@@ -71,7 +70,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
     @Bean
     static CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Collections.singletonList("http://localhost:3000/"));
+        configuration.setAllowedOrigins(Collections.singletonList(FRONTEND_URL));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "DELETE", "PUT", "PATCH"));
         configuration.setExposedHeaders(Arrays.asList("Authorization", "content-type"));
         configuration.setAllowedHeaders(Arrays.asList("X-Requested-With", "Origin", "Content-Type", "Accept", "Authorization"));
