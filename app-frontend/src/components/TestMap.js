@@ -1,4 +1,6 @@
 import React, {useEffect, useState, useCallback} from "react";
+import {StyledButton} from "./StyledButton.js";
+
 import {
   GoogleMap,
   useLoadScript,
@@ -27,8 +29,8 @@ import RedirectButton from './RedirectButton';
 import ShelterSignUp from "./ShelterSignUp";
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "70vh",
-  width: "100vw",
+  height: "40vw",
+  width: "70vw",
 };
 const options = {
   disableDefaultUI: true,
@@ -107,70 +109,64 @@ function TestMap() {
       setInfoOpen(false);
     }
       setInfoOpen(true);
-
-
     // If you want to zoom in a little on marker click
-
     // if you want to center the selected Marker
     //setCenter(place.pos)
   };
-  
-   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
-      <h1>
-      </h1>
+      <div className="container productwrap  rounded">
+          <Search panTo={panTo} />
+          <Locate panTo={panTo} />
+          <GoogleMap
+            id="map"
+            style={{width:'40%', size:"fixed"}}
+            mapContainerStyle={mapContainerStyle}
+            zoom={8}
+            center={center}
+            options={options}
+            onLoad={onMapLoad}>
+            {data.map((shelter) => (
+                <Marker
+                   className = "verifiedMarker"
+                   key={shelter.place_id}
+                   position={shelter.geometry.location}
+                   onClick={event => markerClickHandler(event, shelter)}
+                   options = {{icon: `${shelter.opening_hours? blueMarker : greenMarker}`}}
+                  />
+                ))}
+                {infoOpen && selectedPlace &&
+                (
+                    <InfoWindow
+                    className = "verifiedWindow"
+                        position = {selectedPlace.geometry.location}
+                        onCloseClick={() => setInfoOpen(false)}
+                    >
+                    <div>
+                        <h1>{selectedPlace.name}</h1>
+                        <h3>{selectedPlace.business_status}</h3>
+                        <RedirectButton name = "Google Maps Link" link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
+                        <div>{selectedPlace.vicinity}</div>
+                        {selectedPlace.opening_hours &&
+                        <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
+                        }
+                        {selectedPlace.opening_hours ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
+                      </div>
+                    </InfoWindow>
+                )}
 
-      <Search panTo={panTo} />
-      <Locate panTo={panTo} />
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={8}
-        center={center}
-        options={options}
-        onLoad={onMapLoad}>
-        {data.map((shelter) => (
-            <Marker
-               className = "verifiedMarker"
-               key={shelter.place_id}
-               position={shelter.geometry.location}
-               onClick={event => markerClickHandler(event, shelter)}
-               options = {{icon: `${shelter.opening_hours? blueMarker : greenMarker}`}}
-              />
-            ))}
-            {infoOpen && selectedPlace && 
-            (
-                <InfoWindow
-                className = "verifiedWindow"
-                    position = {selectedPlace.geometry.location}
-                    onCloseClick={() => setInfoOpen(false)}
-                >
-                <div>
-                    <h1>{selectedPlace.name}</h1>
-                    <h3>{selectedPlace.business_status}</h3>
-                    <RedirectButton name = "Google Maps Link" link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
-                    <div>{selectedPlace.vicinity}</div>
-                    {selectedPlace.opening_hours && 
-                    <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
-                    }
-                    {selectedPlace.opening_hours ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
-                  </div>
-                </InfoWindow>
-            )}
-         
-      </GoogleMap>
+          </GoogleMap>
     </div>
   );
 }
 
 function Locate({ panTo }) {
   return (
-    <button
-      className="locate"
+    <StyledButton
+      className="locate button"
+      label="search"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -182,8 +178,7 @@ function Locate({ panTo }) {
           () => null
         );
       }}
-    >
-    Find Me!</button>
+    >find me a shelter</StyledButton>
   );
 }
 function Search({ panTo }) {
