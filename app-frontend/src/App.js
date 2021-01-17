@@ -6,6 +6,7 @@ import {
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
+import Search from "./components/Search";
 import PrivateRoute from "./components/PrivateRoute";
 import {AuthContext} from "./components/Auth.js"
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path = "/" exact component = {Home}/>
         <Route path = "/login" exact component = {LoginForm}/>
         <Route path = "/register" exact component = {RegistrationForm}/>
+        <Route path = "/search" exact component = {Search}/>
       </div>
     </Router>
   );

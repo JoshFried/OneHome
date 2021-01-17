@@ -7,10 +7,15 @@ import { useAuth } from "./Auth.js";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "./UserContext.js";
+<<<<<<< HEAD
 import {Button} from "./Button.js";
 import {Example }from "./Example";
 import {Navbar, Image, NavbarBrandProps, Jumbotron ,NavbarProps, NavLink, Nav, NavDropdown, Form, FormControl, Container, Row, Col} from "react-bootstrap"
 import 'react-bootstrap/Navbar';
+=======
+import {StyledButton} from "./StyledButton.js"
+import {Container, Form} from "react-bootstrap"
+>>>>>>> testing
 const INITIAL_STATE = {
   username: "",
   password: "",
@@ -37,6 +42,7 @@ const LoginForm = () => {
   } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
 
   return (
+<<<<<<< HEAD
 
     <Fragment >
       <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
@@ -102,6 +108,41 @@ const LoginForm = () => {
 
     </Fragment>
 
+=======
+    <Container>
+      <Form onSubmit={handleSubmit}>
+        {errors.username && (
+          <p className="error-text alert alert-danger">{errors.username}</p>
+        )}
+        <FormInput
+          label="Username"
+          name="username"
+          type="text"
+          className={`${errors.username} ${"error-input"} ${"form-control"}`}
+          value={values.username}
+          onChange={handleChange}
+          placeholder="Username"
+        />
+        <br />
+        {errors.password && (
+          <p className="error-text alert alert-danger">{errors.password}</p>
+        )}
+        <FormInput
+          type="password"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="password"
+          className={`${errors.password}  ${"error-input"} ${"form-control"}`}
+          value={values.password}
+          placeholder="Password"
+        />
+        <br />
+        <StyledButton type="submit" label="Submit" disabled={isSubmitting}>
+          Submit
+        </StyledButton>
+      </Form>
+    </Container>
+>>>>>>> testing
   );
 };
 export default LoginForm;

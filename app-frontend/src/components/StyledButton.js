@@ -1,8 +1,13 @@
 import React from "react";
+<<<<<<< HEAD:app-frontend/src/components/Button.js
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 //import {Button} from 'react-bootstrap';
 
 export const Button = (props) => {
+=======
+import {Button} from "reactstrap"
+export const StyledButton = (props) => {
+>>>>>>> testing:app-frontend/src/components/StyledButton.js
   return (
     <button
       type={props.type}
