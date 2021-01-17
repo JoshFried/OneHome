@@ -16,6 +16,7 @@ public class ShelterDTOToShelterConverter implements Converter<ShelterDTO, Shelt
                       .name(source.getName())
                       .webSite(source.getWebSite())
                       .rules(RulesDTOToRulesConverter.convert(source.getRules()))
+                      .placeId(source.getPlaceId())
                       .build();
     }
 

@@ -18,6 +18,7 @@ public class Shelter {
     @Id
     @GeneratedValue
     private Long        id;
+    private Long        placeId;
     private String      name;
     @OneToOne(cascade = CascadeType.ALL)
     private Location    location;
