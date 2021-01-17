@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,17 +13,23 @@ import StyledNavbar from "./components/Navbar.js"
 import Footer from "./components/Footer.js"
 import RegisterShelterForm from "./components/RegisterShelterForm.js"
 import {AuthContext} from "./components/Auth.js"
+import config from "./Utils/config"
+import axios from "axios"
 function App() {
-  const [authTokens, setAuthTokens] = useState(localStorage.getItem("token") || "");
-    const setTokens = (data) => {
-    localStorage.setItem("token", JSON.stringify(data));
-    setAuthTokens(data);
-  }; 
-  
+  const [auth, setAuth] = useState(false)
+  useEffect(() => {
+      axios.get(`${config.BACKEND_URL}/user`,{withCredentials : true})
+      .then((response) => {
+          console.log(response)
+      })
+      .catch((err) =>
+      {
+          console.log(err)
+      })
+  },)
   return (
-  <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
     <Router>
-    <StyledNavbar authTokens={authTokens}/>
+    <StyledNavbar/>
       <div>
         <Route path = "/" exact component = {Home}/>
         <Route path = "/login" exact component = {LoginForm}/>
@@ -34,7 +40,6 @@ function App() {
       </div>
       <Footer/>
     </Router>
-    </AuthContext.Provider>
   );
 }
 
