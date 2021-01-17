@@ -8,37 +8,12 @@ import { useAuth } from "./Auth.js";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "./UserContext.js";
-import {Button} from "./Button.js";
+import {StyledButton} from "./StyledButton.js";
 import {Navbar, Image, NavbarBrandProps, Jumbotron ,NavbarProps, NavLink, Nav, NavDropdown, Form, FormControl, Container, Row, Col} from "react-bootstrap"
 import 'react-bootstrap/Navbar';
-
-const INITIAL_STATE = {
-    username: "",
-    password: "",
-};
-const LoginForm = () => {
-    /*const { setAuthTokens } = useAuth();
-    const { setUser } = useUser();*/
-    const history = useHistory();
-    const loginUser = async (fields) => {
-        const result = await authenticate(fields);
-        console.log(result);
-        /*setUser(await result.user);
-        setAuthTokens(await result.token); */
-        history.push("/");
-    };
-
-    const {
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        errors,
-        isSubmitting,
-    } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
-
+function About()
+{
     return (
-
         <Fragment >
             {/*--------------------------BANNER AND NAVBAR (BEGINING) ---------------------------------------------*/}
             <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
@@ -120,4 +95,4 @@ const LoginForm = () => {
 
     );
 };
-export default LoginForm;
+export default About;

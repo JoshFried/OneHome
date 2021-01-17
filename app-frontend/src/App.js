@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import PrivateRoute from "./components/PrivateRoute";
+import About from "./components/About.js"
 import {AuthContext} from "./components/Auth.js"
 function App() {
   const [authTokens, setAuthTokens] = useState(localStorage.getItem("token") || "");
