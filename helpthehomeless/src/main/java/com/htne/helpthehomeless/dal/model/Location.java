@@ -20,7 +20,7 @@ public class Location {
     @GeneratedValue
     @Column
     private Long   id;
-    private Long   placeId;
+    private String placeId;
     private double longitude;
     private double latitude;
 }
