@@ -6,14 +6,25 @@ import config from "../Utils/config"
 function ShelterSignUp(props){
     const onSignUpClick = (e) =>{
         e.preventDefault();
-        axios.post(`${config.BACKEND_URL}/rsvp/1`, {withCredentials:true},
-        {        
-        }).then(response => {
-            console.log(response)
-        }).catch(err =>
-        {
-            console.log(err)
-        })
+         axios
+    .post(
+      `${config.BACKEND_URL}/rsvp/1`,
+      {
+        ReservationDTO: props,
+      },
+      {
+        withCredentials: true,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+    .catch((err) => {
+      console.log(props.info);
+      console.log(err);
+    });
     }
     const onWaitClick = (e) =>{
         e.preventDefault();

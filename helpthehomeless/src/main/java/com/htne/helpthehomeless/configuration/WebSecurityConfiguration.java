@@ -39,7 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
 //            .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
             .antMatchers("/shelter/admin/create").permitAll()
             .antMatchers("/register").permitAll()
-            .antMatchers("/rsvp/").permitAll()
+            .antMatchers("/rsvp/**").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/api").permitAll()
             .and()
