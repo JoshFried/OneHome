@@ -6,7 +6,7 @@ import config from "../Utils/config"
 function ShelterSignUp(props){
     const onSignUpClick = (e) =>{
         e.preventDefault();
-        axios.post(`${config.BACKEND_URL}/rsvp/1`, {},
+        axios.post(`${config.BACKEND_URL}/rsvp/1`, {withCredentials:true},
         {        
         }).then(response => {
             console.log(response)
@@ -17,7 +17,7 @@ function ShelterSignUp(props){
     }
     const onWaitClick = (e) =>{
         e.preventDefault();
-        axios.post(`${config.BACKEND_URL}/wait/1`, {},
+        axios.post(`${config.BACKEND_URL}/wait/1`, {withCredentials:true},
         {        
         }).then(response => {
             console.log(response)

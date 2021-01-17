@@ -108,7 +108,11 @@ function RegisterShelterForm(){
         }
        axios.post(`${config.BACKEND_URL}/shelter/admin/create`,
        {
-           body: JSON.stringify(info)
+           data: info
+       },{withCredentials:true})
+       .catch((err) =>
+       {
+           console.log(err)
        })
       
     }

@@ -138,7 +138,7 @@ const RegistrationForm = () => {
         type="submit"
         label="Submit"
         className="button"
-        disabled={isSubmitting}
+        onSubmit={isSubmitting}
       />
     </form>
   );
