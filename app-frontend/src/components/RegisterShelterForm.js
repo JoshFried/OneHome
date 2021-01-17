@@ -6,6 +6,7 @@ import ValidateRegistration from "./ValidateRegistration.js";
 import useFormValidation from "./UseFormValidation.js";
 import { useHistory } from "react-router-dom";
 import RedirectButton from "./RedirectButton.js"
+import Stuff from './Stuff.js'
 import axios from 'axios'
 import config from "../Utils/config"
 function RegisterShelterForm(){
@@ -14,6 +15,8 @@ function RegisterShelterForm(){
   const[currentPlace, setCurrentPlace] = useState({})
   const [filename, setFilename] = useState('Choose File');
   const [place_id, setPlace_id] = useState('')
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
   const [check_in_time, setCheck_in_time] = useState('00:00:00')
   const [check_out_time, setCheck_out_time] = useState('00:00:00')
   const [supper_time, setSupper_time] = useState('00:00:00')
@@ -27,9 +30,13 @@ function RegisterShelterForm(){
 
   useEffect(() =>
   {
-      axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,formatted_address&key=${config.MAPS_API_KEY}`,{})
+      axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,formatted_address,geometry&key=${config.MAPS_API_KEY}`,{})
             .then((response) => {
                 setCurrentPlace(response.data.result)
+                setLatitude(response.data.result.geometry.location.lat)
+                setLongitude(response.data.result.geometry.location.lng)
+                console.log(response.data.result)
+                console.log(latitude,longitude)
             }).catch((err) => {
                 console.log(err)           
             }) 
@@ -82,24 +89,26 @@ function RegisterShelterForm(){
     {
         e.preventDefault();
         let info = {
+            "name" : "huh",
+            "location": {
+                "placeId" : place_id,
+                "longitude" : longitude,
+                "latitude" :latitude
+            },
             "webSite" : website,
-            "place_id" : place_id,
             "rules" : {
                 "checkoutTime" : String(check_out_time) + ":00",
                 "supperTime" : String(supper_time) + ":00",
                 "checkinTime" : String(check_in_time) + ":00",
+                "capacity": capacity, 
                 "males" : males,
                 "females": females, 
                 "pets": pets, 
                 "sober": sober, 
-                "capacity": capacity, 
                 "minor": minor
             }
         }
-       axios.post(`${config.BACKEND_URL}/shelter/admin/create`,
-       {
-           body: JSON.stringify(info)
-       })
+        Stuff(info);
       
     }
 

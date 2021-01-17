@@ -1,5 +1,6 @@
 package com.htne.helpthehomeless.dto;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 
 import java.util.Date;
@@ -9,6 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @EqualsAndHashCode
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
+
 public class ReservationDTO {
     private Long       id;
     private ShelterDTO shelter;

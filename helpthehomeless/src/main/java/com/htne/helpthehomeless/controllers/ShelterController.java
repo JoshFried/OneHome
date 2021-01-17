@@ -15,8 +15,8 @@ public class ShelterController {
     private final ShelterService shelterService;
 
     @PostMapping(path = "/admin/create")
-    public ResponseEntity<ShelterDTO> createShelter(final Authentication auth, @RequestBody final ShelterDTO dto) {
-        return new ResponseEntity<>(shelterService.createShelter(dto), HttpStatus.CREATED);
+    public ResponseEntity<ShelterDTO> createShelter(final Authentication auth, @RequestBody final ShelterDTO shelterDTO) {
+        return new ResponseEntity<>(shelterService.createShelter(shelterDTO), HttpStatus.CREATED);
     }
 
     @GetMapping(path = "{shelterId}")

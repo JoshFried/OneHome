@@ -46,15 +46,16 @@ function TestMap() {
     const [infoOpen, setInfoOpen] = useState(false);
     const [selectedPlace, setSelectedPlace] = useState("ChIJfa5skuXNQIYRqmKStrxzUw0");
     const [markerMap, setMarkerMap] = useState({});
+    const [verifiedPlaces, setVerifiedPlaces] = useState([])
+    const [verifiedIDs, setVerifiedIDs] = useState([])
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: config.MAPS_API_KEY,
+    googleMapsApiKey: config.THE_API_KEY,
     libraries,
   });
   useEffect(() => {
-      console.log("heysdfsdfs")
-      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
+      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
             .then((response) => {
-                if(response.data.results != data)
+                if(response.data.results != data || response.data.results == [])
                 {
                     setData(response.data.results)
                 }
@@ -65,12 +66,25 @@ function TestMap() {
         axios.get(`http://localhost:8080/shelter/getShelters?radius=100000&longitude=${longitude}&latitude=${latitude}`,{})
         .then((response) =>
         {
-            var testing = []
-            for(var i = 0; i< data.length; i+=2)
+            var responseData = response.data
+            for(var element in responseData)
             {
-                testing.push(data[i])                
+                axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.placeId}&fields=name,formatted_address,geometry&key=${config.MAPS_API_KEY}`,{})
+                .then((response) => {
+                    var newShelter = response.data
+                    newShelter.shelterId = element.shelterId
+                    newShelter.rules = element.rules
+                }).catch((err) => {
+                    console.log(err)           
+                })
+                for(var stuff in data)
+                {
+                    if(stuff.place_id == element.place_id)
+                    {
+                        stuff = element
+                    }
+                }          
             }
-            setData(data.concat(testing))
         }).catch((err) =>{
             console.log(err);
         })
@@ -139,7 +153,7 @@ function TestMap() {
                key={shelter.place_id}
                position={shelter.geometry.location}
                onClick={event => markerClickHandler(event, shelter)}
-               options = {{icon: `${shelter.opening_hours? blueMarker : greenMarker}`}}
+               options = {{icon: `${shelter.shelterId? greenMarker : blueMarker}`}}
               />
             ))}
             {infoOpen && selectedPlace && 
@@ -157,7 +171,7 @@ function TestMap() {
                     {selectedPlace.opening_hours && 
                     <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
                     }
-                    {selectedPlace.opening_hours ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
+                    {selectedPlace.rules ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
                   </div>
                 </InfoWindow>
             )}
