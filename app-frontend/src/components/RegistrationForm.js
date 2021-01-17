@@ -6,6 +6,7 @@ import ValidateRegistration from "./ValidateRegistration.js";
 import useFormValidation from "./UseFormValidation.js";
 import { useHistory } from "react-router-dom";
 import {Row, Col,} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 const INITIAL_STATE = {email: "", password: "", matchingPassword: "", username: "", firstName: "",

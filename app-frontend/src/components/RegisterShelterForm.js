@@ -8,6 +8,9 @@ import { useHistory } from "react-router-dom";
 import RedirectButton from "./RedirectButton.js"
 import axios from 'axios'
 import config from "../Utils/config"
+import {Row, Col} from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 function RegisterShelterForm(){
   const history = useHistory();
  const [file, setFile] = useState('');
@@ -105,9 +108,12 @@ function RegisterShelterForm(){
 
   return (
   <div>
-    <h1>Verify Shelter</h1>
-    <h2>Your selected place is {currentPlace ? ` the ${currentPlace.name} in ${currentPlace.formatted_address}`  : "undefined."}</h2>
-    <form onSubmit={onSubmit} className="form-signin">
+      <div className="container productwrap shadow-lg rounded mb-0" style={{padding: '20px', width: '60%', marginTop: '0px'}}>
+
+          <h2 style={{ paddingLeft:'2%'}}>Verify Shelter</h2>
+          <p style={{ paddingLeft:'5%'}}>Your selected place is {currentPlace ? ` the ${currentPlace.name} in ${currentPlace.formatted_address}`  : "undefined."}</p>
+
+      <form onSubmit={onSubmit} className="form-signin">
       <div>Place ID</div>
       <FormInput
         label="place_id"
@@ -172,26 +178,43 @@ function RegisterShelterForm(){
         value={capacity}
       />
       <br/>
-      <div>Men Allowed?</div>
-      <select
-        onChange={handleMaleChange}
-        defaultValue="TRUE"
-        name="men"
-      >
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
-      <br/>
-      <div>Women Allowed?</div>
-      <select
-        onChange={handleFemaleChange}
-        defaultValue="TRUE"
-        name="female"
-      >
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
-      <br/>
+      <Row>
+          <Col>
+              <div>Men Allowed?</div>
+              <select
+                onChange={handleMaleChange}
+                defaultValue="TRUE"
+                name="men"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+          </Col>
+          <Col>
+              <div>Women Allowed?</div>
+              <select
+                onChange={handleFemaleChange}
+                defaultValue="TRUE"
+                name="female"
+              >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+          </Col>
+          <Col>
+              <div>Minors Allowed?</div>
+              <select
+                  onChange={handleMinorChange}
+                  defaultValue="TRUE"
+                  name="minor"
+              >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+              </select>
+          </Col>
+      </Row>
+      <Row>
+          <Col>
       <div>Sobriety Required?</div>
       <select
         onChange={handleSoberChange}
@@ -202,6 +225,8 @@ function RegisterShelterForm(){
         <option value="false">False</option>
       </select>
       <br/>
+          </Col>
+          <Col>
       <div>Pets Allowed?</div>
       <select
         onChange={handlePetsChange}
@@ -211,34 +236,30 @@ function RegisterShelterForm(){
         <option value="true">True</option>
         <option value="false">False</option>
       </select>
+          </Col>
+      </Row>
       <br/>
-      <div>Minors Allowed?</div>
-      <select
-        onChange={handleMinorChange}
-        defaultValue="TRUE"
-        name="minor"
-      >
-        <option value="true">True</option>
-        <option value="false">False</option>
-      </select>
-      <br/>
-
-      <RedirectButton link = "https://developers.google.com/places/web-service/place-id" name = "Find your place ID!" />
+        <Link href= "https://developers.google.com/places/web-service/place-id">
+      <StyledButton  label = "Find your place ID!" /></Link>
 
       <br />
-      <div>Submit a file with an address for verification</div>
+      <Row>
+      <div           style={{marginRight:'2%'}}>Submit a file with an address for verification  </div>
       <FormInput
           type="file"
           onChange={onFileChange}
           onSubmit={handleFileSubmit}
+
         />
-        <br/>
+      </Row>
       <StyledButton
         type="submit"
         label="Submit"
         className="button"
       />
+
     </form>
+      </div>
   </div>
   );
 };
