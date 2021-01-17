@@ -15,37 +15,6 @@ function About()
 {
     return (
         <Fragment >
-            {/*--------------------------BANNER AND NAVBAR (BEGINING) ---------------------------------------------*/}
-            <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
-                <Image src='/pictures/logo-A0A9B2.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
-                </Image>
-            </Jumbotron>
-            <Navbar collapseOnSelect expand="lg" style={{backgroundImage: 'linear-gradient(15deg, #223042 0%, #5E7898 90%)', height:'60px'   }} variant="dark">
-                <Navbar.Brand href="/#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto py-3 ">
-                        <Nav.Link href="/login">Login</Nav.Link>
-                        <NavDropdown title="Resources" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Food Bank</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Social Services</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Clothes Banks</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Crisis HotLines</NavDropdown.Item>
-                        </NavDropdown>
-                        <Nav.Link href="/search">Shelters near you</Nav.Link>
-                        <Nav.Link href="/help">How to help</Nav.Link>
-
-                    </Nav>
-                    <Nav >
-                        <Nav.Link href="/whoweare" style={{color:'#26282B'}}>Who we are</Nav.Link>
-                        <Nav.Link eventKey={2} href="/contactus"  style={{color:'#26282B'}}>
-                            Contact Us
-                        </Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-            {/*--------------------------BANNER AND NAVBAR (END)--------------------------------------------*/}
             <Container style={{width:'90%', height:'auto'}}>
                 <div className='linebox container flex' style={{width:'90%', height:'auto', marginTop:'20px'}}>
                     <div style={{display:'flex'}}>
@@ -74,23 +43,6 @@ function About()
 
 
             </Container>
-            <footer className="container py-5" style={{backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)'}}>
-                <Row className="container d-flex flex-row justify-content-between">
-                    <Col className='box2'>
-                        <p>The Problem</p>
-                        <p>Our Solution</p>
-                        <p>Our Impact</p>
-                    </Col>
-                    <Col className='box2'>
-                        <p>Careers</p>
-                        <p>About Us</p>
-                    </Col>
-                    <Col className='box2'>
-                        <p>Contact Us</p>
-                        <p>Policy</p>
-                    </Col>
-                </Row>
-            </footer>
         </Fragment>
 
     );

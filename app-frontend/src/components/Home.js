@@ -18,25 +18,6 @@ const INITIAL_STATE = {
     password: "",
 };
 const LoginForm = () => {
-    /*const { setAuthTokens } = useAuth();
-    const { setUser } = useUser();*/
-    const history = useHistory();
-    const loginUser = async (fields) => {
-        const result = await authenticate(fields);
-        console.log(result);
-        /*setUser(await result.user);
-        setAuthTokens(await result.token); */
-        history.push("/");
-    };
-
-    const {
-        handleSubmit,
-        handleChange,
-        handleBlur,
-        values,
-        errors,
-        isSubmitting,
-    } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
 
     return (
 
@@ -69,23 +50,7 @@ const LoginForm = () => {
 
 
             </Container>
-            <footer className="container py-5" style={{backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)'}}>
-                <Row className="container d-flex flex-row justify-content-between">
-                    <Col className='box2'>
-                        <p>The Problem</p>
-                        <p>Our Solution</p>
-                        <p>Our Impact</p>
-                    </Col>
-                    <Col className='box2'>
-                        <p>Careers</p>
-                        <p>About Us</p>
-                    </Col>
-                    <Col className='box2'>
-                        <p>Contact Us</p>
-                        <p>Policy</p>
-                    </Col>
-                </Row>
-            </footer>
+            
         </Fragment>
 
     );

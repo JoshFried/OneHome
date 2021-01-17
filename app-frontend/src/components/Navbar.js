@@ -8,7 +8,7 @@ function StyledNavbar(){
                 </Image>
             </Jumbotron>
             <Navbar collapseOnSelect expand="lg" style={{backgroundImage: 'linear-gradient(15deg, #223042 0%, #5E7898 90%)', height:'60px'   }} variant="dark">
-                <Navbar.Brand href="/#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
+                <Navbar.Brand href="/" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto py-3 ">
@@ -25,7 +25,7 @@ function StyledNavbar(){
 
                     </Nav>
                     <Nav >
-                        <Nav.Link href="/whoweare" style={{color:'#26282B'}}>Who we are</Nav.Link>
+                        <Nav.Link href="/about" style={{color:'#26282B'}}>About us</Nav.Link>
                         <Nav.Link eventKey={2} href="/contactus"  style={{color:'#26282B'}}>
                             Contact Us
                         </Nav.Link>
