@@ -123,6 +123,16 @@ const RegistrationForm = () => {
       />
 
       <br />
+      <select
+        onChange={handleChange}
+        onBlur={handleBlur}
+        defaultValue="GUEST"
+        name="role"
+      >
+        <option value="ADMIN">Shelter Owner</option>
+        <option value="GUEST">Shelter Seeker</option>
+      </select>
+      <br/>
 
       <StyledButton
         type="submit"
