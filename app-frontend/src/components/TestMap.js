@@ -43,6 +43,7 @@ function TestMap() {
     const [infoOpen, setInfoOpen] = useState(false);
     const [selectedPlace, setSelectedPlace] = useState("ChIJfa5skuXNQIYRqmKStrxzUw0");
     const [markerMap, setMarkerMap] = useState({});
+    const [verifiedShelters, setVerifiedShelters] = useState([])
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: config.MAPS_API_KEY,
     libraries,
@@ -56,6 +57,13 @@ function TestMap() {
             }).catch((err) => {
                 console.log(err)           
             }) 
+        axios.get(`http://localhost:8080/shelter/getShelters?radius=100000&longitude=${longitude}&latitude=${latitude}`,{})
+        .then((response) =>
+        {
+            console.log(response, "from api");
+        }).catch((err) =>{
+            console.log(err);
+        })
          
     },[latitude,longitude])
   const [selected, setSelected] = useState(null);

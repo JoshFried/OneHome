@@ -35,7 +35,6 @@ const useFormValidation = (initialState, validate, authenticate) => {
     const validationErrors = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
-    // history.push("/login");
   };
 
   return {

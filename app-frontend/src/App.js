@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import About from "./components/About.js"
 import StyledNavbar from "./components/Navbar.js"
 import Footer from "./components/Footer.js"
+import RegisterShelterForm from "./components/RegisterShelterForm.js"
 import {AuthContext} from "./components/Auth.js"
 function App() {
   const [authTokens, setAuthTokens] = useState(localStorage.getItem("token") || "");
@@ -25,6 +26,7 @@ function App() {
         <Route path = "/" exact component = {Home}/>
         <Route path = "/login" exact component = {LoginForm}/>
         <Route path = "/register" exact component = {RegistrationForm}/>
+        <Route path = "/registershelter" exact component = {RegisterShelterForm}/>
         <Route path = "/search" exact component = {Search}/>
         <Route path = "/about" exact component = {About}/>
       </div>
