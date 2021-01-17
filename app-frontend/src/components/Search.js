@@ -9,9 +9,8 @@ function Search() {
     return(
         <div className="container productwrap  rounded" >
                 <p> Please enter your current location here:</p>
-            <div style={{height:'30%', width:'50%'}}>
                 <TestMap/>
-            </div>
+            
         </div>
     )
 }
