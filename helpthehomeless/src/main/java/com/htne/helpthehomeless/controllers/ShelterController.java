@@ -29,4 +29,11 @@ public class ShelterController {
         return new ResponseEntity<>(shelterService.updateShelter(dto), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping(path = "/getShelters")
+    public ResponseEntity<String> getShelters
+            (@RequestParam final int radius, @RequestParam final double longitude, @RequestParam final double latitude)
+    {
+        return new ResponseEntity<>
+                (shelterService.getRegisteredSheltersWithinRadius(longitude, latitude, radius), HttpStatus.OK);
+    }
 }

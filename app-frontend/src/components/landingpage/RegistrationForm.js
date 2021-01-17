@@ -1,9 +1,9 @@
 import React from "react";
-import FormInput from "./FormInput.js";
-import { StyledButton } from "./StyledButton.js";
-import { register } from "./AuthenticationService.js";
-import ValidateRegistration from "./ValidateRegistration.js";
-import useFormValidation from "./UseFormValidation.js";
+import FormInput from "./form_components/FormInput.js";
+import { Button } from "./form_components/Button.js";
+import { register } from "../../modules/login_registration/AuthenticationService.js";
+import ValidateRegistration from "./validators/ValidateRegistration.js";
+import useFormValidation from "./validators/UseFormValidation.js";
 import { useHistory } from "react-router-dom";
 
 const INITIAL_STATE = {
@@ -127,14 +127,15 @@ const RegistrationForm = () => {
       <select
         onChange={handleChange}
         onBlur={handleBlur}
-        defaultValue="Needy"
+        defaultValue="GUEST"
         name="role"
       >
-        <option value="Needy">Needy</option>
-        <option value="Shelter">Shelter</option>
+        <option value="PARENT">Parent</option>
+        <option value="CHILD">Child</option>
+        <option value="GUEST">Guest</option>
       </select>
 
-      <StyledButton
+      <Button
         type="submit"
         label="Submit"
         className="button"

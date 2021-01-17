@@ -1,28 +1,26 @@
 import React, { Fragment } from "react";
-import FormInput from "./FormInput.js";
-import useFormValidation from "./UseFormValidation.js";
-import ValidateAuthentication from "./ValidateAuthentication.js";
-import { authenticate } from "./AuthenticationService.js";
-import { useAuth } from "./Auth.js";
+import FormInput from "./formcomponents/FormInput.js.js";
+import useFormValidation from "./validators/UseFormValidation";
+import ValidateAuthentication from "./validators/ValidateAuthentication";
+import { authenticate } from "../../modules/AuthenticationService.js";
+import { useAuth } from "../../context/Auth";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useUser } from "./UserContext.js";
-import {StyledButton} from "./StyledButton.js"
-import {Container, Form} from "react-bootstrap"
+import { useUser } from "../../context/UserContext.js";
+
 const INITIAL_STATE = {
   username: "",
   password: "",
 };
 
 const LoginForm = () => {
-  /*const { setAuthTokens } = useAuth();
-  const { setUser } = useUser();*/ 
+  const { setAuthTokens } = useAuth();
+  const { setUser } = useUser();
   const history = useHistory();
   const loginUser = async (fields) => {
     const result = await authenticate(fields);
-    console.log(result);
-    /*setUser(await result.user);
-    setAuthTokens(await result.token); */
+    setUser(await result.user);
+    setAuthTokens(await result.token);
     history.push("/");
   };
 
@@ -36,8 +34,8 @@ const LoginForm = () => {
   } = useFormValidation(INITIAL_STATE, ValidateAuthentication, loginUser);
 
   return (
-    <Container>
-      <Form onSubmit={handleSubmit}>
+    <Fragment>
+      <form onSubmit={handleSubmit}>
         {errors.username && (
           <p className="error-text alert alert-danger">{errors.username}</p>
         )}
@@ -64,11 +62,14 @@ const LoginForm = () => {
           placeholder="Password"
         />
         <br />
-        <StyledButton type="submit" label="Submit" disabled={isSubmitting}>
+        <Button type="submit" label="Submit" disabled={isSubmitting}>
           Submit
-        </StyledButton>
-      </Form>
-    </Container>
+        </Button>
+        <Button component={Link} to="/register">
+          Register
+        </Button>
+      </form>
+    </Fragment>
   );
 };
 export default LoginForm;
