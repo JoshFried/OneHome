@@ -18,7 +18,6 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "user_id")
     private Long    id;
     @Column(unique = true)
     private String  username;
@@ -29,4 +28,6 @@ public class User {
     private String  lastName;
     private boolean isEnabled;
     private Role    role;
+    private Gender  gender;
+    private int     age;
 }

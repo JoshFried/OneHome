@@ -166,7 +166,7 @@ function TestMap() {
                 <div>
                     <h1>{selectedPlace.name}</h1>
                     <h3>{selectedPlace.business_status}</h3>
-                    <RedirectButton name = "Google Maps Link" link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
+                    <RedirectButton name = "Google Maps Link" link = {`https://cors-anywhere.herokuapp.com/https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
                     <div>{selectedPlace.vicinity}</div>
                     {selectedPlace.opening_hours && 
                     <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>

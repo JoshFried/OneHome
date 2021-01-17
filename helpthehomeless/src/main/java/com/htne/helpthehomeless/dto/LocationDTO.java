@@ -8,12 +8,8 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 public class LocationDTO {
-    private String streetLine1;
-    private String streetLine2;
-    private String postalCode;
-    private String province;
-    private String city;
-    private String country;
+    private Long   id;
+    private Long   placeId;
     private double longitude;
     private double latitude;
 }

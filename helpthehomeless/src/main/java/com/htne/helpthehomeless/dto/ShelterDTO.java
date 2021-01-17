@@ -8,10 +8,9 @@ import lombok.*;
 @Setter
 @EqualsAndHashCode
 public class ShelterDTO {
-    //    private Long        id;
+    private Long        id;
     private String      name;
-    private Integer     capacity;
-    private Integer     occupancy;
     private LocationDTO location;
     private String      webSite;
+    private RulesDTO    rules;
 }

@@ -1,4 +1,5 @@
 const ValidateRegistration = (values) => {
+   console.log("2112")
   const requiredFields = [
     "username",
     "password",

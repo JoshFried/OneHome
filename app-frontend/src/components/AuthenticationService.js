@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 const URL = global.config.BACKEND_URL;
 
 export const register = async (values) => {
+    console.log("line 8")
   try {
       await fetch(`${URL}/register`, {
       headers: {
