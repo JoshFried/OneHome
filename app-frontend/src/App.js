@@ -35,7 +35,7 @@ function App() {
   return (
         <Router>
           <div>
-            <StyledNavbar />
+            <StyledNavbar auth = {auth} user = {user}/>
             <Route path = "/" exact component = {Home}/>
             <Route path = "/login" exact component = {LoginForm}/>
             <Route path = "/register" exact component = {RegistrationForm}/>

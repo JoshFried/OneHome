@@ -3,20 +3,6 @@ import config from "../Utils/config"
 import axios from "axios"
 import {Navbar, Image, NavbarBrandProps, Jumbotron ,NavbarProps, NavLink, Nav, NavDropdown, Form, FormControl, Container, Row, Col} from "react-bootstrap"
 function StyledNavbar(props){
-    const [auth, setAuth] = useState(false)
-    const [user,setUser] = useState(null)
-    useEffect(() => {
-      axios.get(`${config.BACKEND_URL}/user`,{withCredentials : true})
-      .then((response) => {
-          setAuth(true)
-          console.log(response.data)
-          setUser(response.data)
-      })
-      .catch((err) =>
-      {
-          console.log(err)
-      })
-  },[])
     return (
     <div> 
         <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
@@ -29,13 +15,13 @@ function StyledNavbar(props){
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto py-3 ">
                     <Nav.Link href="/search">Shelters Near You</Nav.Link>
-                    {!auth ?
+                    {!props.auth ?
                        <Fragment>
                         <Nav.Link href="/login">Login</Nav.Link>
                         <Nav.Link href="/register">Register</Nav.Link>
                        </Fragment>: 
                        <Fragment>
-                       {(user && user.role === "OCCUPANT") ?  <Nav.Link href="/reservations">Reservations</Nav.Link> : <Nav.Link href="/registershelter">Verify Your Shelter</Nav.Link>
+                       {(props.user && props.user.role === "OCCUPANT") ?  <Nav.Link href="/reservations">Reservations</Nav.Link> : <Nav.Link href="/registershelter">Verify Your Shelter</Nav.Link>
                        }
                        </Fragment>}
                         <NavDropdown title="Resources" id="collasible-nav-dropdown">

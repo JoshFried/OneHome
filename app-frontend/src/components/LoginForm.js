@@ -21,7 +21,14 @@ const LoginForm = () => {
   const loginUser = async (fields) => {
     const result = await authenticate(fields);
     console.log(result);
-    history.push("/");
+    if(result === false)
+    {
+        alert("Invalid credentials");
+    }
+    else
+    {
+        history.push("/");
+    }
   };
 
   const {

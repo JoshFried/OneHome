@@ -85,7 +85,7 @@ function RegisterShelterForm(){
   const handleMinorChange = (e) => {
     setMinor(e.target.value)
   }
-    const onSubmit = (e) =>
+    const onSubmitClick = (e) =>
     {
         e.preventDefault();
         let info = {
@@ -108,6 +108,7 @@ function RegisterShelterForm(){
                 "minor": minor
             }
         }
+        console.log(info)
         Stuff(info);
       
     }
@@ -116,11 +117,11 @@ function RegisterShelterForm(){
   <div>
     <h1>Verify Shelter</h1>
     <h2>Your selected place is {currentPlace ? ` the ${currentPlace.name} in ${currentPlace.formatted_address}`  : "undefined."}</h2>
-    <form onSubmit={onSubmit} className="form-signin">
+    <form className="form-signin">
       <div>Place ID</div>
       <FormInput
         label="place_id"
-        name="place_id"
+        name="placeId"
         type="text"
         className={`${"error-input"} ${"form-control"}`}
         value={place_id}
@@ -131,7 +132,7 @@ function RegisterShelterForm(){
       <div>Website</div>
       <FormInput
         label="website"
-        name="website"
+        name="webSite"
         type="text"
         className={`${"error-input"} ${"form-control"}`}
         value={website}
@@ -141,8 +142,8 @@ function RegisterShelterForm(){
       <br/>
       <div>Check-In Time</div>
       <FormInput
-        label="check_in_time"
-        name="check_in_time"
+        label="checkintime"
+        name="checkintime"
         type="time"
         className={`${"error-input"} ${"form-control"}`}
         onChange={handleCheckInChange}
@@ -151,8 +152,8 @@ function RegisterShelterForm(){
       <br/>
       <div>Dinner Time</div>
       <FormInput
-        label="supper_time"
-        name="supper_time"
+        label="supperTime"
+        name="supperTime"
         type="time"
         className={`${"error-input"} ${"form-control"}`}
         onChange={handleSupperChange}
@@ -162,7 +163,7 @@ function RegisterShelterForm(){
       <div>Check-Out Time</div>
       <FormInput
         label="check_out_time"
-        name="check_out_time"
+        name="checkoutTime"
         type="time"
         onChange={handleCheckOutChange}
         className={`${"error-input"} ${"form-control"}`}
@@ -246,6 +247,7 @@ function RegisterShelterForm(){
         type="submit"
         label="Submit"
         className="button"
+        onClick = {onSubmitClick}
       />
     </form>
   </div>
