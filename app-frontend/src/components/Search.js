@@ -6,13 +6,12 @@ function Search() {
     const [latitude,setLatitude] = useState(0)
     const [longitude,setLongitude] = useState(0)
     const [data,setData] = useState([])
-   
-    
     return(
-        <div>
-            <div>hey</div>
-            <TestMap/>
+        <div className="container productwrap  rounded" >
+                <p> Please enter your current location here:</p>
+                <TestMap/>
+            
         </div>
     )
-};
+}
 export default Search

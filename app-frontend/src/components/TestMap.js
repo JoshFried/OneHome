@@ -1,4 +1,6 @@
 import React, {useEffect, useState, useCallback} from "react";
+import {StyledButton} from "./StyledButton.js";
+
 import {
   GoogleMap,
   useLoadScript,
@@ -27,8 +29,8 @@ import RedirectButton from './RedirectButton';
 import ShelterSignUp from "./ShelterSignUp";
 const libraries = ["places"];
 const mapContainerStyle = {
-  height: "70vh",
-  width: "100vw",
+  height: "40vw",
+  width: "70vw",
 };
 const options = {
   disableDefaultUI: true,
@@ -115,15 +117,10 @@ function TestMap() {
       setInfoOpen(false);
     }
       setInfoOpen(true);
-
-
     // If you want to zoom in a little on marker click
-
     // if you want to center the selected Marker
     //setCenter(place.pos)
   };
-  
-   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -187,8 +184,9 @@ function TestMap() {
 
 function Locate({ panTo }) {
   return (
-    <button
-      className="locate"
+    <StyledButton
+      className="locate button"
+      label="search"
       onClick={() => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
@@ -200,8 +198,7 @@ function Locate({ panTo }) {
           () => null
         );
       }}
-    >
-    Find Me!</button>
+    >find me a shelter</StyledButton>
   );
 }
 function Search({ panTo }) {
