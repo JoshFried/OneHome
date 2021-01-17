@@ -39,9 +39,9 @@ const LoginForm = () => {
   return (
 
     <Fragment>
-      <div  class="container productwrap shadow-lg rounded mb-0" style={{padding:'20px', marginTop:'50px'}}>
-        <Row >Login page</Row>
-        <form onSubmit={handleSubmit}>
+      <div  class="container productwrap shadow-lg rounded mb-0" style={{padding:'20px', width:'40%', marginTop:'50px'}}>
+        <Row style={{alignText:'center', paddingLeft:'40%'}}>Login page</Row >
+        <form onSubmit={handleSubmit} style={{marginTop:'5%'}}>
           {errors.username && (<p className="error-text alert alert-danger">{errors.username}</p>)}
           <FormInput
             label="Username"
@@ -64,10 +64,10 @@ const LoginForm = () => {
             placeholder="Password"
           />
           <br/>
-          <StyledButton type="submit" label="Login" onSubmit={isSubmitting}>Submit</StyledButton>
+          <StyledButton type="submit" label="Login" onSubmit={isSubmitting} block>Submit</StyledButton>
           <StyledButton type="submit" label="Forgot password"  onSubmit={isSubmitting}>Create an account!</StyledButton>
           <StyledButton type="submit" label="Register"  onSubmit={isSubmitting}>Forgot your password?</StyledButton>
-        </form>
+          </form>
       </div>
 
     </Fragment>

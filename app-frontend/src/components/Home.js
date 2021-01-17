@@ -63,12 +63,12 @@ const LoginForm = () => {
             <p>
               <h3 style={{ marginBottom: "50px" }}>Canada is a reality</h3>
               <div>
-                Twenty per cent of Canada’s1 homeless population consists of
-                young people between the ages of 13 to 24,2 and at least 6,000
+                Twenty per cent of Canada’s homeless population consists of
+                young people between the ages of 13 to 24, and at least 6,000
                 young people experience homelessness every night.
               </div>
               Most of Canada's young homeless population gravitate to big
-              cities, but homelessness also occurs in other communities—it's
+              cities, but homelessness also occurs in other communities, it's
               just less visible. And the problem starts early. Forty per cent of
               homeless youth first experience homelessness before the age of 16
             </p>
@@ -86,17 +86,19 @@ const LoginForm = () => {
             }}
           >
             <p style={{ marginTop: "50px" }}>
-              The reality of our cities inspired the creation of One Home
+              These numbers are tragic.
+              The reality of our cities inspired the creation of One Home.
             </p>
             <p>
-              We wanted to help every person in need around the world to find
-              the nearest shelter to them and access as quickly as possible the
-              closest local resources
+              We wanted to help every person in need around the world, assist them to find
+              the nearest shelter and access the
+              closest local resources as quickly as possible.
             </p>
             <p style={{ marginBottom: "50px" }}>
-              Beyond finding four walls for shelter, we facilitate for
-              organization to signal the space and resources they still have
-              available
+              Beyond finding four walls for shelter, organizations can use our platform to signal the services they offer
+              as well as their inventory for food, clothes, and vacant beds. This should save you a trip to a full shelter when you need a bed,
+              a trip to a shelter out of food when you are hungry, a walk to a shelter without medical services when you are in pain.
+
             </p>
           </Row>
         </div>

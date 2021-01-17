@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 function Footer() {
   return (
     <footer
-      className="footer fixed-bottom"
+      className="footer "
       style={{
         backgroundImage: "linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)",
         paddingTop: "20px",
