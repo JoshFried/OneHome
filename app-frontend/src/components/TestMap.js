@@ -52,7 +52,10 @@ function TestMap() {
       console.log("heysdfsdfs")
       axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
             .then((response) => {
-                setData(response.data.results)
+                if(response.data.results != data)
+                {
+                    setData(response.data.results)
+                }
                 console.log(data)
             }).catch((err) => {
                 console.log(err)           
