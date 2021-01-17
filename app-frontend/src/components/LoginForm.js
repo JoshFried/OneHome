@@ -40,7 +40,7 @@ const LoginForm = () => {
 
     <Fragment>
       <div  class="container productwrap shadow-lg rounded mb-0" style={{padding:'20px', marginTop:'50px'}}>
-        <row >Login page</row>
+        <Row >Login page</Row>
         <form onSubmit={handleSubmit}>
           {errors.username && (<p className="error-text alert alert-danger">{errors.username}</p>)}
           <FormInput

@@ -8,7 +8,8 @@ export const StyledButton = (props) => {
       type={props.type}
       className={props.className}
       disabled={props.disabled}
-        style={{backgroundColor: "white", borderRadius:'10px', padding:'5px', margin:'5px', border:'1px solid #C8D8EA'}}
+      onClick = {props.onClick}
+        style={{backgroundColor: "white", borderRadius:'10px', padding:'5px', margin:'5px', border:'1px solid #C8D8EA',color: "black"}}
      >
       {props.label}
     </Button>

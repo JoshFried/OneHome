@@ -17,11 +17,14 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import { formatRelative } from "date-fns";
-
+import "../CSS/markers.css"
 import "@reach/combobox/styles.css";
 import axios from 'axios'
 import config from'../Utils/config'
+import blueMarker from '../Utils/bluemarker.png'
+import greenMarker from '../Utils/greenmarker.png'
 import RedirectButton from './RedirectButton';
+import ShelterSignUp from "./ShelterSignUp";
 const libraries = ["places"];
 const mapContainerStyle = {
   height: "70vh",
@@ -37,13 +40,12 @@ const center = {
 };
 
 function TestMap() {
-    const [latitude,setLatitude] = useState(0)
-    const [longitude,setLongitude] = useState(0)
+    const [latitude,setLatitude] = useState(74.0060)
+    const [longitude,setLongitude] = useState(40.7128)
     const [data,setData] = useState([])
     const [infoOpen, setInfoOpen] = useState(false);
     const [selectedPlace, setSelectedPlace] = useState("ChIJfa5skuXNQIYRqmKStrxzUw0");
     const [markerMap, setMarkerMap] = useState({});
-    const [verifiedShelters, setVerifiedShelters] = useState([])
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: config.MAPS_API_KEY,
     libraries,
@@ -63,7 +65,12 @@ function TestMap() {
         axios.get(`http://localhost:8080/shelter/getShelters?radius=100000&longitude=${longitude}&latitude=${latitude}`,{})
         .then((response) =>
         {
-            console.log(response, "from api");
+            var testing = []
+            for(var i = 0; i< data.length; i+=2)
+            {
+                testing.push(data[i])                
+            }
+            setData(data.concat(testing))
         }).catch((err) =>{
             console.log(err);
         })
@@ -125,32 +132,36 @@ function TestMap() {
         zoom={8}
         center={center}
         options={options}
-        onLoad={onMapLoad}  >
-         {data.map((shelter) => (
+        onLoad={onMapLoad}>
+        {data.map((shelter) => (
             <Marker
-               class = "unverified"
+               className = "verifiedMarker"
                key={shelter.place_id}
                position={shelter.geometry.location}
                onClick={event => markerClickHandler(event, shelter)}
+               options = {{icon: `${shelter.opening_hours? blueMarker : greenMarker}`}}
               />
-    ))}
-    {infoOpen && selectedPlace && 
-    (
-        <InfoWindow
-            position = {selectedPlace.geometry.location}
-            onCloseClick={() => setInfoOpen(false)}
-        >
-        <div>
-            <h1>{selectedPlace.business_status}</h1>
-            <RedirectButton link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
-            <div>{selectedPlace.name}</div>
-            <div>{selectedPlace.vicinity}</div>
-            {selectedPlace.opening_hours && 
-            <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
-            }
-          </div>
-        </InfoWindow>
-    )}
+            ))}
+            {infoOpen && selectedPlace && 
+            (
+                <InfoWindow
+                className = "verifiedWindow"
+                    position = {selectedPlace.geometry.location}
+                    onCloseClick={() => setInfoOpen(false)}
+                >
+                <div>
+                    <h1>{selectedPlace.name}</h1>
+                    <h3>{selectedPlace.business_status}</h3>
+                    <RedirectButton name = "Google Maps Link" link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
+                    <div>{selectedPlace.vicinity}</div>
+                    {selectedPlace.opening_hours && 
+                    <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
+                    }
+                    {selectedPlace.opening_hours ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
+                  </div>
+                </InfoWindow>
+            )}
+         
       </GoogleMap>
     </div>
   );
@@ -184,7 +195,7 @@ function Search({ panTo }) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => 43.6532, lng: () => -79.3832 },
+      location: { lat: () => 40.7128, lng: () => 74.0060 },
       radius: 100 * 1000,
     },
   });
