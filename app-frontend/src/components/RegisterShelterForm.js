@@ -6,6 +6,7 @@ import ValidateRegistration from "./ValidateRegistration.js";
 import useFormValidation from "./UseFormValidation.js";
 import { useHistory } from "react-router-dom";
 import RedirectButton from "./RedirectButton.js"
+import Stuff from './Stuff.js'
 import axios from 'axios'
 import config from "../Utils/config"
 function RegisterShelterForm(){
@@ -88,32 +89,26 @@ function RegisterShelterForm(){
     {
         e.preventDefault();
         let info = {
-            "webSite" : website,
+            "name" : "huh",
             "location": {
                 "placeId" : place_id,
-                "latitude" :latitude,
                 "longitude" : longitude,
+                "latitude" :latitude
             },
+            "webSite" : website,
             "rules" : {
                 "checkoutTime" : String(check_out_time) + ":00",
                 "supperTime" : String(supper_time) + ":00",
                 "checkinTime" : String(check_in_time) + ":00",
+                "capacity": capacity, 
                 "males" : males,
                 "females": females, 
                 "pets": pets, 
                 "sober": sober, 
-                "capacity": capacity, 
                 "minor": minor
             }
         }
-       axios.post(`${config.BACKEND_URL}/shelter/admin/create`,
-       {
-           data: info
-       },{withCredentials:true})
-       .catch((err) =>
-       {
-           console.log(err)
-       })
+        Stuff(info);
       
     }
 
