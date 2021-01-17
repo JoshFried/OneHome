@@ -64,9 +64,9 @@ const LoginForm = () => {
             placeholder="Password"
           />
           <br/>
-          <StyledButton type="submit" label="Login" disabled={isSubmitting}>Submit</StyledButton>
-          <StyledButton type="submit" label="Register"  disabled={isSubmitting}>TEST</StyledButton>
-          <StyledButton type="submit" label="Forgot password"  disabled={isSubmitting}>TEST</StyledButton>
+          <StyledButton type="submit" label="Login" onSubmit={isSubmitting}>Submit</StyledButton>
+          <StyledButton type="submit" label="Forgot password"  onSubmit={isSubmitting}>Create an account!</StyledButton>
+          <StyledButton type="submit" label="Register"  onSubmit={isSubmitting}>Forgot your password?</StyledButton>
         </form>
       </div>
 
