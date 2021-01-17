@@ -1,50 +1,46 @@
-import React, {useState, useEffect} from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect
-} from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import RegistrationForm from "./components/RegistrationForm";
 import LoginForm from "./components/LoginForm";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import PrivateRoute from "./components/PrivateRoute";
-import About from "./components/About.js"
-import StyledNavbar from "./components/Navbar.js"
-import Footer from "./components/Footer.js"
+import About from "./components/About.js";
+import StyledNavbar from "./components/Navbar.js";
+import Footer from "./components/Footer.js";
 import { AuthContext } from "./components/Auth";
 import { useUserContext } from "./components/User";
-import RegisterShelterForm from "./components/RegisterShelterForm.js"
-import config from "./Utils/config"
-import axios from "axios"
+import RegisterShelterForm from "./components/RegisterShelterForm.js";
+import config from "./Utils/config";
+import axios from "axios";
 function App() {
-  const [auth, setAuth] = useState(false)
-  const [user,setUser] = useState(null)
+  const [auth, setAuth] = useState(false);
+  const [user, setUser] = useState(null);
   useEffect(() => {
-      axios.get(`${config.BACKEND_URL}/user`,{withCredentials : true})
+    axios
+      .get(`${config.BACKEND_URL}/user`, { withCredentials: true })
       .then((response) => {
-          setAuth(true)
-          console.log(response.data)
-          setUser(response.data)
+        setAuth(true);
+        console.log(response);
+        setUser(response.data);
       })
-      .catch((err) =>
-      {
-          console.log(err)
-      })
-  },[])
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
-        <Router>
-          <div>
-            <StyledNavbar />
-            <Route path = "/" exact component = {Home}/>
-            <Route path = "/login" exact component = {LoginForm}/>
-            <Route path = "/register" exact component = {RegistrationForm}/>
-            <Route path = "/registershelter" exact component = {RegisterShelterForm}/>
-            <Route path = "/search" exact component = {Search}/>
-            <Route path = "/about" exact component = {About}/>
-          </div>
-          <Footer/>
-        </Router>
+    <Router>
+      <div>
+        <StyledNavbar />
+        <Route path="/" exact component={Home} />
+        <Route path="/login" exact component={LoginForm} />
+        <Route path="/register" exact component={RegistrationForm} />
+        <Route path="/registershelter" exact component={RegisterShelterForm} />
+        <Route path="/search" exact component={Search} />
+        <Route path="/about" exact component={About} />
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
