@@ -9,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 public class LocationDTO {
     private Long   id;
-    private Long   placeId;
+    private String   placeId;
     private double longitude;
     private double latitude;
 }

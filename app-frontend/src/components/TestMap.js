@@ -57,33 +57,27 @@ function TestMap() {
             .then((response) => {
                 if(response.data.results != data || response.data.results == [])
                 {
+                   
                     setData(response.data.results)
-                }
+               }
             }).catch((err) => {
                 console.log(err)           
             }) 
         axios.get(`http://localhost:8080/shelter/getShelters?radius=100000&longitude=${longitude}&latitude=${latitude}`,{})
         .then((response) =>
         {
-            console.log(response)
-            var responseData = response.data
-            for(var element in responseData)
+            if(response.data)
             {
-                axios.get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${element.placeId}&fields=name,formatted_address,geometry&key=${config.MAPS_API_KEY}`,{})
-                .then((response) => {
-                    var newShelter = response.data
-                    newShelter.shelterId = element.shelterId
-                    newShelter.rules = element.rules
-                }).catch((err) => {
-                    console.log(err)           
-                })
-                for(var stuff in data)
-                {
-                    if(stuff.place_id == element.place_id)
-                    {
-                        stuff = element
-                    }
-                }          
+                console.log(response)
+                var responseData = response.data
+                console.log(responseData, "response data")
+                var array = []
+                for(var element in responseData){ 
+                    console.log(element, "element")  
+                    array.push(element.location.placeId)  
+                    console.log(element.location.placeId)                  
+                }
+                setVerifiedIDs(array)
             }
         }).catch((err) =>{
             console.log(err);
@@ -153,7 +147,7 @@ function TestMap() {
                key={shelter.place_id}
                position={shelter.geometry.location}
                onClick={event => markerClickHandler(event, shelter)}
-               options = {{icon: `${shelter.shelterId? greenMarker : blueMarker}`}}
+               options = {{icon: `${shelter.opening_hours? greenMarker : blueMarker}`}}
               />
             ))}
             {infoOpen && selectedPlace && 
@@ -171,7 +165,17 @@ function TestMap() {
                     {selectedPlace.opening_hours && 
                     <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
                     }
-                    {selectedPlace.rules ? <ShelterSignUp data = {selectedPlace} /> : <div></div>}
+                    {selectedPlace.opening_hours ? <ShelterSignUp rules = {{
+                        "checkoutTime": "12:00:00",
+                        "supperTime": "18:30:00",
+                        "checkinTime": "16:30:00",
+                        "males": true,
+                        "females": true, 
+                        "pets": true, 
+                        "sober": true, 
+                        "capacity": 5, 
+                        "minor": false
+                        }} /> : <div></div>}
                   </div>
                 </InfoWindow>
             )}
