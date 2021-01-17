@@ -13,7 +13,7 @@ const INITIAL_STATE = {
   username: "",
   firstName: "",
   lastName: "",
-  role: "GUEST",
+  role: "OCCUPANT",
 };
 
 const RegistrationForm = () => {
@@ -126,11 +126,11 @@ const RegistrationForm = () => {
       <select
         onChange={handleChange}
         onBlur={handleBlur}
-        defaultValue="GUEST"
+        defaultValue="OCCUPANT"
         name="role"
       >
         <option value="ADMIN">Shelter Owner</option>
-        <option value="GUEST">Shelter Seeker</option>
+        <option value="OCCUPANT">Shelter Seeker</option>
       </select>
       <br/>
 

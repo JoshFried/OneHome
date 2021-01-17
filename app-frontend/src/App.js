@@ -19,9 +19,11 @@ function App() {
     localStorage.setItem("token", JSON.stringify(data));
     setAuthTokens(data);
   }; 
+  
   return (
+  <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
     <Router>
-    <StyledNavbar/>
+    <StyledNavbar authTokens={authTokens}/>
       <div>
         <Route path = "/" exact component = {Home}/>
         <Route path = "/login" exact component = {LoginForm}/>
@@ -32,6 +34,7 @@ function App() {
       </div>
       <Footer/>
     </Router>
+    </AuthContext.Provider>
   );
 }
 

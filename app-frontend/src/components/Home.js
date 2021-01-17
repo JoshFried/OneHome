@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment , useState, useEffect} from "react";
 import FormInput from "./FormInput.js";
 import '../CSS/homepage.css';
 import useFormValidation from "./UseFormValidation.js";
@@ -17,8 +17,8 @@ const INITIAL_STATE = {
     username: "",
     password: "",
 };
-const LoginForm = () => {
-
+const Home = () => {
+    
     return (
 
         <Fragment >
@@ -55,4 +55,4 @@ const LoginForm = () => {
 
     );
 };
-export default LoginForm;
+export default Home;
