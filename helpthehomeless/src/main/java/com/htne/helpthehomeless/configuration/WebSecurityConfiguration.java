@@ -1,12 +1,10 @@
 package com.htne.helpthehomeless.configuration;
 
-import com.htne.helpthehomeless.converters.dto2entity.RegistrationDTOToUserConverter;
-import com.htne.helpthehomeless.converters.dto2entity.ReservationDTOToReservationConverter;
-import com.htne.helpthehomeless.converters.dto2entity.ShelterDTOToShelterConverter;
-import com.htne.helpthehomeless.converters.dto2entity.UserDTOToUserConverter;
+import com.htne.helpthehomeless.converters.dto2entity.*;
 import com.htne.helpthehomeless.converters.entity2dto.ReservationToReservationDTOConverter;
 import com.htne.helpthehomeless.converters.entity2dto.ShelterToShelterDTOConverter;
 import com.htne.helpthehomeless.converters.entity2dto.UserToUserDTOConverter;
+import com.htne.helpthehomeless.converters.entity2dto.VisitToVisitDTOConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +39,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
 //            .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
             .antMatchers("/shelter/admin/create").permitAll()
             .antMatchers("/register").permitAll()
-            .antMatchers("/rsvp").permitAll()
+            .antMatchers("/rsvp/").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/api").permitAll()
             .and()
@@ -78,6 +76,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
         mvcConversionService.addConverter(new ReservationDTOToReservationConverter());
         mvcConversionService.addConverter(new ShelterToShelterDTOConverter());
         mvcConversionService.addConverter(new ReservationToReservationDTOConverter());
+        mvcConversionService.addConverter(new VisitDTOToVisitConverter());
+        mvcConversionService.addConverter(new VisitToVisitDTOConverter());
     }
 
     @Bean

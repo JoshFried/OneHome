@@ -9,25 +9,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.sql.Time;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class User {
+public class Rules {
     @Id
     @GeneratedValue
+    @Column
     private Long    id;
-    @Column(unique = true)
-    private String  username;
-    private String  password;
-    @Column(unique = true)
-    private String  email;
-    private String  firstName;
-    private String  lastName;
-    private boolean isEnabled;
-    private Role    role;
-    private Gender  gender;
-    private int     age;
+    private Time    checkoutTime;
+    private Time    supperTime;
+    private Time    checkinTime;
+    private int     capacity;
+    private boolean males;
+    private boolean females;
+    private boolean pets;
+    private boolean sober;
+    private boolean minor;
 }

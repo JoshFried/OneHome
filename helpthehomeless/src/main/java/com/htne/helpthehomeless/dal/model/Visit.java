@@ -5,7 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 @Data
@@ -13,15 +16,13 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Reservation {
+public class Visit {
     @Id
     @GeneratedValue
-    @Column
     private Long    id;
     @ManyToOne
-    private Shelter shelter;
-    @OneToOne
     private User    user;
-    private Date    createdAt;
-    private Date    expiresAt;
+    @ManyToOne
+    private Shelter shelter;
+    private Date    date;
 }

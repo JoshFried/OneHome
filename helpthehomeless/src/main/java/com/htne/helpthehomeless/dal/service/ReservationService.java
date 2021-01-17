@@ -10,10 +10,12 @@ import com.htne.helpthehomeless.dal.service.exceptions.HTHInvalidStateException;
 import com.htne.helpthehomeless.dal.service.exceptions.HTNENotFoundException;
 import com.htne.helpthehomeless.dto.ReservationDTO;
 import com.htne.helpthehomeless.dto.ShelterDTO;
+import com.htne.helpthehomeless.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
@@ -26,29 +28,22 @@ public class ReservationService {
     private final QRCodeService         qrCodeService;
     private final ShelterService        shelterService;
     private final ConversionService     mvcConversionService;
+    private final EmailService          emailService;
+    private final String                URL = "http://localhost:8080/";
 
     public ReservationDTO createReservation(final long shelterId) {
         final User       user    = userService.getUserFromContext();
         final ShelterDTO shelter = shelterService.getShelter(shelterId);
 
-        if (shelter.getCapacity() <= shelter.getOccupancy()) {
-            throw new HTHInvalidStateException("Selected shelter does not have enough capacity at the moment");
-        }
-        final Reservation rsvp = Reservation.builder()
-                                            .createdAt(Date.from(Instant.now()))
-                                            .expiresAt(Date.from(Instant.now().plusSeconds(7200)))
-                                            .shelter(mvcConversionService.convert(shelter, Shelter.class))
-                                            .user(user)
-                                            .build();
+        shelterService.recieveVisitor(shelterId, mvcConversionService.convert(user, UserDTO.class));
+        final Reservation rsvp = buildReservation(user, shelter);
         repository.save(rsvp);
-        shelterService.incrementOccupancy(shelterId);
 
         try {
-            qrCodeService.generateQRCodeImage(String.valueOf(rsvp.getId()));
-        } catch (final WriterException | IOException e) {
+            emailService.emailQRCode(user.getEmail(), qrCodeService.generateQRCodeImage(URL + String.valueOf(rsvp.getId())));
+        } catch (final WriterException | IOException | MessagingException e) {
             e.printStackTrace();
         }
-
         return mvcConversionService.convert(rsvp, ReservationDTO.class);
     }
 
@@ -59,8 +54,8 @@ public class ReservationService {
             throw new HTHInvalidStateException("Reservation has expired");
         }
 
+        shelterService.checkin(dto);
         dto.setExpiresAt(Date.from(dto.getExpiresAt().toInstant().plusSeconds(86400)));
-
         return updateReservation(dto);
     }
 
@@ -75,8 +70,23 @@ public class ReservationService {
         return mvcConversionService.convert(fetchReservation(id), ReservationDTO.class);
     }
 
+    public void deleteReservation(final long id) {
+        final Reservation rsvp = fetchReservation(id);
+        shelterService.checkout(rsvp);
+        repository.deleteById(id);
+    }
+
+
     private Reservation fetchReservation(final long id) {
         return repository.findById(id).orElseThrow(() -> new HTNENotFoundException(ExceptionHelper.getNotFoundExceptionMessage("Id: ", String.valueOf(id))));
     }
 
+    private Reservation buildReservation(final User user, final ShelterDTO shelter) {
+        return Reservation.builder()
+                          .createdAt(Date.from(Instant.now()))
+                          .expiresAt(Date.from(Instant.now().plusSeconds(7200)))
+                          .shelter(mvcConversionService.convert(shelter, Shelter.class))
+                          .user(user)
+                          .build();
+    }
 }

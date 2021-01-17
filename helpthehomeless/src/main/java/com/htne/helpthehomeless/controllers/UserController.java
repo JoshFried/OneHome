@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @PutMapping(path = "/update")
-    public ResponseEntity<UserDTO> updateUserLocation(@AuthenticationPrincipal @RequestBody final Authentication authentication, final UserDTO user) {
+    public ResponseEntity<UserDTO> updateUserLocation(final Authentication authentication, final UserDTO user) {
         return new ResponseEntity<>(userService.updateUser(user), HttpStatus.ACCEPTED);
     }
 
@@ -33,7 +32,7 @@ public class UserController {
 
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public ResponseEntity<UserDTO> getAuthenticatedUser(@AuthenticationPrincipal final Authentication authentication) {
+    public ResponseEntity<UserDTO> getAuthenticatedUser(final Authentication authentication) {
         return new ResponseEntity<>(userService.getUserByUsername(authentication.getName()), HttpStatus.ACCEPTED);
     }
 

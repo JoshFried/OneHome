@@ -17,6 +17,8 @@ public class UserToUserDTOConverter implements Converter<User, UserDTO> {
                       .lastName(source.getLastName())
                       .isEnabled(source.isEnabled())
                       .role(source.getRole())
+                      .age(source.getAge())
+                      .gender(source.getGender())
                       .build();
     }
 }

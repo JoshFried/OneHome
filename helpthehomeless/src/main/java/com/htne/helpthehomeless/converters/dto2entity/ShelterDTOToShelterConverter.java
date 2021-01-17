@@ -13,10 +13,9 @@ public class ShelterDTOToShelterConverter implements Converter<ShelterDTO, Shelt
         return Shelter.builder()
                       .id(source.getId())
                       .location(LocationDTOToLocationConverter.convert(source.getLocation()))
-                      .capacity(source.getCapacity())
                       .name(source.getName())
-                      .occupancy(source.getOccupancy())
                       .webSite(source.getWebSite())
+                      .rules(RulesDTOToRulesConverter.convert(source.getRules()))
                       .build();
     }
 

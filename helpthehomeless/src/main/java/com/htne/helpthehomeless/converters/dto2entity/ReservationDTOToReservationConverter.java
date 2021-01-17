@@ -18,11 +18,11 @@ public class ReservationDTOToReservationConverter implements Converter<Reservati
 
     public static Shelter convertShelter(final ShelterDTO source) {
         return Shelter.builder()
-                      .webSite(source.getWebSite())
+                      .id(source.getId())
                       .location(LocationDTOToLocationConverter.convert(source.getLocation()))
-                      .occupancy(source.getOccupancy())
                       .name(source.getName())
-                      .capacity(source.getCapacity())
+                      .webSite(source.getWebSite())
+                      .rules(RulesDTOToRulesConverter.convert(source.getRules()))
                       .build();
     }
 

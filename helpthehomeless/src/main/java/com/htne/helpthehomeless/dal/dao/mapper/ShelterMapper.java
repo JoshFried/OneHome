@@ -7,15 +7,7 @@ import com.htne.helpthehomeless.dto.registration.validators.FieldValidator;
 public class ShelterMapper {
     public static Shelter updateFields(final ShelterDTO dto, final Shelter shelter) {
         shelter.setLocation(LocationMapper.updateFields(dto.getLocation(), shelter.getLocation()));
-
-        if (dto.getCapacity() != shelter.getCapacity()) {
-            FieldValidator.validateField("Capacity", String.valueOf(dto.getCapacity()));
-            shelter.setCapacity(dto.getCapacity());
-        }
-        if (dto.getOccupancy() != shelter.getOccupancy()) {
-            FieldValidator.validateField("Occupancy", String.valueOf(dto.getOccupancy()));
-            shelter.setOccupancy(dto.getOccupancy());
-        }
+        shelter.setRules(RulesMapper.updateRules(dto.getRules(), shelter.getRules()));
 
         if (!dto.getWebSite().equals(shelter.getWebSite())) {
             FieldValidator.validateField("website", dto.getWebSite());
