@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    @PostMapping
-    public ResponseEntity<ReservationDTO> createReservation(final Authentication auth, @RequestParam final Long shelterId) {
+    @PostMapping(path = "/{shelterId}")
+    public ResponseEntity<ReservationDTO> createReservation(final Authentication auth, @PathVariable final Long shelterId) {
         return new ResponseEntity<>(reservationService.createReservation(shelterId), HttpStatus.CREATED);
     }
 

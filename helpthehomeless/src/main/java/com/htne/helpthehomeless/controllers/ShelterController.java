@@ -19,8 +19,8 @@ public class ShelterController {
         return new ResponseEntity<>(shelterService.createShelter(dto), HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/wait")
-    public ResponseEntity<ShelterDTO> addToWaitingList(final Authentication auth, @RequestParam final Long shelterId) {
+    @PutMapping(path = "/wait/{shelterId}")
+    public ResponseEntity<ShelterDTO> addToWaitingList(final Authentication auth, @PathVariable final Long shelterId) {
         return new ResponseEntity<>(shelterService.addToWaitingList(shelterId), HttpStatus.ACCEPTED);
     }
 

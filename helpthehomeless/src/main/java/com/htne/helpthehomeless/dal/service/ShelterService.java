@@ -20,9 +20,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class ShelterService {
-    private final ShelterRepository shelterRepository;
-    private final ConversionService mvcConversionService;
-    private final UserService       userService;:
+    private final ShelterRepository           shelterRepository;
+    private final ConversionService           mvcConversionService;
+    private final UserService                 userService;
     private final VisitService                visitService;
     private final AvailableSpotEventPublisher availableSpotEventPublisher;
 
