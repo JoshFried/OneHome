@@ -9,6 +9,7 @@ import Home from "./components/Home";
 import Search from "./components/Search";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./components/About.js"
+import Navbar from "./components/Navbar.js"
 import {AuthContext} from "./components/Auth.js"
 function App() {
   const [authTokens, setAuthTokens] = useState(localStorage.getItem("token") || "");
@@ -18,11 +19,13 @@ function App() {
   }; 
   return (
     <Router>
+    <Navbar/>
       <div>
         <Route path = "/" exact component = {Home}/>
         <Route path = "/login" exact component = {LoginForm}/>
         <Route path = "/register" exact component = {RegistrationForm}/>
         <Route path = "/search" exact component = {Search}/>
+        <Route path = "/about" exact component = {About}/>
       </div>
     </Router>
   );
