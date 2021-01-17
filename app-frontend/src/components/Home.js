@@ -41,45 +41,45 @@ const LoginForm = () => {
     return (
 
         <Fragment >
+            {/*--------------------------BANNER AND NAVBAR (BEGINING) ---------------------------------------------*/}
             <Jumbotron fluid  style={{paddingBottom:'15px', paddingTop:'20px',backgroundColor: '#A0A9B2', marginBottom:'0px'}}>
                 <Image src='/pictures/logo-A0A9B2.jpg' style={{paddingLeft:'30px', width:'40%', height:'auto'}}>
                 </Image>
             </Jumbotron>
             <Navbar collapseOnSelect expand="lg" style={{backgroundImage: 'linear-gradient(15deg, #223042 0%, #5E7898 90%)', height:'60px'   }} variant="dark">
-                <Navbar.Brand href="#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
+                <Navbar.Brand href="/#home" style={{ color:'#B4CBE7'}}> We are here for you!</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto py-3 ">
-                        <NavDropdown title="Ressources" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        <NavDropdown title="Resources" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Food Bank</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Social Services</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Clothes Banks</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">Crisis HotLines</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#pricing">Shelters near you</Nav.Link>
-                        <Nav.Link href="#features">How to help</Nav.Link>
+                            <Nav.Link href="/search">Shelters near you</Nav.Link>
+                            <Nav.Link href="/help">How to help</Nav.Link>
 
                     </Nav>
                     <Nav >
-                        <Nav.Link href="#deets" style={{color:'#26282B'}}>Who we are</Nav.Link>
-                        <Nav.Link eventKey={2} href="#mem es"  style={{color:'#26282B'}}>
+                        <Nav.Link href="/whoweare" style={{color:'#26282B'}}>Who we are</Nav.Link>
+                        <Nav.Link eventKey={2} href="/contactus"  style={{color:'#26282B'}}>
                             Contact Us
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            {/*
-            <div  className="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" style={{padding:'20px', marginTop:'50px'}}>
-                test
-            </div>
-            <div className="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3" style={{padding: '20px', marginTop: '50px'}}>
-            test
-            </div>  */}
-            <Container>
-                <div className='linebox flex' style={{marginTop:'20px'}}>
-                    <Row >
-                        <Col className='box1 d-md-flex'>
+            {/*--------------------------BANNER AND NAVBAR (END)--------------------------------------------*/}
+            <Container style={{width:'90%', height:'auto'}}>
+                <div className='linebox container flex' style={{width:'90%', height:'auto', marginTop:'20px'}}>
+                    <div style={{display:'flex'}}>
+                        <div className='box1' style={{alignItems:'flex-start', justifyContent:'flex-start'}}>
+                            <Image src='/pictures/homelessgirl.jpg' style={{width:'100%', height:'auto'}}></Image>
+                        </div>
+
+                        <div className='box1 '  style={{alignItems:'flex-end', justifyContent:'flex-end'}}>
                             <p>
                                 <h3>Canada is a reality</h3>
                                 <div>
@@ -89,20 +89,19 @@ const LoginForm = () => {
                                 other communities—it's just less visible. And the problem starts early. Forty per cent of homeless youth first experience
                                 homelessness before the age of 16
                             </p>
-                        </Col>
-                        <Col className='box1'><Image src='/pictures/homelessgirl.jpg' style={{width:'90%', height:'auto'}}></Image></Col>
-                    </Row>
-                    <Row className='box ' style={{borderTop:'solid', borderBottom:'solid', fontSize:'20px', padding:'10px'}}>
+                        </div>
+                    </div>
+                    <Row className='box ' style={{height:'30%', borderTop:'solid', borderBottom:'solid', fontSize:'20px', padding:'10px'}}>
                         <p> The reality of our cities inspired the creation of One Home</p>
-                        <p> We wanted to help every person in need around the world to find the nearest shelter to them and access as quickly as possible the closest local ressources</p>
-                        <p> Beyond finding four walls for shelter, we facilitate for organization to signal the space and ressources they still have available</p>
+                        <p> We wanted to help every person in need around the world to find the nearest shelter to them and access as quickly as possible the closest local resources</p>
+                        <p> Beyond finding four walls for shelter, we facilitate for organization to signal the space and resources they still have available</p>
                     </Row>
                 </div>
 
 
             </Container>
             <footer className="container py-5" style={{backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)'}}>
-                <Row >
+                <Row className="container d-flex flex-row justify-content-between">
                     <Col className='box2'>
                         <p>The Problem</p>
                         <p>Our Solution</p>
