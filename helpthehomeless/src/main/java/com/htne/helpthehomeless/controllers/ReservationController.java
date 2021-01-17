@@ -23,4 +23,10 @@ public class ReservationController {
     public ResponseEntity<ReservationDTO> acceptReservation(final Authentication auth, @PathVariable final long reservationId) {
         return new ResponseEntity<>(reservationService.acceptReservation(reservationId), HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping(path = "/{reservationId}")
+    public ResponseEntity deleteReservation(final Authentication auth, @PathVariable final long reservationId) {
+        reservationService.deleteReservation(reservationId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -6,6 +6,7 @@ import com.htne.helpthehomeless.dto.LocationDTO;
 public class LocationToLocationDTOConverter {
     public static LocationDTO convert(final Location source) {
         return LocationDTO.builder()
+                          .id(source.getId())
                           .streetLine2(source.getStreetLine2())
                           .province(source.getProvince())
                           .streetLine1(source.getStreetLine1())

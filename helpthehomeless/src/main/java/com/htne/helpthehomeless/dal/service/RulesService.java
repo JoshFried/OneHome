@@ -27,7 +27,7 @@ public class RulesService {
         validateAge(user.getAge(), rules.isMinor());
 
         if (shelter.getVisitors().size() >= rules.getCapacity()) {
-            throw new HTHInvalidStateException("This shelter is for minors only!");
+            throw new HTHInvalidStateException("This shelter is currently full");
         }
 
     }

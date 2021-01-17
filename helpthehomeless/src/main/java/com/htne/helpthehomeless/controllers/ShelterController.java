@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,4 +18,15 @@ public class ShelterController {
     public ResponseEntity<ShelterDTO> createShelter(final Authentication auth, @RequestBody final ShelterDTO dto) {
         return new ResponseEntity<>(shelterService.createShelter(dto), HttpStatus.CREATED);
     }
+
+    @PutMapping(path = "/wait")
+    public ResponseEntity<ShelterDTO> addToWaitingList(final Authentication auth, @RequestParam final Long shelterId) {
+        return new ResponseEntity<>(shelterService.addToWaitingList(shelterId), HttpStatus.ACCEPTED);
+    }
+
+    @PutMapping("/admin/update")
+    public ResponseEntity<ShelterDTO> updateShelter(final Authentication auth, @RequestBody final ShelterDTO dto) {
+        return new ResponseEntity<>(shelterService.updateShelter(dto), HttpStatus.ACCEPTED);
+    }
+
 }

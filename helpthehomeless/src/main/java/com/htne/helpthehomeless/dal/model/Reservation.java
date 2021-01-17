@@ -20,7 +20,7 @@ public class Reservation {
     private Long    id;
     @ManyToOne
     private Shelter shelter;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private User    user;
     private Date    createdAt;
     private Date    expiresAt;
