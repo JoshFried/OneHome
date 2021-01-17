@@ -48,7 +48,6 @@ function StyledNavbar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto py-3 ">
             <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
             <Nav.Link href="/registershelter">Verify Your Shelter</Nav.Link>
             <NavDropdown title="Resources" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Food Bank</NavDropdown.Item>
