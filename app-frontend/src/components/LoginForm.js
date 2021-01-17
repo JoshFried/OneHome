@@ -43,10 +43,11 @@ const LoginForm = () => {
   return (
 
     <Fragment>
-      <div  class="container productwrap shadow-lg rounded mb-0" style={{padding:'20px', marginTop:'50px'}}>
-        <Row >Login page</Row>
-        <form onSubmit={handleSubmit}>
+      <div  class="container productwrap shadow-lg rounded mb-0" style={{padding:'20px', width:'40%', marginTop:'50px'}}>
+        <form onSubmit={handleSubmit} style={{marginTop:'1%'}}>
           {errors.username && (<p className="error-text alert alert-danger">{errors.username}</p>)}
+          <Row style={{alignText:'center', paddingLeft:'45%', paddingBottom:'2%'}}>Login</Row >
+
           <FormInput
             label="Username"
             name="username"
@@ -68,11 +69,45 @@ const LoginForm = () => {
             placeholder="Password"
           />
           <br/>
-          <StyledButton type="submit" label="Login" onSubmit={isSubmitting}>Submit</StyledButton>
-          <StyledButton type="submit" label="Forgot password"  onSubmit={isSubmitting}>Create an account!</StyledButton>
-          <StyledButton type="submit" label="Register"  onSubmit={isSubmitting}>Forgot your password?</StyledButton>
-        </form>
+          <div>
+            <StyledButton
+                type="submit"
+                label="Login"
+                onSubmit={isSubmitting}
+                className="button btn-block"
+                style={{width:'100px' }}
+                block="true"
+            />
+          </div>
+          <Row>
+              <Col>
+                  <StyledButton
+                      type="submit"
+                      label="Forgot password"
+                      onSubmit={isSubmitting}
+                      className="button btn-block"
+                      style={{width:'100px' }}
+                      block="true"
+                  >
+                    Create an account!\
+                  </StyledButton>
+              </Col>
+              <Col>
+                  <Link to="/register">
+                       <StyledButton
+                           type="submit"
+                           label="Register"
+                           onSubmit={isSubmitting}
+                           className="button btn-block"
+                           style={{width:'100px' }}
+                           block="true"
+                       >Forgot your password?</StyledButton>
+                  </Link>
+              </Col>
+          </Row>
+          </form>
       </div>
+
 
     </Fragment>
 
