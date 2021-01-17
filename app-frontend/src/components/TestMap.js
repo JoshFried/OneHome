@@ -52,7 +52,7 @@ function TestMap() {
   });
   useEffect(() => {
       console.log("heysdfsdfs")
-      axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
+      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?input=homeless%20shelter&keyword=homeless%20shelter&inputtype=textquery&fields=photos,geometry,formatted_address,name,photos,opening_hours,rating,formatted_phone_number,website&&radius=100000&location=${latitude},${longitude}&key=${config.MAPS_API_KEY}`,{})
             .then((response) => {
                 if(response.data.results != data)
                 {
@@ -152,7 +152,7 @@ function TestMap() {
                 <div>
                     <h1>{selectedPlace.name}</h1>
                     <h3>{selectedPlace.business_status}</h3>
-                    <RedirectButton name = "Google Maps Link" link = {`https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
+                    <RedirectButton name = "Google Maps Link" link = {`https://cors-anywhere.herokuapp.com/https://www.google.com/maps/search/?api=1&query=Google&query_place_id=${selectedPlace.place_id}`}/>
                     <div>{selectedPlace.vicinity}</div>
                     {selectedPlace.opening_hours && 
                     <div>Open: {selectedPlace.open_now ? "Yes" : "No"}</div>
