@@ -29,4 +29,10 @@ public class ReservationController {
         reservationService.deleteReservation(reservationId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(path = "/user/{userId}")
+    public ResponseEntity<ReservationDTO> findUserReservation(final Authentication auth, @PathVariable final long userId) {
+        
+        return new ResponseEntity<>(reservationService.getUserReservation(userId), HttpStatus.ACCEPTED);
+    }
 }

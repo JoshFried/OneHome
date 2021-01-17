@@ -91,27 +91,26 @@ public class ShelterService {
     }
 
 
-    public String getRegisteredSheltersWithinRadius(double longitude, double latitude, int radius){
-        List<Shelter> registeredShelterList = new ArrayList<>();
+    public String getRegisteredSheltersWithinRadius(final double longitude, final double latitude, final int radius) {
+        final List<Shelter> registeredShelterList = new ArrayList<>();
 
-        for(Shelter shelter : shelterRepository.findAll()){
-            if(distance(shelter.getLocation().getLatitude(), shelter.getLocation().getLongitude(), latitude, longitude,
-                    "K") <= radius/1000) {
+        for (final Shelter shelter : shelterRepository.findAll()) {
+            if (distance(shelter.getLocation().getLatitude(), shelter.getLocation().getLongitude(), latitude, longitude,
+                         "K") <= radius / 1000) {
                 registeredShelterList.add(shelter);
-            };
+            }
+            ;
         }
 
-        String registeredShelterJSON = new GsonJsonProvider().toJson(registeredShelterList);
-        return registeredShelterJSON;
+        return new GsonJsonProvider().toJson(registeredShelterList);
     }
 
-    private static double distance(double lat1, double lon1, double lat2, double lon2, String unit) {
+    private static double distance(final double lat1, final double lon1, final double lat2, final double lon2, final String unit) {
         if ((lat1 == lat2) && (lon1 == lon2)) {
             return 0;
-        }
-        else {
-            double theta = lon1 - lon2;
-            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+        } else {
+            final double theta = lon1 - lon2;
+            double       dist  = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
             dist = Math.acos(dist);
             dist = Math.toDegrees(dist);
             dist = dist * 60 * 1.1515;

@@ -19,6 +19,11 @@ public class ShelterController {
         return new ResponseEntity<>(shelterService.createShelter(dto), HttpStatus.CREATED);
     }
 
+    @GetMapping(path = "{shelterId}")
+    public ResponseEntity<ShelterDTO> getShelter(@PathVariable final long shelterId) {
+        return new ResponseEntity<>(shelterService.getShelter(shelterId), HttpStatus.ACCEPTED);
+    }
+
     @PutMapping(path = "/wait/{shelterId}")
     public ResponseEntity<ShelterDTO> addToWaitingList(final Authentication auth, @PathVariable final Long shelterId) {
         return new ResponseEntity<>(shelterService.addToWaitingList(shelterId), HttpStatus.ACCEPTED);
@@ -30,10 +35,7 @@ public class ShelterController {
     }
 
     @GetMapping(path = "/getShelters")
-    public ResponseEntity<String> getShelters
-            (@RequestParam final int radius, @RequestParam final double longitude, @RequestParam final double latitude)
-    {
-        return new ResponseEntity<>
-                (shelterService.getRegisteredSheltersWithinRadius(longitude, latitude, radius), HttpStatus.OK);
+    public ResponseEntity<String> getShelters(@RequestParam final int radius, @RequestParam final double longitude, @RequestParam final double latitude) {
+        return new ResponseEntity<>(shelterService.getRegisteredSheltersWithinRadius(longitude, latitude, radius), HttpStatus.OK);
     }
 }

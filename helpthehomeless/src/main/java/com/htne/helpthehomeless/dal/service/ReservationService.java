@@ -76,6 +76,11 @@ public class ReservationService {
         repository.deleteById(id);
     }
 
+    public ReservationDTO getUserReservation(final long userId) {
+        System.out.println("FUCK");
+        return mvcConversionService.convert(repository.findByUserId(userId).orElseThrow(() -> new HTNENotFoundException(ExceptionHelper.getNotFoundExceptionMessage("Id: ", String.valueOf(userId)))), ReservationDTO.class);
+    }
+
 
     private Reservation fetchReservation(final long id) {
         return repository.findById(id).orElseThrow(() -> new HTNENotFoundException(ExceptionHelper.getNotFoundExceptionMessage("Id: ", String.valueOf(id))));
