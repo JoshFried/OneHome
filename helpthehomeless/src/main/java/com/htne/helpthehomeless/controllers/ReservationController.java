@@ -19,8 +19,8 @@ public class ReservationController {
         return new ResponseEntity<>(reservationService.createReservation(shelterId), HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<ReservationDTO> acceptReservation(final Authentication auth, @RequestParam final long reservationId) {
+    @GetMapping(path = "/{reservationId}")
+    public ResponseEntity<ReservationDTO> acceptReservation(final Authentication auth, @PathVariable final long reservationId) {
         return new ResponseEntity<>(reservationService.acceptReservation(reservationId), HttpStatus.ACCEPTED);
     }
 }

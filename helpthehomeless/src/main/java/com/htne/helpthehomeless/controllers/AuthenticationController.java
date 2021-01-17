@@ -8,10 +8,7 @@ import com.htne.helpthehomeless.dto.registration.UserRegistrationDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,7 +27,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(authenticationService.login(request, loginRequest), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/confirm-account")
+    @GetMapping(path = "/confirm-account")
     public ResponseEntity<UserDTO> confirmAccount(@RequestParam final String token) {
         return new ResponseEntity<>(authenticationService.confirmUserAccount(token), HttpStatus.ACCEPTED);
     }

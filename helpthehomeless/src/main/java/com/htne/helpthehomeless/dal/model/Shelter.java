@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -15,14 +17,19 @@ import javax.persistence.*;
 public class Shelter {
     @Id
     @GeneratedValue
-    @Column
-    private Long     id;
-    private String   name;
-    private int      capacity;
-    private int      occupancy;
+    private Long        id;
+    private String      name;
     @OneToOne(cascade = CascadeType.ALL)
-    private Location location;
+    private Location    location;
     @OneToOne
-    private User     user;
-    private String   webSite;
+    private User        user;
+    private String      webSite;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Rules       rules;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<User>   visitors;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<User>   waitingList;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Visit> history;
 }

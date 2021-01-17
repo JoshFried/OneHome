@@ -1,5 +1,6 @@
 package com.htne.helpthehomeless.dto;
 
+import com.htne.helpthehomeless.dal.model.Gender;
 import com.htne.helpthehomeless.dal.model.Role;
 import lombok.*;
 
@@ -16,4 +17,6 @@ public class UserDTO {
     private String  lastName;
     private Boolean isEnabled;
     private Role    role;
+    private Gender  gender;
+    private int     age;
 }

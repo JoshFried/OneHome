@@ -17,6 +17,8 @@ public class RegistrationDTOToUserConverter implements Converter<UserRegistratio
                    .firstName(userRegistrationDTO.getFirstName())
                    .lastName(userRegistrationDTO.getLastName())
                    .role(userRegistrationDTO.getRole())
+                   .gender(userRegistrationDTO.getGender())
+                   .age(userRegistrationDTO.getAge())
                    .build();
     }
 }
