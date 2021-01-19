@@ -1,11 +1,12 @@
-const ValidateRegistration = (values) => {
-   console.log("2112")
+import Values from './RegistrationRequest';
+
+const ValidateRegistration = (values: Values): (string | boolean)[] => {
   const requiredFields = [
-    "username",
-    "password",
-    "firstName",
-    "lastName",
-    "email",
+    'username',
+    'password',
+    'firstName',
+    'lastName',
+    'email',
   ];
 
   return [
@@ -16,23 +17,23 @@ const ValidateRegistration = (values) => {
   ].filter((value) => value !== true);
 };
 
-const checkRequiredField = (field) => {
+const checkRequiredField = (field: string) => {
   if (!field) return `${field} is required`;
   return true;
 };
 
-const checkPassword = (password) => {
-  if (password.length < 6) return "Password must be at least 6 characters";
+const checkPassword = (password: string) => {
+  if (password.length < 6) return 'Password must be at least 6 characters';
   return true;
 };
 
-const checkEmail = (email) => {
+const checkEmail = (email: string) => {
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email))
-    return "Invalid email address";
+    return 'Invalid email address';
   return true;
 };
 
-const checkPasswordMatches = (password, matchingPassword) => {
+const checkPasswordMatches = (password: string, matchingPassword: string) => {
   return password === matchingPassword;
 };
 

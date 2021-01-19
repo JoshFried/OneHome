@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from 'react';
 
 const FormInput = ({
   name,

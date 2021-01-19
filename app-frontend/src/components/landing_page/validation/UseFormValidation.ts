@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
+import Values from './RegistrationRequest';
 
 const useFormValidation = (initialState, validate, authenticate) => {
-  const [values, setValues] = useState(initialState);
+  const [values, setValues] = useState<Values>(initialState);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (isSubmitting) {
-      if (errors.length === 0) {
+      if (!errors) {
         (async () => {
           await authenticate(values);
           setSubmitting(false);
@@ -18,10 +19,10 @@ const useFormValidation = (initialState, validate, authenticate) => {
     }
   }, [errors, values, isSubmitting, authenticate]);
 
-  const handleChange = (event) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -30,9 +31,8 @@ const useFormValidation = (initialState, validate, authenticate) => {
     setErrors(validationErrors);
   };
 
-  const handleSubmit = (event) => {
-    console.log("line 34")
-    event.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
