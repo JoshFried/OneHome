@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-function Footer() {
+import { Row, Col } from 'react-bootstrap';
+function Footer(): JSX.Element {
   return (
     <footer
       className="container py-5"

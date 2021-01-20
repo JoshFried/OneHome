@@ -1,7 +1,7 @@
+import { StyledButton } from 'components/styled/StyledButton';
 import React from 'react';
-import { StyledButton } from '~/components/styled/StyledButton';
-import { register } from '~/services/AuthenticationService';
-import { User } from '~/types/User';
+import { register } from 'services/AuthenticationService';
+import { User } from 'types/User';
 import FormInput from '../../form_components/FormInput';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
 import { useRegistrationValidation } from '../validation/UseRegistrationValidation';

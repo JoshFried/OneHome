@@ -1,11 +1,9 @@
-import '../Utils/config';
+import { BACKEND_URL } from '../Utils/config';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import RegistrationRequest from '../components/landing_page/types/requests/RegistrationRequest';
-import { LoginResponse } from '~/components/landing_page/types/login/LoginResponse';
-import { LoginRequest } from '~/components/landing_page/types/requests/LoginRequest';
 
-const URL: string = global.config.BACKEND_URL;
+const URL: string = BACKEND_URL;
 
 export const register = async (request: RegistrationRequest) => {
   console.log('line 8');

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { User } from '~/types/User';
+import { User } from 'types/User';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
 
 export const useRegistrationValidation = (
