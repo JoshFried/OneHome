@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { User } from '~/types/User';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
 
-const registrationValidation = (
+export const useRegistrationValidation = (
   request: RegistrationRequest,
   validate: (fields: RegistrationRequest) => string[],
   authenticate: (intialState: RegistrationRequest) => Promise<boolean | User>
@@ -49,4 +49,4 @@ const registrationValidation = (
   };
 };
 
-export default loginValidation;
+export default useRegistrationValidation;
