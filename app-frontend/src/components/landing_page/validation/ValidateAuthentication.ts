@@ -1,4 +1,4 @@
-const ValidateAuthentication = (): string[] => {
+const validateAuthentication = (): string[] => {
   const requiredFields = ['username', 'password'];
 
   return [...requiredFields.map((field) => checkRequiredField(field))].filter(
@@ -11,4 +11,4 @@ const checkRequiredField = (field: string): string => {
   return 'true';
 };
 
-export default ValidateAuthentication;
+export default validateAuthentication;

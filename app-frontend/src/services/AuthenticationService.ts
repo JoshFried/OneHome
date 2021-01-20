@@ -1,9 +1,11 @@
 import '../Utils/config';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import RegistrationRequest from '../components/landing_page/validation/RegistrationRequest';
+import RegistrationRequest from '../components/landing_page/types/requests/RegistrationRequest';
+import { LoginResponse } from '~/components/landing_page/types/login/LoginResponse';
+import { LoginRequest } from '~/components/landing_page/types/requests/LoginRequest';
 
-const URL = global.config.BACKEND_URL;
+const URL: string = global.config.BACKEND_URL;
 
 export const register = async (request: RegistrationRequest) => {
   console.log('line 8');
@@ -22,7 +24,9 @@ export const register = async (request: RegistrationRequest) => {
   }
 };
 
-export const authenticate = async (values: LoginRequest) => {
+export const authenticate = async (
+  values: LoginRequest
+): Promise<LoginResponse | boolean> => {
   try {
     const apiRes = await fetch(`${URL}/login`, {
       headers: {

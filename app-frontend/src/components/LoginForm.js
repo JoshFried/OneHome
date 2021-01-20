@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import FormInput from "./FormInput.js";
+import FormInput from "./form_components/FormInput.js";
 import useFormValidation from "./landing_page/validation/UseFormValidation.js";
 import ValidateAuthentication from "./landing_page/validation/ValidateAuthentication.js";
 import { authenticate } from "../services/AuthenticationService.js";
@@ -7,7 +7,7 @@ import { useAuth } from "./Auth.js";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useUser } from "./UserContext.js";
-import {StyledButton} from "./StyledButton.js";
+import {StyledButton} from "./styled/StyledButton.js";
 import {Example }from "./Example";
 import {Navbar, Image, NavbarBrandProps, Jumbotron ,NavbarProps, NavLink, Nav, NavDropdown, Form, FormControl, Container, Row, Col} from "react-bootstrap"
 import 'react-bootstrap/Navbar';

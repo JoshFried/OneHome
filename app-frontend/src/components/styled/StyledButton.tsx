@@ -9,7 +9,14 @@ export const StyledButton = (props) => {
       className={props.className}
       disabled={props.disabled}
       onClick = {props.onClick}
-        style={{backgroundColor: "white", borderRadius:'10px', padding:'5px', margin:'5px', border:'1px solid #C8D8EA',color: "black"}}
+      style={{
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        padding: '5px',
+        margin: '5px',
+        border: '1px solid #C8D8EA',
+        color: 'black',
+      }}
      >
       {props.label}
     </Button>

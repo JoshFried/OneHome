@@ -1,39 +1,40 @@
 import { useEffect, useState } from 'react';
-import Values from './RegistrationRequest';
+import { User } from '~/types/User';
+import AuthRequest from '../types/requests/AuthRequest';
 
-const useFormValidation = (initialState, validate, authenticate) => {
-  const [values, setValues] = useState<Values>(initialState);
+const useFormValidation = (
+  request: AuthRequest,
+  validate: (fields: AuthRequest) => string[],
+  authenticate: (intialState: AuthRequest) => Promise<boolean | User>
+): any => {
+  const [values, setValues] = useState(request);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (isSubmitting) {
-      if (!errors) {
-        (async () => {
-          await authenticate(values);
-          setSubmitting(false);
-        })();
-      } else {
-        setSubmitting(false);
+    const authenticateIfNoErrors = async () => {
+      if (isSubmitting) {
+        if (!errors) await authenticate(values);
       }
-    }
+    };
+    authenticateIfNoErrors();
   }, [errors, values, isSubmitting, authenticate]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleBlur = () => {
-    const validationErrors = validate(values);
+  const handleBlur = (): void => {
+    const validationErrors: string[] = validate(values);
     setErrors(validationErrors);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const validationErrors = validate(values);
+    const validationErrors: string[] = validate(values);
     setErrors(validationErrors);
     setSubmitting(true);
   };

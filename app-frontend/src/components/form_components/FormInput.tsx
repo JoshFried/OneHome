@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
+import { FormInputTypes } from './FormInputTypes';
 
-export const FormInput: React.FunctionComponent = ({
-  ...props
-}): JSX.Element => {
+export const FormInput = (props: FormInputTypes): JSX.Element => {
   return (
     <Fragment>
       <input
@@ -15,6 +14,9 @@ export const FormInput: React.FunctionComponent = ({
         onBlur={props.onBlur}
         onChange={props.onChange}
       />
+      {props.error && <p>{props.error}</p>}
     </Fragment>
   );
 };
+
+export default FormInput;

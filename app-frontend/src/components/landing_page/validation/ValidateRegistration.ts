@@ -1,6 +1,8 @@
-import Values from './RegistrationRequest';
+import RegistrationRequest from '../types/requests/RegistrationRequest';
 
-const ValidateRegistration = (values: Values): (string | boolean)[] => {
+const ValidateRegistration = (
+  values: RegistrationRequest
+): (string | boolean)[] => {
   const requiredFields = [
     'username',
     'password',
@@ -17,7 +19,7 @@ const ValidateRegistration = (values: Values): (string | boolean)[] => {
   ].filter((value) => value !== true);
 };
 
-const checkRequiredField = (field: string) => {
+const checkRequiredField = (field: string): string | boolean => {
   if (!field) return `${field} is required`;
   return true;
 };
