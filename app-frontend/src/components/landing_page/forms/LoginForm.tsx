@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
-import { authenticate } from '../../services/AuthenticationService';
-import useFormValidation from './validation/UseFormValidation';
-import validateAuthentication from './validation/ValidateAuthentication';
-import { StyledButton } from '../styled/StyledButton';
-import { FormInput } from '../form_components/FormInput';
+import { authenticate } from '../../../services/AuthenticationService';
+import useFormValidation from '../validation/UseFormValidation';
+import validateAuthentication from '../validation/ValidateAuthentication';
+import { StyledButton } from '../../styled/StyledButton';
+import { FormInput } from '../../form_components/FormInput';
 import { Row } from 'reactstrap';
-import AuthRequest from './types/requests/AuthRequest';
-import { LoginResponse } from './types/login/response/LoginResponse';
+import AuthRequest from '../types/requests/AuthRequest';
+import { LoginResponse } from '../types/login/response/LoginResponse';
 
 export const LoginForm = (): JSX.Element => {
   const request: AuthRequest = { username: '', password: '' };

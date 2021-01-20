@@ -1,8 +1,4 @@
-import RegistrationRequest from '../types/requests/RegistrationRequest';
-
-const ValidateRegistration = (
-  values: RegistrationRequest
-): (string | boolean)[] => {
+const validateRegistration = (): string[] => {
   const requiredFields = [
     'username',
     'password',
@@ -19,24 +15,24 @@ const ValidateRegistration = (
   ].filter((value) => value !== true);
 };
 
-const checkRequiredField = (field: string): string | boolean => {
+const checkRequiredField = (field: string): string => {
   if (!field) return `${field} is required`;
-  return true;
+  return 'true';
 };
 
-const checkPassword = (password: string) => {
+const checkPassword = (password: string): string => {
   if (password.length < 6) return 'Password must be at least 6 characters';
-  return true;
+  return 'true';
 };
 
-const checkEmail = (email: string) => {
+const checkEmail = (email: string): string => {
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email))
     return 'Invalid email address';
-  return true;
+  return 'true';
 };
 
 const checkPasswordMatches = (password: string, matchingPassword: string) => {
   return password === matchingPassword;
 };
 
-export default ValidateRegistration;
+export default validateRegistration;

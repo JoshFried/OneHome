@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { User } from '~/types/User';
 import AuthRequest from '../types/requests/AuthRequest';
+import RegistrationRequest from '../types/requests/RegistrationRequest';
 
 const useFormValidation = (
   request: AuthRequest,
-  validate: (fields: AuthRequest) => string[],
-  authenticate: (intialState: AuthRequest) => Promise<boolean | User>
+  validate: (fields: AuthRequest | RegistrationRequest) => string[],
+  authenticate: (
+    intialState: AuthRequest | RegistrationRequest
+  ) => Promise<boolean | User>
 ): any => {
   const [values, setValues] = useState(request);
   const [errors, setErrors] = useState({});
