@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { authenticate } from '../../../services/AuthenticationService';
-import useFormValidation from '../validation/UseFormValidation';
+import loginValidation from '../validation/UseLoginValidation';
 import validateAuthentication from '../validation/ValidateAuthentication';
 import { StyledButton } from '../../styled/StyledButton';
 import { FormInput } from '../../form_components/FormInput';
@@ -24,7 +24,7 @@ export const LoginForm = (): JSX.Element => {
     values,
     errors,
     isSubmitting,
-  } = useFormValidation(request, validateAuthentication, loginUser);
+  } = loginValidation(request, validateAuthentication, loginUser);
 
   return (
     <Fragment>

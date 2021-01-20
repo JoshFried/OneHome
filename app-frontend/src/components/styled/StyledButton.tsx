@@ -1,14 +1,14 @@
-import React from "react";
-import 'bootstrap/dist/css/bootstrap-grid.min.css'
-import {Button} from 'reactstrap';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
+import { Button, ButtonProps } from 'reactstrap';
 
-export const StyledButton = (props) => {
+export const StyledButton = (props: ButtonProps): JSX.Element => {
   return (
     <Button
       type={props.type}
       className={props.className}
       disabled={props.disabled}
-      onClick = {props.onClick}
+      onClick={props.onClick}
       style={{
         backgroundColor: 'white',
         borderRadius: '10px',
@@ -17,7 +17,7 @@ export const StyledButton = (props) => {
         border: '1px solid #C8D8EA',
         color: 'black',
       }}
-     >
+    >
       {props.label}
     </Button>
   );

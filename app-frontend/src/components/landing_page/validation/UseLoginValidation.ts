@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
-import { User } from '~/types/User';
+import { LoginResponse } from '../types/login/response/LoginResponse';
 import AuthRequest from '../types/requests/AuthRequest';
-import RegistrationRequest from '../types/requests/RegistrationRequest';
 
-const useFormValidation = (
+const useLoginValidation = (
   request: AuthRequest,
-  validate: (fields: AuthRequest | RegistrationRequest) => string[],
-  authenticate: (
-    intialState: AuthRequest | RegistrationRequest
-  ) => Promise<boolean | User>
+  validate: (fields: AuthRequest) => string[],
+  authenticate: (intialState: AuthRequest) => Promise<boolean | LoginResponse>
 ): any => {
   const [values, setValues] = useState(request);
   const [errors, setErrors] = useState({});
@@ -52,4 +49,4 @@ const useFormValidation = (
   };
 };
 
-export default useFormValidation;
+export default useLoginValidation;

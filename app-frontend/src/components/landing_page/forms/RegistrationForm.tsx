@@ -1,9 +1,9 @@
 import React from 'react';
+import { StyledButton } from '~/components/styled/StyledButton';
 import { register } from '~/services/AuthenticationService';
 import { User } from '~/types/User';
 import FormInput from '../../form_components/FormInput';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
-import useFormValidation from '../validation/UseFormValidation';
 import validateRegistration from '../validation/ValidateRegistration';
 
 const RegistrationForm = (): JSX.Element => {
@@ -28,6 +28,8 @@ const RegistrationForm = (): JSX.Element => {
     // history.push('/login');
   };
 
+  
+
   const {
     handleSubmit,
     handleChange,
@@ -35,7 +37,7 @@ const RegistrationForm = (): JSX.Element => {
     values,
     errors,
     isSubmitting,
-  } = useFormValidation(request, validateRegistration, sendRegistrationRequest);
+  } = useRegistrationValidation(request, validateRegistration, sendRegistrationRequest);
 
   return (
     <form onSubmit={handleSubmit} className="form-signin">

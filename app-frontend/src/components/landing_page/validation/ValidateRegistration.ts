@@ -1,4 +1,6 @@
-const validateRegistration = (): string[] => {
+import RegistrationRequest from '../types/requests/RegistrationRequest';
+
+const validateRegistration = (values: RegistrationRequest): string[] => {
   const requiredFields = [
     'username',
     'password',
@@ -12,7 +14,7 @@ const validateRegistration = (): string[] => {
     checkEmail(values.email),
     checkPassword(values.password),
     checkPasswordMatches(values.password, values.matchingPassword),
-  ].filter((value) => value !== true);
+  ].filter((value) => value !== 'true');
 };
 
 const checkRequiredField = (field: string): string => {
@@ -32,7 +34,8 @@ const checkEmail = (email: string): string => {
 };
 
 const checkPasswordMatches = (password: string, matchingPassword: string) => {
-  return password === matchingPassword;
+  if (password !== matchingPassword) return 'Passwords dont match!';
+  return 'true';
 };
 
 export default validateRegistration;
