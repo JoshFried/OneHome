@@ -10,7 +10,7 @@ import StyledNavbar from "./components/Navbar.js";
 import Footer from "./components/Footer.js";
 import { AuthContext } from "./components/Auth";
 import { useUserContext } from "./components/User";
-import RegisterShelterForm from "./components/RegisterShelterForm.js";
+import RegisterShelterForm from "./components/shelter_registration/RegisterShelterForm.js";
 import config from "./Utils/config";
 import axios from "axios";
 function App() {

@@ -1,14 +1,8 @@
-const validateAuthentication = (): string[] => {
-  const requiredFields = ['username', 'password'];
+import AuthRequest from '../types/requests/AuthRequest';
+import { fieldValidator } from './FieldValidator';
 
-  return [...requiredFields.map((field) => checkRequiredField(field))].filter(
-    (value) => value != 'true'
-  );
-};
-
-const checkRequiredField = (field: string): string => {
-  if (!field) return `${field} is required`;
-  return 'true';
+const validateAuthentication = (request: AuthRequest): string[] => {
+  return fieldValidator(request, ['username', 'password']);
 };
 
 export default validateAuthentication;

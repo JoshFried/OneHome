@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { LoginResponse } from '../types/login/response/LoginResponse';
-import AuthRequest from '../types/requests/AuthRequest';
 
-const useLoginValidation = (
-  request: AuthRequest,
-  validate: (fields: AuthRequest) => string[],
-  authenticate: (intialState: AuthRequest) => Promise<boolean | LoginResponse>
+const useFormValidation = <T, R>(
+  request: T,
+  validate: (fields: T) => string[],
+  sendRequest: (intialState: T) => Promise<boolean | R>
 ): any => {
   const [values, setValues] = useState(request);
   const [errors, setErrors] = useState({});
@@ -14,11 +12,11 @@ const useLoginValidation = (
   useEffect(() => {
     const authenticateIfNoErrors = async () => {
       if (isSubmitting) {
-        if (!errors) await authenticate(values);
+        if (!errors) await sendRequest(values);
       }
     };
     authenticateIfNoErrors();
-  }, [errors, values, isSubmitting, authenticate]);
+  }, [errors, values, isSubmitting, sendRequest]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setValues({
@@ -49,4 +47,4 @@ const useLoginValidation = (
   };
 };
 
-export default useLoginValidation;
+export default useFormValidation;

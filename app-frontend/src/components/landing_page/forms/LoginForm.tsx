@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { authenticate } from '../../../services/AuthenticationService';
-import loginValidation from '../validation/UseLoginValidation';
-import validateAuthentication from '../validation/ValidateAuthentication';
+import useFormValidation from '../validation/UseFormValidation';
 import { StyledButton } from '../../styled/StyledButton';
 import { FormInput } from '../../form_components/FormInput';
 import { Row } from 'reactstrap';
 import AuthRequest from '../types/requests/AuthRequest';
 import { LoginResponse } from '../types/login/response/LoginResponse';
+import validateAuthentication from '../validation/ValidateAuthentication';
 
 export const LoginForm = (): JSX.Element => {
   const request: AuthRequest = { username: '', password: '' };
@@ -24,7 +24,7 @@ export const LoginForm = (): JSX.Element => {
     values,
     errors,
     isSubmitting,
-  } = loginValidation(request, validateAuthentication, loginUser);
+  } = useFormValidation(request, validateAuthentication, loginUser);
 
   return (
     <Fragment>

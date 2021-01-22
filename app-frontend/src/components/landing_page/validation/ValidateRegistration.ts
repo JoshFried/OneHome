@@ -1,3 +1,4 @@
+import { fieldValidator } from 'components/landing_page/validation/FieldValidator';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
 
 const validateRegistration = (values: RegistrationRequest): string[] => {
@@ -10,32 +11,33 @@ const validateRegistration = (values: RegistrationRequest): string[] => {
   ];
 
   return [
-    ...requiredFields.map((field) => checkRequiredField(field)),
+    ...fieldValidator(values, [
+      'username',
+      'password',
+      'firstName',
+      'lastName',
+      'email',
+    ]),
     checkEmail(values.email),
     checkPassword(values.password),
     checkPasswordMatches(values.password, values.matchingPassword),
-  ].filter((value) => value !== 'true');
-};
-
-const checkRequiredField = (field: string): string => {
-  if (!field) return `${field} is required`;
-  return 'true';
+  ].filter((value) => value !== '');
 };
 
 const checkPassword = (password: string): string => {
   if (password.length < 6) return 'Password must be at least 6 characters';
-  return 'true';
+  return '';
 };
 
 const checkEmail = (email: string): string => {
   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email))
     return 'Invalid email address';
-  return 'true';
+  return '';
 };
 
 const checkPasswordMatches = (password: string, matchingPassword: string) => {
   if (password !== matchingPassword) return 'Passwords dont match!';
-  return 'true';
+  return '';
 };
 
 export default validateRegistration;

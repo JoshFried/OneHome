@@ -1,36 +1,35 @@
 import { BACKEND_URL } from '../Utils/config';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
 import RegistrationRequest from '../components/landing_page/types/requests/RegistrationRequest';
+import { User } from 'types/User';
+import { LoginResponse } from 'components/landing_page/types/login/response/LoginResponse';
+import AuthRequest from 'components/landing_page/types/requests/AuthRequest';
 
-const URL: string = BACKEND_URL;
-
-export const register = async (request: RegistrationRequest) => {
-  console.log('line 8');
+export const register = async (
+  request: RegistrationRequest
+): Promise<boolean | User> => {
   try {
-    await fetch(`${URL}/register`, {
+    const apiRes = await fetch(`${BACKEND_URL}/register`, {
       headers: {
         'Content-Type': 'application/json',
       },
       method: 'POST',
       body: JSON.stringify(request),
     });
-
-    return <Redirect to="/login" />;
+    return await apiRes.json();
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 
 export const authenticate = async (
-  values: LoginRequest
+  values: AuthRequest
 ): Promise<LoginResponse | boolean> => {
   try {
-    const apiRes = await fetch(`${URL}/login`, {
+    const apiRes = await fetch(`${BACKEND_URL}/login`, {
       headers: {
         'Content-Type': 'application/json',
       },
-      credentials: 'include',
       method: 'POST',
       body: JSON.stringify(values),
     });

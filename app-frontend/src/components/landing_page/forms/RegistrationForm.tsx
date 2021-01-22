@@ -4,7 +4,7 @@ import { register } from 'services/AuthenticationService';
 import { User } from 'types/User';
 import FormInput from '../../form_components/FormInput';
 import RegistrationRequest from '../types/requests/RegistrationRequest';
-import { useRegistrationValidation } from '../validation/UseRegistrationValidation';
+import useFormValidation from '../validation/UseFormValidation';
 import validateRegistration from '../validation/ValidateRegistration';
 
 const RegistrationForm = (): JSX.Element => {
@@ -36,11 +36,7 @@ const RegistrationForm = (): JSX.Element => {
     values,
     errors,
     isSubmitting,
-  } = useRegistrationValidation(
-    request,
-    validateRegistration,
-    sendRegistrationRequest
-  );
+  } = useFormValidation(request, validateRegistration, sendRegistrationRequest);
 
   return (
     <form onSubmit={handleSubmit} className="form-signin">
