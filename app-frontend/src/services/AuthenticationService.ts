@@ -4,9 +4,7 @@ import { User } from 'types/User';
 import { LoginResponse } from 'components/landing_page/types/login/response/LoginResponse';
 import AuthRequest from 'components/landing_page/types/requests/AuthRequest';
 
-export const register = async (
-  request: RegistrationRequest
-): Promise<boolean | User> => {
+export const register = async (request: RegistrationRequest): Promise<User> => {
   try {
     const apiRes = await fetch(`${BACKEND_URL}/register`, {
       headers: {
@@ -17,14 +15,13 @@ export const register = async (
     });
     return await apiRes.json();
   } catch (error) {
-    console.log(error);
-    return false;
+    throw error;
   }
 };
 
 export const authenticate = async (
   values: AuthRequest
-): Promise<LoginResponse | boolean> => {
+): Promise<LoginResponse> => {
   try {
     const apiRes = await fetch(`${BACKEND_URL}/login`, {
       headers: {
@@ -36,6 +33,20 @@ export const authenticate = async (
     });
     return await apiRes.json();
   } catch (error) {
-    return false;
+    throw error;
+  }
+};
+
+export const getUserInfo = async (): Promise<User> => {
+  try {
+    const apiRes = await fetch(`${BACKEND_URL}/user`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    return await apiRes.json();
+  } catch (error) {
+    throw error;
   }
 };

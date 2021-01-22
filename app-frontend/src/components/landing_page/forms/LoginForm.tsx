@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { authenticate } from '../../../services/AuthenticationService';
 import useFormValidation from '../validation/UseFormValidation';
 import { StyledButton } from '../../styled/StyledButton';
@@ -7,14 +7,16 @@ import { Row } from 'reactstrap';
 import AuthRequest from '../types/requests/AuthRequest';
 import { LoginResponse } from '../types/login/response/LoginResponse';
 import validateAuthentication from '../validation/ValidateAuthentication';
+import { AuthContext } from 'context/AuthContext';
 
 export const LoginForm = (): JSX.Element => {
   const request: AuthRequest = { username: '', password: '' };
+  const { setTokens } = useContext(AuthContext);
 
-  const loginUser = async (
-    request: AuthRequest
-  ): Promise<boolean | LoginResponse> => {
-    return await authenticate(request);
+  const loginUser = async (request: AuthRequest): Promise<LoginResponse> => {
+    const loginResponse = await authenticate(request);
+    setTokens(loginResponse.token);
+    return loginResponse;
   };
 
   const {

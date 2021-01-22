@@ -5,7 +5,7 @@ import { Reservation } from 'types/Reservation';
 
 export const RegisterShelter = async (
   request: ShelterRequest
-): Promise<Shelter | boolean> => {
+): Promise<Shelter> => {
   try {
     const apiRes = await fetch(`${BACKEND_URL}/shelter/admin/create`, {
       headers: {
@@ -17,21 +17,17 @@ export const RegisterShelter = async (
     });
     return await apiRes.json();
   } catch (error) {
-    console.log(error);
-    return false;
+    throw error;
   }
 };
 
-export const reserveSpot = async (
-  id: string
-): Promise<boolean | Reservation> => {
+export const reserveSpot = async (id: string): Promise<Reservation> => {
   try {
     const apiRes = await fetch(`${BACKEND_URL}/rsvp/${id}`, {
       credentials: 'include',
     });
     return await apiRes.json();
   } catch (error) {
-    console.log(error);
-    return false;
+    throw error;
   }
 };

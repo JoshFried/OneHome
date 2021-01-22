@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 const useFormValidation = <T, R>(
   request: T,
   validate: (fields: T) => string[],
-  sendRequest: (intialState: T) => Promise<boolean | R>
+  sendRequest: (intialState: T) => Promise<R>
 ): any => {
   const [values, setValues] = useState(request);
   const [errors, setErrors] = useState<Array<string>>([]);

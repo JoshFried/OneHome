@@ -24,7 +24,7 @@ const RegistrationForm = (): JSX.Element => {
 
   const sendRegistrationRequest = async (
     request: RegistrationRequest
-  ): Promise<boolean | User> => {
+  ): Promise<User> => {
     return await register(request);
     // history.push('/login');
   };
