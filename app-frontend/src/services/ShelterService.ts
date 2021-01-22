@@ -1,8 +1,9 @@
 import { BACKEND_URL } from '../Utils/config';
 import { Shelter } from 'types/Shelter';
 import { ShelterRequest } from 'components/landing_page/types/requests/ShelterRequest';
+import { Reservation } from 'types/Reservation';
 
-const RegisterShelter = async (
+export const RegisterShelter = async (
   request: ShelterRequest
 ): Promise<Shelter | boolean> => {
   try {
@@ -21,4 +22,16 @@ const RegisterShelter = async (
   }
 };
 
-export default RegisterShelter;
+export const reserveSpot = async (
+  id: string
+): Promise<boolean | Reservation> => {
+  try {
+    const apiRes = await fetch(`${BACKEND_URL}/rsvp/${id}`, {
+      credentials: 'include',
+    });
+    return await apiRes.json();
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

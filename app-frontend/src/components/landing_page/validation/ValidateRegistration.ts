@@ -2,14 +2,6 @@ import { fieldValidator } from 'components/landing_page/validation/FieldValidato
 import RegistrationRequest from '../types/requests/RegistrationRequest';
 
 const validateRegistration = (values: RegistrationRequest): string[] => {
-  const requiredFields = [
-    'username',
-    'password',
-    'firstName',
-    'lastName',
-    'email',
-  ];
-
   return [
     ...fieldValidator(values, [
       'username',

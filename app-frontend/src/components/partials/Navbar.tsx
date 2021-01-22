@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import { Navbar, Image, Jumbotron, Nav, NavDropdown } from 'react-bootstrap';
-import { User } from '~/types/User';
+import { User } from 'types/User';
 const StyledNavbar = (): JSX.Element => {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState<User>();
-
+  setAuth(auth);
+  setUser(user);
   return (
     <div>
       <Jumbotron

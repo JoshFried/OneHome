@@ -18,7 +18,7 @@ const RegistrationForm = (): JSX.Element => {
     matchingPassword: '',
     password: '',
     role: '',
-    gender: '',
+    gender: 'MALE',
     age: 0,
   };
 

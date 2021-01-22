@@ -2,6 +2,7 @@ package com.htne.helpthehomeless.controllers;
 
 import com.htne.helpthehomeless.dal.service.ShelterService;
 import com.htne.helpthehomeless.dto.ShelterDTO;
+import com.htne.helpthehomeless.dto.registration.ShelterRegistrationDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class ShelterController {
     private final ShelterService shelterService;
 
     @PostMapping(path = "/admin/create")
-    public ResponseEntity<ShelterDTO> createShelter(final Authentication auth, @RequestBody final ShelterDTO shelterDTO) {
+    public ResponseEntity<ShelterDTO> createShelter(final Authentication auth, @RequestBody final ShelterRegistrationDTO shelterDTO) {
         return new ResponseEntity<>(shelterService.createShelter(shelterDTO), HttpStatus.CREATED);
     }
 

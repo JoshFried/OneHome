@@ -4,7 +4,7 @@ import { Shelter } from 'types/Shelter.js';
 import { StyledButton } from '../styled/StyledButton.js';
 import FormInput from '../form_components/FormInput.js';
 import { ShelterRequest } from 'components/landing_page/types/requests/ShelterRequest.js';
-import RegisterShelter from 'services/ShelterService.js';
+import { RegisterShelter } from 'services/ShelterService.js';
 import { validateShelter } from 'components/landing_page/validation/ValidateShelterRegistration.js';
 import useFormValidation from 'components/landing_page/validation/UseFormValidation.js';
 import { RedirectButtonProps } from './RedirectButtonProps.js';

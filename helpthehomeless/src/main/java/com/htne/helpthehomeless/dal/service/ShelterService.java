@@ -13,6 +13,7 @@ import com.htne.helpthehomeless.dal.service.exceptions.HTNENotFoundException;
 import com.htne.helpthehomeless.dto.ReservationDTO;
 import com.htne.helpthehomeless.dto.ShelterDTO;
 import com.htne.helpthehomeless.dto.UserDTO;
+import com.htne.helpthehomeless.dto.registration.ShelterRegistrationDTO;
 import com.jayway.jsonpath.spi.json.GsonJsonProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
@@ -30,7 +31,7 @@ public class ShelterService {
     private final VisitService                visitService;
     private final AvailableSpotEventPublisher availableSpotEventPublisher;
 
-    public ShelterDTO createShelter(final ShelterDTO dto) {
+    public ShelterDTO createShelter(final ShelterRegistrationDTO dto) {
         final User user = userService.getUserFromContext();
 
         if (user.getRole() != Role.ADMIN) {

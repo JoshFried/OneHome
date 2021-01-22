@@ -11,7 +11,6 @@ import java.util.Date;
 @Setter
 @EqualsAndHashCode
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.WRAPPER_OBJECT)
-
 public class ReservationDTO {
     private Long       id;
     private ShelterDTO shelter;

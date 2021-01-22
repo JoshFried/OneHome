@@ -6,6 +6,7 @@ import FormInput from 'components/form_components/FormInput';
 
 export const LocationInputs = (): JSX.Element => {
   const [location, setLocation] = useState<Location>();
+  setLocation(location);
   return (
     <Fragment>
       <FormInput
@@ -14,7 +15,7 @@ export const LocationInputs = (): JSX.Element => {
         type="text"
         className={`${'error-input'} ${'form-control'}`}
         value={location?.placeId}
-        onChange={handleChange}
+        // onChange={handleChange}
         placeholder="Place ID"
       />
       <br />
@@ -25,7 +26,7 @@ export const LocationInputs = (): JSX.Element => {
         type="number"
         className={`${'error-input'} ${'form-control'}`}
         value={location?.latitude}
-        onChange={handleChange}
+        // onChange={handleChange}
         placeholder="Place ID"
       />
       <br />
@@ -36,7 +37,7 @@ export const LocationInputs = (): JSX.Element => {
         type="number"
         className={`${'error-input'} ${'form-control'}`}
         value={location?.longitude}
-        onChange={handleChange}
+        // onChange={handleChange}
         placeholder="Place ID"
       />
       <br />

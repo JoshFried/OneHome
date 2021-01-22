@@ -7,6 +7,6 @@ export const fieldValidator = <T>(
     .filter((res) => res !== '');
 };
 
-const checkRequiredField = (value: unknown, field: keyof any): string => {
+const checkRequiredField = (value: unknown, field: keyof never): string => {
   return !value ? `${String(field)} is required` : '';
 };

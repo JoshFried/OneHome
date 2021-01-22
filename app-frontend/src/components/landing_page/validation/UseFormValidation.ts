@@ -6,13 +6,16 @@ const useFormValidation = <T, R>(
   sendRequest: (intialState: T) => Promise<boolean | R>
 ): any => {
   const [values, setValues] = useState(request);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Array<string>>([]);
   const [isSubmitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     const authenticateIfNoErrors = async () => {
       if (isSubmitting) {
-        if (!errors) await sendRequest(values);
+        if (errors.length === 0) {
+          await sendRequest(values);
+          setSubmitting(false);
+        }
       }
     };
     authenticateIfNoErrors();

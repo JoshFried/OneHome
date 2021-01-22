@@ -78,6 +78,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
         mvcConversionService.addConverter(new ReservationToReservationDTOConverter());
         mvcConversionService.addConverter(new VisitDTOToVisitConverter());
         mvcConversionService.addConverter(new VisitToVisitDTOConverter());
+        mvcConversionService.addConverter(new ShelterRegistrationDTODTO2ShelterConverter());
     }
 
     @Bean
