@@ -3,6 +3,7 @@ package com.htne.helpthehomeless.controllers;
 import com.htne.helpthehomeless.dal.service.UserService;
 import com.htne.helpthehomeless.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -12,7 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping(path = "/user")
 public class UserController {
-    private final UserService userService;
+    private final UserService       userService;
+    private final ConversionService mvcConversionService;
 
     @PutMapping(path = "/update")
     public ResponseEntity<UserDTO> updateUserLocation(final Authentication authentication, final UserDTO user) {
@@ -24,6 +26,10 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserByUsername(username), HttpStatus.ACCEPTED);
     }
 
+    @GetMapping
+    public ResponseEntity<UserDTO> getUser(final Authentication authentication) {
+        return new ResponseEntity<>(mvcConversionService.convert(userService.getUserFromContext(), UserDTO.class), HttpStatus.OK);
+    }
 
     @GetMapping(value = "/logout")
     public ResponseEntity<String> logoutUser() {

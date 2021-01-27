@@ -1,4 +1,5 @@
 {
   "editor.tabSize": 2,
-  "editor.fontFamily": "Operator Mono Lig"
+  "editor.fontFamily": "Operator Mono Lig",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }

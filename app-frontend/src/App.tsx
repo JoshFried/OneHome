@@ -3,19 +3,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import Search from './components/Search';
 // import PrivateRoute from './components/PrivateRoute';
 // import About from './components/About.js';
-// import Footer from './components/Footer.js';
-// import { AuthContext } from './components/Auth';
-// import { useUserContext } from './components/User';
-// import RegisterShelterForm from './components/shelter_registration/RegisterShelterForm.js';
+import { UserContext } from 'context/UserContext';
+import RegisterShelterForm from './components/shelter_registration/RegisterShelterForm';
 import { LoginForm } from 'components/landing_page/forms/LoginForm';
 import RegistrationForm from 'components/landing_page/forms/RegistrationForm';
 import StyledNavbar from 'components/partials/Navbar';
 import { User } from 'types/User';
 import { AuthContext } from 'context/AuthContext';
 import { getUserInfo } from 'services/AuthenticationService';
+import Footer from 'components/partials/Footer';
+import { defaultUser } from 'components/DefaultUser';
+import Home from 'components/Home';
+import { Map } from 'components/Test';
 
 const App = (): any => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>(defaultUser);
   const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   const setTokens = (data: string): void => {
@@ -24,29 +26,42 @@ const App = (): any => {
   };
 
   const getLoggedInUser = async (): Promise<void> => {
+    console.log(await getUserInfo());
     setUser(await getUserInfo());
   };
 
   useEffect(() => {
+    console.log(token);
     if (token !== '') getLoggedInUser();
+    else setUser(defaultUser);
   }, [token]);
 
   return (
     <Fragment>
       <AuthContext.Provider value={{ token, setTokens }}>
-        <Router>
-          <StyledNavbar />
-          {token != '' && <LoginForm />}
-          {/* <RegistrationForm /> */}
-          {/* <Route path="/" exact component={Home} /> */}
-          {/* <Route path="/login" exact component={LoginForm} /> */}
-          {/* <Route path="/register" exact component={RegistrationForm} /> */}
-          {/* <Route path="/registershelter" exact component={RegisterShelterForm} />
-        <Route path="/search" exact component={Search} />
+        <UserContext.Provider value={{ user, setUser }}>
+          <Router>
+            <StyledNavbar />
+            <Route path="/" exact component={Home} />
+            <LoginForm />
+            {token !== '' && (
+              <Route path="/login" exact component={LoginForm} />
+            )}
+            {token !== '' && (
+              <Route path="/register" exact component={RegistrationForm} />
+            )}
+            <Route
+              path="/registershelter"
+              exact
+              component={RegisterShelterForm}
+            />
+            <Route path="/map" exact component={Map} />
+            {/* <Route path="/search" exact component={Search} />
         <Route path="/about" exact component={About} /> */}
-        </Router>
+          </Router>
+        </UserContext.Provider>
       </AuthContext.Provider>
-      {/* <Footer /> */}
+      <Footer />
     </Fragment>
   );
 };

@@ -1,13 +1,13 @@
+import FormInput from 'components/form_components/FormInput';
+import { ShelterRequest } from 'components/landing_page/types/requests/ShelterRequest';
+import useFormValidation from 'components/landing_page/validation/UseFormValidation';
+import { validateShelter } from 'components/landing_page/validation/ValidateShelterRegistration';
+import { RedirectButton } from 'components/RedirectButton';
+import { StyledButton } from 'components/styled/StyledButton';
 import React from 'react';
-import { RedirectButton } from '../RedirectButton.js';
-import { Shelter } from 'types/Shelter.js';
-import { StyledButton } from '../styled/StyledButton.js';
-import FormInput from '../form_components/FormInput.js';
-import { ShelterRequest } from 'components/landing_page/types/requests/ShelterRequest.js';
-import { RegisterShelter } from 'services/ShelterService.js';
-import { validateShelter } from 'components/landing_page/validation/ValidateShelterRegistration.js';
-import useFormValidation from 'components/landing_page/validation/UseFormValidation.js';
-import { RedirectButtonProps } from './RedirectButtonProps.js';
+import { RegisterShelter } from 'services/ShelterService';
+import { Shelter } from 'types/Shelter';
+import { RedirectButtonProps } from './RedirectButtonProps';
 
 const RegisterShelterForm = (): JSX.Element => {
   const request: ShelterRequest = {

@@ -3,8 +3,11 @@ import { Row, Col } from 'react-bootstrap';
 function Footer(): JSX.Element {
   return (
     <footer
-      className="container py-5"
+      className="footer "
       style={{
+        paddingTop: '50px',
+        paddingBottom: '25px',
+        marginTop: '50px',
         backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)',
       }}
     >

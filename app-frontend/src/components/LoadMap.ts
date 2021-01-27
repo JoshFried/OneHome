@@ -1,17 +1,15 @@
-export const g = '';
+export const f = '';
 
 // let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
 
-// export const handleLocationChange = (
-//   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-// ) => {
+// export const handleLocationChange = (): void => {
 //   if (navigator.geolocation) {
 //     navigator.geolocation.getCurrentPosition(
-//       (position: GeolocationPosition) => {
-//         const pos = new google.maps.LatLng(
-//           position.coords.longitude,
-//           position.coords.latitude
-//         );
+//       (position: Position) => {
+//         const pos = {
+//           lat: position.coords.latitude,
+//           lng: position.coords.longitude,
+//         };
 //         infoWindow.setPosition(pos);
 //         infoWindow.setContent('Location found.');
 //         infoWindow.open(map);
@@ -41,11 +39,11 @@ export const g = '';
 //   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 // };
 
-// function handleLocationError(
+// const handleLocationError = (
 //   browserHasGeolocation: boolean,
 //   infoWindow: google.maps.InfoWindow,
 //   pos: google.maps.LatLng
-// ) {
+// ): void => {
 //   infoWindow.setPosition(pos);
 //   infoWindow.setContent(
 //     browserHasGeolocation
@@ -53,4 +51,4 @@ export const g = '';
 //       : "Error: Your browser doesn't support geolocation."
 //   );
 //   infoWindow.open(map);
-// }
+// };

@@ -96,8 +96,11 @@ public class ShelterService {
         final List<Shelter> registeredShelterList = new ArrayList<>();
 
         for (final Shelter shelter : shelterRepository.findAll()) {
-            if (distance(shelter.getLocation().getLatitude(), shelter.getLocation().getLongitude(), latitude, longitude,
-                         "K") <= radius / 1000) {
+            if (distance(shelter.getLocation().getLatitude(),
+                         shelter.getLocation().getLongitude(),
+                         latitude, longitude,
+                         "K")
+                    <= radius / 1000) {
                 registeredShelterList.add(shelter);
             }
             ;

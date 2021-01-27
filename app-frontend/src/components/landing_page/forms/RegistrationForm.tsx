@@ -39,7 +39,11 @@ const RegistrationForm = (): JSX.Element => {
   } = useFormValidation(request, validateRegistration, sendRegistrationRequest);
 
   return (
-    <form onSubmit={handleSubmit} className="form-signin">
+    <form
+      onSubmit={handleSubmit}
+      className="container productwrap shadow-lg rounded mb-0"
+      style={{ padding: '20px', marginTop: '50px', width: '30%' }}
+    >
       {errors.username && (
         <p className="error-text alert alert-danger">{errors.username}</p>
       )}

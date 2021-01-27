@@ -1,11 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import { defaultUser } from 'components/DefaultUser';
+import { AuthContext } from 'context/AuthContext';
+import { UserContext } from 'context/UserContext';
+import React, { Fragment, useContext } from 'react';
 import { Navbar, Image, Jumbotron, Nav, NavDropdown } from 'react-bootstrap';
-import { User } from 'types/User';
+
 const StyledNavbar = (): JSX.Element => {
-  const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState<User>();
-  setAuth(auth);
-  setUser(user);
+  const { user } = useContext(UserContext);
+  const { token } = useContext(AuthContext);
   return (
     <div>
       <Jumbotron
@@ -38,14 +39,14 @@ const StyledNavbar = (): JSX.Element => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto py-3 ">
             <Nav.Link href="/search">Shelters Near You</Nav.Link>
-            {!auth ? (
+            {token === '' ? (
               <Fragment>
                 <Nav.Link href="/login">Login</Nav.Link>
                 <Nav.Link href="/register">Register</Nav.Link>
               </Fragment>
             ) : (
               <Fragment>
-                {user && user.role === 'OCCUPANT' ? (
+                {user !== defaultUser && user.role === 'OCCUPANT' ? (
                   <Nav.Link href="/reservations">Reservations</Nav.Link>
                 ) : (
                   <Nav.Link href="/registershelter">
