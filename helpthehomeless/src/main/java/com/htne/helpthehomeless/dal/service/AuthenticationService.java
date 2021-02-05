@@ -29,13 +29,13 @@ import static org.springframework.security.web.context.HttpSessionSecurityContex
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final ConversionService           mvcConversionService;
-    private final PasswordEncoder             passwordEncoder;
-    private final AuthenticationProvider      authenticationProvider;
-    private final UserService                 userService;
-    private final ConfirmationTokenRepository confirmationTokenRepository;
-    private final EmailService                emailService;
-    public static final String USER_ALREADY_EXISTS_ERROR_MESSAGE = "Username/email already exists";
+    private final       ConversionService           mvcConversionService;
+    private final       PasswordEncoder             passwordEncoder;
+    private final       AuthenticationProvider      authenticationProvider;
+    private final       UserService                 userService;
+    private final       ConfirmationTokenRepository confirmationTokenRepository;
+    private final       EmailService                emailService;
+    public static final String                      USER_ALREADY_EXISTS_ERROR_MESSAGE = "Username/email already exists";
 
     public UserDTO registerUser(final UserRegistrationDTO registration) {
         if (userService.emailExists(registration.getEmail()) || userService.usernameExists(registration.getUsername())) {

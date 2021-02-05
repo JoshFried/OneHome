@@ -1,27 +1,26 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import Search from './components/Search';
 // import PrivateRoute from './components/PrivateRoute';
 // import About from './components/About.js';
-import { UserContext } from "context/UserContext";
-import { LoginForm } from "components/landing_page/forms/LoginForm";
-import RegistrationForm from "components/landing_page/forms/RegistrationForm";
-import StyledNavbar from "components/partials/Navbar";
-import { User } from "types/User";
-import { AuthContext } from "context/AuthContext";
-import { getUserInfo } from "services/AuthenticationService";
-import Footer from "components/partials/Footer";
-import { defaultUser } from "DefaultUser";
-import RegisterShelterForm from "components/shelter_registration/RegisterShelterForm";
-import Home from "components/Home";
-import { Map } from "Test";
+import { LoginForm } from 'components/landing_page/forms/LoginForm';
+import RegistrationForm from 'components/landing_page/forms/RegistrationForm';
+import StyledNavbar from 'components/partials/Navbar';
+import { User } from 'types/User';
+import { AuthContext } from 'context/AuthContext';
+import { getUserInfo } from 'services/AuthenticationService';
+import Footer from 'components/partials/Footer';
+import { defaultUser } from 'DefaultUser';
+import RegisterShelterForm from 'components/shelter_registration/RegisterShelterForm';
+import Home from 'components/Home';
+import { Map } from 'Test';
+import { UserContext } from 'context/UserContext';
 
 const App = (): JSX.Element => {
   const [user, setUser] = useState<User>(defaultUser);
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
-
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
   const setTokens = (data: string): void => {
-    localStorage.setItem("token", JSON.stringify(data));
+    localStorage.setItem('token', JSON.stringify(data));
     setToken(data);
   };
 
@@ -32,22 +31,22 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     console.log(token);
-    if (token !== "") getLoggedInUser();
+    if (token !== '') getLoggedInUser();
     else setUser(defaultUser);
   }, [token]);
 
   return (
-    <Fragment>
+    <>
       <AuthContext.Provider value={{ token, setTokens }}>
         <UserContext.Provider value={{ user, setUser }}>
           <Router>
             <StyledNavbar />
             <Route path="/" exact component={Home} />
             <LoginForm />
-            {token !== "" && (
+            {token !== '' && (
               <Route path="/login" exact component={LoginForm} />
             )}
-            {token !== "" && (
+            {token !== '' && (
               <Route path="/register" exact component={RegistrationForm} />
             )}
             <Route
@@ -62,7 +61,7 @@ const App = (): JSX.Element => {
         </UserContext.Provider>
       </AuthContext.Provider>
       <Footer />
-    </Fragment>
+    </>
   );
 };
 

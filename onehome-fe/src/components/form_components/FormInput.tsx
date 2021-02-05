@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { FormInputTypes } from "./FormInputTypes";
+import React, { Fragment } from 'react';
+import { FormInputTypes } from './FormInputTypes';
 
 export const FormInput = (props: FormInputTypes): JSX.Element => {
   return (

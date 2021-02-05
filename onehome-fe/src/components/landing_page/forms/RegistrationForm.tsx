@@ -1,24 +1,24 @@
-import { StyledButton } from "components/styled/StyledButton";
-import React from "react";
-import { register } from "services/AuthenticationService";
-import { User } from "types/User";
-import FormInput from "../../form_components/FormInput";
-import RegistrationRequest from "../types/requests/RegistrationRequest";
-import useFormValidation from "../validation/UseFormValidation";
-import validateRegistration from "../validation/ValidateRegistration";
+import { StyledButton } from 'components/styled/StyledButton';
+import React from 'react';
+import { register } from 'services/AuthenticationService';
+import { User } from 'types/User';
+import FormInput from '../../form_components/FormInput';
+import RegistrationRequest from '../types/requests/RegistrationRequest';
+import useFormValidation from '../validation/UseFormValidation';
+import validateRegistration from '../validation/ValidateRegistration';
 
 const RegistrationForm = (): JSX.Element => {
   // const history = useHistory();
 
   const request: RegistrationRequest = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    matchingPassword: "",
-    password: "",
-    role: "",
-    gender: "MALE",
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    matchingPassword: '',
+    password: '',
+    role: '',
+    gender: 'MALE',
     age: 0,
   };
 
@@ -42,7 +42,7 @@ const RegistrationForm = (): JSX.Element => {
     <form
       onSubmit={handleSubmit}
       className="container productwrap shadow-lg rounded mb-0"
-      style={{ padding: "20px", marginTop: "50px", width: "30%" }}
+      style={{ padding: '20px', marginTop: '50px', width: '30%' }}
     >
       {errors.username && (
         <p className="error-text alert alert-danger">{errors.username}</p>
@@ -51,7 +51,7 @@ const RegistrationForm = (): JSX.Element => {
       <FormInput
         name="email"
         type="text"
-        className={`${errors.email}  ${"error-input"}  ${"form-control"}`}
+        className={`${errors.email}  ${'error-input'}  ${'form-control'}`}
         onBlur={handleBlur}
         value={values.email}
         onChange={handleChange}
@@ -69,7 +69,7 @@ const RegistrationForm = (): JSX.Element => {
         onChange={handleChange}
         onBlur={handleBlur}
         name="password"
-        className={`${errors.password}  ${"error-input"} ${"form-control"}`}
+        className={`${errors.password}  ${'error-input'} ${'form-control'}`}
         value={values.password}
         placeholder="Password"
       />
@@ -83,7 +83,7 @@ const RegistrationForm = (): JSX.Element => {
         name="matchingPassword"
         className={`${
           errors.matchingPassword
-        } ${"error-input"} ${"form-control"}`}
+        } ${'error-input'} ${'form-control'}`}
         value={values.matchingPassword}
         placeholder="Matching password"
       />
@@ -94,7 +94,7 @@ const RegistrationForm = (): JSX.Element => {
         label="Username"
         name="username"
         type="text"
-        className={`${errors.username}  ${"error-input"} ${"form-control"}`}
+        className={`${errors.username}  ${'error-input'} ${'form-control'}`}
         value={values.username}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -107,7 +107,7 @@ const RegistrationForm = (): JSX.Element => {
         label="FirstName"
         name="firstName"
         type="text"
-        className={`${errors.firstName} ${"error-input"} ${"form-control"}`}
+        className={`${errors.firstName} ${'error-input'} ${'form-control'}`}
         value={values.firstName}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -120,7 +120,7 @@ const RegistrationForm = (): JSX.Element => {
         label="LastName"
         name="lastName"
         type="text"
-        className={`${errors.lastName} ${"error-input"} ${"form-control"}`}
+        className={`${errors.lastName} ${'error-input'} ${'form-control'}`}
         value={values.lastName}
         onChange={handleChange}
         onBlur={handleBlur}

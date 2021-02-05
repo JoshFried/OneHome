@@ -1,5 +1,5 @@
-import { Shelter } from "types/Shelter";
-import { BACKEND_URL, MAPS_API_KEY } from "../Utils/config";
+import { Shelter } from 'types/Shelter';
+import { BACKEND_URL, MAPS_API_KEY } from '../Utils/config';
 
 export const fetchShelterFromId = async (
   id: string

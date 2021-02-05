@@ -1,5 +1,5 @@
-import { Shelter } from "./Shelter";
-import { User } from "./User";
+import { Shelter } from './Shelter';
+import { User } from './User';
 
 export interface Reservation {
   id: number;

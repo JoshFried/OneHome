@@ -1,7 +1,7 @@
-import { defaultUser } from "DefaultUser";
-import { useContext } from "react";
-import { createContext } from "react";
-import { User } from "types/User";
+import { defaultUser } from 'DefaultUser';
+import { useContext } from 'react';
+import { createContext } from 'react';
+import { User } from 'types/User';
 
 type UserContextType = {
   user: User;

@@ -1,4 +1,4 @@
-import AuthRequest from "./AuthRequest";
+import AuthRequest from './AuthRequest';
 
 export default interface RegistrationRequest extends AuthRequest {
   firstName: string;

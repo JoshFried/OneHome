@@ -1,14 +1,14 @@
-import React from "react";
-import { Row, Col } from "react-bootstrap";
+import React from 'react';
+import { Row, Col } from 'react-bootstrap';
 function Footer(): JSX.Element {
   return (
     <footer
       className="footer "
       style={{
-        paddingTop: "50px",
-        paddingBottom: "25px",
-        marginTop: "50px",
-        backgroundImage: "linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)",
+        paddingTop: '50px',
+        paddingBottom: '25px',
+        marginTop: '50px',
+        backgroundImage: 'linear-gradient(0deg, #FFFFFF 0%, #D1D2D5 90%)',
       }}
     >
       <Row className="container d-flex flex-row justify-content-between">

@@ -16,6 +16,7 @@ extends:
   - prettier
   - prettier/@typescript-eslint
   - prettier/react
+#  - airbnb
 rules:
   react/require-default-props: 0
   import/extensions: 0

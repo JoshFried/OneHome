@@ -1,17 +1,17 @@
-import React, { Fragment, useContext } from "react";
-import { authenticate } from "../../../services/AuthenticationService";
-import useFormValidation from "../validation/UseFormValidation";
-import { StyledButton } from "../../styled/StyledButton";
-import { FormInput } from "../../form_components/FormInput";
-import { Row } from "reactstrap";
-import AuthRequest from "../types/requests/AuthRequest";
-import { LoginResponse } from "../types/login/response/LoginResponse";
-import validateAuthentication from "../validation/ValidateAuthentication";
-import { AuthContext } from "context/AuthContext";
-import { useHistory } from "react-router-dom";
+import React, { Fragment, useContext } from 'react';
+import { authenticate } from '../../../services/AuthenticationService';
+import useFormValidation from '../validation/UseFormValidation';
+import { StyledButton } from '../../styled/StyledButton';
+import { FormInput } from '../../form_components/FormInput';
+import { Row } from 'reactstrap';
+import AuthRequest from '../types/requests/AuthRequest';
+import { LoginResponse } from '../types/login/response/LoginResponse';
+import validateAuthentication from '../validation/ValidateAuthentication';
+import { AuthContext } from 'context/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 export const LoginForm = (): JSX.Element => {
-  const request: AuthRequest = { username: "", password: "" };
+  const request: AuthRequest = { username: '', password: '' };
   const { setTokens } = useContext(AuthContext);
   const { token } = useContext(AuthContext);
   const history = useHistory();
@@ -19,7 +19,7 @@ export const LoginForm = (): JSX.Element => {
   const loginUser = async (request: AuthRequest): Promise<LoginResponse> => {
     const loginResponse = await authenticate(request);
     setTokens(loginResponse.token);
-    history.push("/");
+    history.push('/');
     return loginResponse;
   };
 
@@ -41,14 +41,14 @@ export const LoginForm = (): JSX.Element => {
 
   return (
     <Fragment>
-      {token === "" && (
+      {token === '' && (
         <div
           className="container productwrap shadow-lg rounded mb-0"
           style={{
-            padding: "20px",
-            marginTop: "50px",
-            marginBottom: "50px",
-            width: "30%",
+            padding: '20px',
+            marginTop: '50px',
+            marginBottom: '50px',
+            width: '30%',
           }}
         >
           <Row>Login page</Row>
@@ -62,7 +62,7 @@ export const LoginForm = (): JSX.Element => {
               type="text"
               className={`${
                 errors.username
-              } ${"error-input"} ${"form-control"}`}
+              } ${'error-input'} ${'form-control'}`}
               value={values.username}
               onChange={handleChange}
               placeholder="Username"
@@ -78,7 +78,7 @@ export const LoginForm = (): JSX.Element => {
               name="password"
               className={`${
                 errors.password
-              }  ${"error-input"} ${"form-control"}`}
+              }  ${'error-input'} ${'form-control'}`}
               value={values.password}
               placeholder="Password"
             />

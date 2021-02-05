@@ -1,27 +1,27 @@
-import FormInput from "components/form_components/FormInput";
-import { ShelterRequest } from "components/landing_page/types/requests/ShelterRequest";
-import useFormValidation from "components/landing_page/validation/UseFormValidation";
-import { validateShelter } from "components/landing_page/validation/ValidateShelterRegistration";
-import { StyledButton } from "components/styled/StyledButton";
-import React from "react";
-import { RedirectButton } from "RedirectButton";
-import { RegisterShelter } from "services/ShelterService";
-import { Shelter } from "types/Shelter";
-import { RedirectButtonProps } from "./RedirectButtonProps";
+import FormInput from 'components/form_components/FormInput';
+import { ShelterRequest } from 'components/landing_page/types/requests/ShelterRequest';
+import useFormValidation from 'components/landing_page/validation/UseFormValidation';
+import { validateShelter } from 'components/landing_page/validation/ValidateShelterRegistration';
+import { StyledButton } from 'components/styled/StyledButton';
+import React from 'react';
+import { RedirectButton } from 'RedirectButton';
+import { RegisterShelter } from 'services/ShelterService';
+import { Shelter } from 'types/Shelter';
+import { RedirectButtonProps } from './RedirectButtonProps';
 
 const RegisterShelterForm = (): JSX.Element => {
   const request: ShelterRequest = {
-    placeId: "",
-    name: "",
-    website: "",
+    placeId: '',
+    name: '',
+    website: '',
     longitude: 0,
     latitude: 0,
     capacity: 0,
   };
 
   const redirectProps: RedirectButtonProps = {
-    url: "https://developers.google.com/places/web-service/place-id",
-    name: "Find your place ID!",
+    url: 'https://developers.google.com/places/web-service/place-id',
+    name: 'Find your place ID!',
   };
 
   const sendRegistrationRequest = async (
@@ -48,7 +48,7 @@ const RegisterShelterForm = (): JSX.Element => {
           label="place_id"
           name="place_id"
           type="text"
-          className={`${errors.placeId}  ${"error-input"}  ${"form-control"}`}
+          className={`${errors.placeId}  ${'error-input'}  ${'form-control'}`}
           onBlur={handleBlur}
           value={values.placeId}
           onChange={handleChange}
@@ -60,7 +60,7 @@ const RegisterShelterForm = (): JSX.Element => {
           label="website"
           name="website"
           type="text"
-          className={`${"form-control"}`}
+          className={`${'form-control'}`}
           onBlur={handleBlur}
           value={values.website}
           onChange={handleChange}
@@ -73,7 +73,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="capacity"
           type="number"
           onChange={handleChange}
-          className={`${errors.capacity}  ${"error-input"}  ${"form-control"}`}
+          className={`${errors.capacity}  ${'error-input'}  ${'form-control'}`}
           onBlur={handleBlur}
           value={values.capacity}
           placeholder="capacity"
@@ -85,7 +85,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="latitude"
           type="number"
           onChange={handleChange}
-          className={`${errors.latitude}  ${"error-input"}  ${"form-control"}`}
+          className={`${errors.latitude}  ${'error-input'}  ${'form-control'}`}
           onBlur={handleBlur}
           value={values.latitude}
           placeholder="latitude"
@@ -97,7 +97,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="capacity"
           type="number"
           onChange={handleChange}
-          className={`${errors.longitude}  ${"error-input"}  ${"form-control"}`}
+          className={`${errors.longitude}  ${'error-input'}  ${'form-control'}`}
           onBlur={handleBlur}
           value={values.longitude}
           placeholder="longitude"

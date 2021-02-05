@@ -1,8 +1,8 @@
-import { Fragment, useState } from "react";
-import { Location } from "types/Location";
+import { Fragment, useState } from 'react';
+import { Location } from 'types/Location';
 
-import React from "react";
-import FormInput from "components/form_components/FormInput";
+import React from 'react';
+import FormInput from 'components/form_components/FormInput';
 
 export const LocationInputs = (): JSX.Element => {
   const [location, setLocation] = useState<Location>();
@@ -13,7 +13,7 @@ export const LocationInputs = (): JSX.Element => {
         label="placeId"
         name="placeId"
         type="text"
-        className={`${"error-input"} ${"form-control"}`}
+        className={`${'error-input'} ${'form-control'}`}
         value={location?.placeId}
         // onChange={handleChange}
         placeholder="Place ID"
@@ -24,7 +24,7 @@ export const LocationInputs = (): JSX.Element => {
         label="latitude"
         name="latitude"
         type="number"
-        className={`${"error-input"} ${"form-control"}`}
+        className={`${'error-input'} ${'form-control'}`}
         value={location?.latitude}
         // onChange={handleChange}
         placeholder="Place ID"
@@ -35,7 +35,7 @@ export const LocationInputs = (): JSX.Element => {
         label="longitude"
         name="longitude"
         type="number"
-        className={`${"error-input"} ${"form-control"}`}
+        className={`${'error-input'} ${'form-control'}`}
         value={location?.longitude}
         // onChange={handleChange}
         placeholder="Place ID"

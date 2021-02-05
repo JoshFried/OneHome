@@ -4,9 +4,9 @@ export const fieldValidator = <T>(
 ): string[] => {
   return requiredFields
     .map((field) => checkRequiredField(entity[field], field))
-    .filter((res) => res !== "");
+    .filter((res) => res !== '');
 };
 
 const checkRequiredField = (value: unknown, field: keyof never): string => {
-  return !value ? `${String(field)} is required` : "";
+  return !value ? `${String(field)} is required` : '';
 };
