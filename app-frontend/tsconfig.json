@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "jsx": "react",
+    "outDir": "./dist",
+    "isolatedModules": true,
+    "baseUrl": "src",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "public",
+    ".cache"
+  ],
+  "ts-node": {
+    "transpileOnly": true,
+    "compiler": "typescript",
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "module": "UMD",
+      "moduleResolution": "node",
+      "noEmit": true
+    }
+  },
+  "include": [
+    "src"
+  ]
+}

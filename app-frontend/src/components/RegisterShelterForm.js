@@ -1,32 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
-import FormInput from "./FormInput.js";
-import { StyledButton } from "./StyledButton.js";
-import { register } from "./AuthenticationService.js";
-import ValidateRegistration from "./ValidateRegistration.js";
-import useFormValidation from "./UseFormValidation.js";
-import { useHistory } from "react-router-dom";
-import RedirectButton from "./RedirectButton.js";
-import Stuff from "./Stuff.js";
-import axios from "axios";
-import config from "../Utils/config";
+import React, { useState, useEffect, useRef } from 'react';
+import FormInput from './FormInput.js';
+import { StyledButton } from './StyledButton.js';
+import { register } from './AuthenticationService.js';
+import ValidateRegistration from './ValidateRegistration.js';
+import useFormValidation from './UseFormValidation.js';
+import { useHistory } from 'react-router-dom';
+import RedirectButton from './RedirectButton.js';
+import Stuff from './Stuff.js';
+import axios from 'axios';
+import config from '../Utils/config';
 function RegisterShelterForm() {
   const history = useHistory();
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState('');
   const [currentPlace, setCurrentPlace] = useState({});
-  const [filename, setFilename] = useState("Choose File");
-  const [place_id, setPlace_id] = useState("");
+  const [filename, setFilename] = useState('Choose File');
+  const [place_id, setPlace_id] = useState('');
   const [latitude, setLatitude] = useState(0);
   const [longitude, setLongitude] = useState(0);
-  const [check_in_time, setCheck_in_time] = useState("00:00:00");
-  const [check_out_time, setCheck_out_time] = useState("00:00:00");
-  const [supper_time, setSupper_time] = useState("00:00:00");
+  const [check_in_time, setCheck_in_time] = useState('00:00:00');
+  const [check_out_time, setCheck_out_time] = useState('00:00:00');
+  const [supper_time, setSupper_time] = useState('00:00:00');
   const [males, setMales] = useState(true);
   const [females, setFemales] = useState(true);
   const [sober, setSober] = useState(true);
   const [pets, setPets] = useState(true);
   const [capacity, setCapacity] = useState(10);
   const [minor, setMinor] = useState(true);
-  const [website, setWebsite] = useState("");
+  const [website, setWebsite] = useState('');
 
   useEffect(() => {
     axios
@@ -50,7 +50,7 @@ function RegisterShelterForm() {
   const onFileChange = (e) => {
     e.target.files[0]
       ? setFilename(e.target.files[0].name)
-      : setFilename("No file chosen.");
+      : setFilename('No file chosen.');
   };
   const handleFileSubmit = (e) => {
     e.preventDefault();
@@ -92,7 +92,7 @@ function RegisterShelterForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     let info = {
-      name: "huh",
+      name: 'huh',
       location: {
         placeId: place_id,
         longitude: longitude,
@@ -118,10 +118,10 @@ function RegisterShelterForm() {
     <div>
       <h1>Verify Shelter</h1>
       <h2>
-        Your selected place is{" "}
+        Your selected place is{' '}
         {currentPlace
           ? ` the ${currentPlace.name} in ${currentPlace.formatted_address}`
-          : "undefined."}
+          : 'undefined.'}
       </h2>
       <form onSubmit={onSubmit} className="form-signin">
         <div>Place ID</div>
@@ -129,7 +129,7 @@ function RegisterShelterForm() {
           label="place_id"
           name="place_id"
           type="text"
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           value={place_id}
           onChange={handlePlaceChange}
           placeholder="Place ID"
@@ -140,7 +140,7 @@ function RegisterShelterForm() {
           label="website"
           name="website"
           type="text"
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           value={website}
           onChange={handleWebsiteChange}
           placeholder="Website"
@@ -151,7 +151,7 @@ function RegisterShelterForm() {
           label="check_in_time"
           name="check_in_time"
           type="time"
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           onChange={handleCheckInChange}
           value={check_in_time}
         />
@@ -161,7 +161,7 @@ function RegisterShelterForm() {
           label="supper_time"
           name="supper_time"
           type="time"
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           onChange={handleSupperChange}
           value={supper_time}
         />
@@ -172,7 +172,7 @@ function RegisterShelterForm() {
           name="check_out_time"
           type="time"
           onChange={handleCheckOutChange}
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           value={check_out_time}
         />
         <br />
@@ -184,7 +184,7 @@ function RegisterShelterForm() {
           name="capacity"
           type="number"
           onChange={handleCapacityChange}
-          className={`${"error-input"} ${"form-control"}`}
+          className={`${'error-input'} ${'form-control'}`}
           value={capacity}
         />
         <br />

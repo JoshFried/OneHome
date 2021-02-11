@@ -1,27 +1,32 @@
-import React from "react";
-import FormInput from "./FormInput.js";
-import { StyledButton } from "./StyledButton.js";
-import { register } from "./AuthenticationService.js";
-import ValidateRegistration from "./ValidateRegistration.js";
-import useFormValidation from "./UseFormValidation.js";
-import { useHistory } from "react-router-dom";
+import { StyledButton } from 'components/styled/StyledButton';
+import React from 'react';
+import { register } from 'services/AuthenticationService';
+import { User } from 'types/User';
+import FormInput from '../../form_components/FormInput';
+import RegistrationRequest from '../types/requests/RegistrationRequest';
+import { useRegistrationValidation } from '../validation/UseRegistrationValidation';
+import validateRegistration from '../validation/ValidateRegistration';
 
-const INITIAL_STATE = {
-  email: "",
-  password: "",
-  matchingPassword: "",
-  username: "",
-  firstName: "",
-  lastName: "",
-  role: "OCCUPANT",
-};
+const RegistrationForm = (): JSX.Element => {
+  // const history = useHistory();
 
-const RegistrationForm = () => {
-  const history = useHistory();
+  const request: RegistrationRequest = {
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    matchingPassword: '',
+    password: '',
+    role: '',
+    gender: '',
+    age: 0,
+  };
 
-  const sendRegistrationRequest = async (fields) => {
-    await register(fields);
-    history.push("/login");
+  const sendRegistrationRequest = async (
+    request: RegistrationRequest
+  ): Promise<boolean | User> => {
+    return await register(request);
+    // history.push('/login');
   };
 
   const {
@@ -31,9 +36,9 @@ const RegistrationForm = () => {
     values,
     errors,
     isSubmitting,
-  } = useFormValidation(
-    INITIAL_STATE,
-    ValidateRegistration,
+  } = useRegistrationValidation(
+    request,
+    validateRegistration,
     sendRegistrationRequest
   );
 
@@ -46,7 +51,7 @@ const RegistrationForm = () => {
       <FormInput
         name="email"
         type="text"
-        className={`${errors.email}  ${"error-input"}  ${"form-control"}`}
+        className={`${errors.email}  ${'error-input'}  ${'form-control'}`}
         onBlur={handleBlur}
         value={values.email}
         onChange={handleChange}
@@ -64,7 +69,7 @@ const RegistrationForm = () => {
         onChange={handleChange}
         onBlur={handleBlur}
         name="password"
-        className={`${errors.password}  ${"error-input"} ${"form-control"}`}
+        className={`${errors.password}  ${'error-input'} ${'form-control'}`}
         value={values.password}
         placeholder="Password"
       />
@@ -78,7 +83,7 @@ const RegistrationForm = () => {
         name="matchingPassword"
         className={`${
           errors.matchingPassword
-        } ${"error-input"} ${"form-control"}`}
+        } ${'error-input'} ${'form-control'}`}
         value={values.matchingPassword}
         placeholder="Matching password"
       />
@@ -89,7 +94,7 @@ const RegistrationForm = () => {
         label="Username"
         name="username"
         type="text"
-        className={`${errors.username}  ${"error-input"} ${"form-control"}`}
+        className={`${errors.username}  ${'error-input'} ${'form-control'}`}
         value={values.username}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -102,7 +107,7 @@ const RegistrationForm = () => {
         label="FirstName"
         name="firstName"
         type="text"
-        className={`${errors.firstName} ${"error-input"} ${"form-control"}`}
+        className={`${errors.firstName} ${'error-input'} ${'form-control'}`}
         value={values.firstName}
         onBlur={handleBlur}
         onChange={handleChange}
@@ -115,7 +120,7 @@ const RegistrationForm = () => {
         label="LastName"
         name="lastName"
         type="text"
-        className={`${errors.lastName} ${"error-input"} ${"form-control"}`}
+        className={`${errors.lastName} ${'error-input'} ${'form-control'}`}
         value={values.lastName}
         onChange={handleChange}
         onBlur={handleBlur}
@@ -132,7 +137,7 @@ const RegistrationForm = () => {
         <option value="ADMIN">Shelter Owner</option>
         <option value="OCCUPANT">Shelter Seeker</option>
       </select>
-      <br/>
+      <br />
 
       <StyledButton
         type="submit"
