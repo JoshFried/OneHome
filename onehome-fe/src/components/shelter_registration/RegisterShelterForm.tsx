@@ -48,7 +48,7 @@ const RegisterShelterForm = (): JSX.Element => {
           label="place_id"
           name="place_id"
           type="text"
-          className={`${errors.placeId}  ${'error-input'}  ${'form-control'}`}
+          className={`${errors.placeId} ${errors.input} form-control`}
           onBlur={handleBlur}
           value={values.placeId}
           onChange={handleChange}
@@ -60,7 +60,7 @@ const RegisterShelterForm = (): JSX.Element => {
           label="website"
           name="website"
           type="text"
-          className={`${'form-control'}`}
+          className={`form-control`}
           onBlur={handleBlur}
           value={values.website}
           onChange={handleChange}
@@ -73,7 +73,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="capacity"
           type="number"
           onChange={handleChange}
-          className={`${errors.capacity}  ${'error-input'}  ${'form-control'}`}
+          className={`${errors.capacity} ${errors.input} form-control`}
           onBlur={handleBlur}
           value={values.capacity}
           placeholder="capacity"
@@ -85,7 +85,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="latitude"
           type="number"
           onChange={handleChange}
-          className={`${errors.latitude}  ${'error-input'}  ${'form-control'}`}
+          className={`${errors.latitude} ${errors.input} form-control`}
           onBlur={handleBlur}
           value={values.latitude}
           placeholder="latitude"
@@ -97,7 +97,7 @@ const RegisterShelterForm = (): JSX.Element => {
           name="capacity"
           type="number"
           onChange={handleChange}
-          className={`${errors.longitude}  ${'error-input'}  ${'form-control'}`}
+          className={`${errors.longitude} ${errors.input} form-control`}
           onBlur={handleBlur}
           value={values.longitude}
           placeholder="longitude"

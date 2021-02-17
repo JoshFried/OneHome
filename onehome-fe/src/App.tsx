@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 // import Search from './components/Search';
 // import PrivateRoute from './components/PrivateRoute';
@@ -23,7 +23,6 @@ const App = (): JSX.Element => {
     localStorage.setItem('token', JSON.stringify(data));
     setToken(data);
   };
-
   const getLoggedInUser = async (): Promise<void> => {
     console.log(await getUserInfo());
     setUser(await getUserInfo());
@@ -31,8 +30,9 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     console.log(token);
-    if (token !== '') getLoggedInUser();
-    else setUser(defaultUser);
+    if (token !== '') {
+      getLoggedInUser();
+    } else setUser(defaultUser);
   }, [token]);
 
   return (

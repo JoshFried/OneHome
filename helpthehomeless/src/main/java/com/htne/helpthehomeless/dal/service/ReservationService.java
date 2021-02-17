@@ -16,6 +16,7 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.Instant;
@@ -40,7 +41,7 @@ public class ReservationService {
         repository.save(rsvp);
 
         try {
-            emailService.emailQRCode(user.getEmail(), qrCodeService.generateQRCodeImage(URL + String.valueOf(rsvp.getId())));
+            emailService.emailQRCode(user.getEmail(), qrCodeService.generateQRCodeImage(URL + rsvp.getId()));
         } catch (final WriterException | IOException | MessagingException e) {
             e.printStackTrace();
         }
@@ -59,7 +60,7 @@ public class ReservationService {
         return updateReservation(dto);
     }
 
-    private ReservationDTO updateReservation(final ReservationDTO dto) {
+    private ReservationDTO updateReservation(@NotNull final ReservationDTO dto) {
         final Reservation rsvp = fetchReservation(dto.getId());
         rsvp.setExpiresAt(dto.getExpiresAt());
         rsvp.setCreatedAt(dto.getCreatedAt());
@@ -77,7 +78,6 @@ public class ReservationService {
     }
 
     public ReservationDTO getUserReservation(final long userId) {
-        System.out.println("FUCK");
         return mvcConversionService.convert(repository.findByUserId(userId).orElseThrow(() -> new HTNENotFoundException(ExceptionHelper.getNotFoundExceptionMessage("Id: ", String.valueOf(userId)))), ReservationDTO.class);
     }
 

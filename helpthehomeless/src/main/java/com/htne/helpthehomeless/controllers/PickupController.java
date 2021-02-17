@@ -2,6 +2,7 @@ package com.htne.helpthehomeless.controllers;
 
 import com.htne.helpthehomeless.dal.model.Pickup;
 import com.htne.helpthehomeless.dal.service.PickupService;
+import com.htne.helpthehomeless.dto.PickupDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class PickupController {
     private PickupService pickupService;
 
     @PostMapping("/createPickup")
-    public ResponseEntity<Pickup> createPickup
+    public ResponseEntity<PickupDTO> createPickup
             (final Authentication auth, @RequestParam final Date appointmentDate, @RequestParam final Long reservationId,
              @RequestParam final int distance){
         return new ResponseEntity<>(pickupService.createPickup(distance,reservationId,appointmentDate), HttpStatus.CREATED);

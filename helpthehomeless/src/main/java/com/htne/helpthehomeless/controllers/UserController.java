@@ -26,11 +26,6 @@ public class UserController {
         return new ResponseEntity<>(userService.getUserByUsername(username), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping
-    public ResponseEntity<UserDTO> getUser(final Authentication authentication) {
-        return new ResponseEntity<>(mvcConversionService.convert(userService.getUserFromContext(), UserDTO.class), HttpStatus.OK);
-    }
-
     @GetMapping(value = "/logout")
     public ResponseEntity<String> logoutUser() {
         return new ResponseEntity<>("USER SUCCESSFULLY LOGGED OUT AND CLOSED THE SIMULATION", HttpStatus.ACCEPTED);
