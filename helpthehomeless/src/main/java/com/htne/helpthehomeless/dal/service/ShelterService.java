@@ -17,11 +17,9 @@ import com.htne.helpthehomeless.dto.registration.ShelterRegistrationDTO;
 import com.jayway.jsonpath.spi.json.GsonJsonProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.convert.ConversionService;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @Service

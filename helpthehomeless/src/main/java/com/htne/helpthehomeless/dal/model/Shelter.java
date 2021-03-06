@@ -15,10 +15,10 @@ import java.util.Set;
 @Builder
 @Entity
 public class Shelter {
+    private String      name;
     @Id
     @GeneratedValue
     private Long        id;
-    private String      name;
     @OneToOne(cascade = CascadeType.ALL)
     private Location    location;
     @OneToOne

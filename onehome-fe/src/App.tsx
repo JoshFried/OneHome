@@ -23,6 +23,7 @@ const App = (): JSX.Element => {
     localStorage.setItem('token', JSON.stringify(data));
     setToken(data);
   };
+
   const getLoggedInUser = async (): Promise<void> => {
     console.log(await getUserInfo());
     setUser(await getUserInfo());
